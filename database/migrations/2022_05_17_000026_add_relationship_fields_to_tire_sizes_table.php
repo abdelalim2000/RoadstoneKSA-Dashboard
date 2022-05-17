@@ -9,8 +9,14 @@ class AddRelationshipFieldsToTireSizesTable extends Migration
     public function up()
     {
         Schema::table('tire_sizes', function (Blueprint $table) {
-            $table->unsignedBigInteger('tire_id')->nullable();
-            $table->foreign('tire_id', 'tire_fk_6620961')->references('id')->on('tires');
+            $table->foreignId('tire_id')->nullable()->references('id')->on('tires');
+        });
+    }
+
+    public function down()
+    {
+        Schema::table('tire_sizes', function (Blueprint $table) {
+            $table->dropForeign('tire_id');
         });
     }
 }

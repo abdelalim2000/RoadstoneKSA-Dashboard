@@ -9,8 +9,14 @@ class AddRelationshipFieldsToCarModelsTable extends Migration
     public function up()
     {
         Schema::table('car_models', function (Blueprint $table) {
-            $table->unsignedBigInteger('maker_id')->nullable();
-            $table->foreign('maker_id', 'maker_fk_6613257')->references('id')->on('makers');
+            $table->foreignId('maker_id')->nullable()->references('id')->on('makers');
+        });
+    }
+
+    public function down()
+    {
+        Schema::table('car_models', function (Blueprint $table) {
+            $table->dropForeign('maker_id');
         });
     }
 }

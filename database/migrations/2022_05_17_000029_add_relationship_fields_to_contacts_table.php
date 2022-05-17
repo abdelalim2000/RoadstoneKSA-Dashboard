@@ -9,8 +9,14 @@ class AddRelationshipFieldsToContactsTable extends Migration
     public function up()
     {
         Schema::table('contacts', function (Blueprint $table) {
-            $table->unsignedBigInteger('contact_type_id')->nullable();
-            $table->foreign('contact_type_id', 'contact_type_fk_6613473')->references('id')->on('contact_types');
+            $table->foreignId('contact_type_id')->nullable()->references('id')->on('contact_types');
+        });
+    }
+
+    public function down()
+    {
+        Schema::table('contacts', function (Blueprint $table) {
+            $table->dropForeign('contact_type_id');
         });
     }
 }

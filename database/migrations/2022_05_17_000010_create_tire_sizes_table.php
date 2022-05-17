@@ -9,7 +9,7 @@ class CreateTireSizesTable extends Migration
     public function up()
     {
         Schema::create('tire_sizes', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->integer('width');
             $table->integer('ratio');
             $table->integer('rim_diameter');
@@ -17,5 +17,10 @@ class CreateTireSizesTable extends Migration
             $table->string('speed_rating');
             $table->timestamps();
         });
+    }
+
+    public function down()
+    {
+        Schema::dropIfExists('tire_sizes');
     }
 }

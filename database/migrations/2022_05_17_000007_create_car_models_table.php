@@ -9,9 +9,14 @@ class CreateCarModelsTable extends Migration
     public function up()
     {
         Schema::create('car_models', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->string('name');
             $table->timestamps();
         });
+    }
+
+    public function down()
+    {
+        Schema::dropIfExists('car_models');
     }
 }

@@ -9,7 +9,7 @@ class CreateLocationsTable extends Migration
     public function up()
     {
         Schema::create('locations', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->string('name')->unique();
             $table->longText('address');
             $table->string('phone');
@@ -18,5 +18,10 @@ class CreateLocationsTable extends Migration
             $table->boolean('active')->default(0)->nullable();
             $table->timestamps();
         });
+    }
+
+    public function down()
+    {
+        Schema::dropIfExists('locations');
     }
 }

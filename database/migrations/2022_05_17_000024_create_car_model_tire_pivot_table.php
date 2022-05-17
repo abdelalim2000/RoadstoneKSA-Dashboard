@@ -9,10 +9,13 @@ class CreateCarModelTirePivotTable extends Migration
     public function up()
     {
         Schema::create('car_model_tire', function (Blueprint $table) {
-            $table->unsignedBigInteger('tire_id');
-            $table->foreign('tire_id', 'tire_id_fk_6613390')->references('id')->on('tires')->onDelete('cascade');
-            $table->unsignedBigInteger('car_model_id');
-            $table->foreign('car_model_id', 'car_model_id_fk_6613390')->references('id')->on('car_models')->onDelete('cascade');
+            $table->foreignId('tire_id')->references('id')->on('tires')->onDelete('cascade');
+            $table->foreignId('car_model_id')->references('id')->on('car_models')->onDelete('cascade');
         });
+    }
+
+    public function down()
+    {
+        Schema::dropIfExists('car_model_tire');
     }
 }

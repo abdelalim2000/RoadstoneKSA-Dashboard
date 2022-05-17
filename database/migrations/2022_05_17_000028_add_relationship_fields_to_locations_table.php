@@ -9,8 +9,14 @@ class AddRelationshipFieldsToLocationsTable extends Migration
     public function up()
     {
         Schema::table('locations', function (Blueprint $table) {
-            $table->unsignedBigInteger('city_id')->nullable();
-            $table->foreign('city_id', 'city_fk_6613421')->references('id')->on('cities');
+            $table->foreignID('city_id')->nullable()->references('id')->on('cities');
+        });
+    }
+
+    public function down()
+    {
+        Schema::table('locations', function (Blueprint $table) {
+            $table->dropForeign('city_id');
         });
     }
 }

@@ -9,7 +9,7 @@ class CreateSettingsTable extends Migration
     public function up()
     {
         Schema::create('settings', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->string('key')->unique();
             $table->string('text')->nullable();
             $table->longText('short_description')->nullable();
@@ -18,5 +18,10 @@ class CreateSettingsTable extends Migration
             $table->integer('number')->nullable();
             $table->timestamps();
         });
+    }
+
+    public function down()
+    {
+        Schema::dropIfExists('settings');
     }
 }

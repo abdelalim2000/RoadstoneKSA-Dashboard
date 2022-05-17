@@ -9,7 +9,7 @@ class CreateTiresTable extends Migration
     public function up()
     {
         Schema::create('tires', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->string('title')->unique();
             $table->string('slug')->unique();
             $table->longText('short_description');
@@ -33,5 +33,10 @@ class CreateTiresTable extends Migration
             $table->float('ice', 2, 1)->nullable();
             $table->timestamps();
         });
+    }
+
+    public function down()
+    {
+        Schema::dropIfExists('tires');
     }
 }

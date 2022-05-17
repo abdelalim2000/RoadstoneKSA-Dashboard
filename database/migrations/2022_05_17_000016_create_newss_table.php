@@ -9,10 +9,15 @@ class CreateNewssTable extends Migration
     public function up()
     {
         Schema::create('newss', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->string('name')->nullable();
             $table->string('email')->nullable();
             $table->timestamps();
         });
+    }
+
+    public function down()
+    {
+        Schema::dropIfExists('newss');
     }
 }

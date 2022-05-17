@@ -9,9 +9,14 @@ class CreateTireFeaturesTable extends Migration
     public function up()
     {
         Schema::create('tire_features', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->string('name')->unique();
             $table->timestamps();
         });
+    }
+
+    public function down()
+    {
+        Schema::dropIfExists('tire_features');
     }
 }

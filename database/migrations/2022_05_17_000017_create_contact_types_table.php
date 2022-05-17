@@ -9,9 +9,14 @@ class CreateContactTypesTable extends Migration
     public function up()
     {
         Schema::create('contact_types', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->string('name');
             $table->timestamps();
         });
+    }
+
+    public function down()
+    {
+        Schema::dropIfExists('contact_types');
     }
 }

@@ -9,7 +9,7 @@ class CreateContactsTable extends Migration
     public function up()
     {
         Schema::create('contacts', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->string('name')->nullable();
             $table->string('email')->nullable();
             $table->string('subject')->nullable();
@@ -18,5 +18,10 @@ class CreateContactsTable extends Migration
             $table->boolean('status')->default(0)->nullable();
             $table->timestamps();
         });
+    }
+
+    public function down()
+    {
+        Schema::dropIfExists('contacts');
     }
 }

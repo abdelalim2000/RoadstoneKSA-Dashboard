@@ -9,10 +9,15 @@ class CreateMakersTable extends Migration
     public function up()
     {
         Schema::create('makers', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->string('name')->unique();
             $table->boolean('searchable')->default(0)->nullable();
             $table->timestamps();
         });
+    }
+
+    public function down()
+    {
+        Schema::dropIfExists('makers');
     }
 }

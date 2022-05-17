@@ -9,7 +9,7 @@ class CreateCitiesTable extends Migration
     public function up()
     {
         Schema::create('cities', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->string('name')->unique();
             $table->string('slug')->unique();
             $table->longText('map');
@@ -18,5 +18,10 @@ class CreateCitiesTable extends Migration
             $table->boolean('active')->default(0)->nullable();
             $table->timestamps();
         });
+    }
+
+    public function down()
+    {
+        Schema::dropIfExists('cities');
     }
 }

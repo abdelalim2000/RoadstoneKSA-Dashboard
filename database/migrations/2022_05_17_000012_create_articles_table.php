@@ -9,7 +9,7 @@ class CreateArticlesTable extends Migration
     public function up()
     {
         Schema::create('articles', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->string('title')->unique();
             $table->string('slug')->unique();
             $table->longText('seo_keywords')->nullable();
@@ -19,5 +19,10 @@ class CreateArticlesTable extends Migration
             $table->boolean('publish')->default(0)->nullable();
             $table->timestamps();
         });
+    }
+
+    public function down()
+    {
+        Schema::dropIfExists('articles');
     }
 }
