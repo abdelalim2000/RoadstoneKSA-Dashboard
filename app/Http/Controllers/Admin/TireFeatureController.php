@@ -23,7 +23,7 @@ class TireFeatureController extends Controller
         abort_if(Gate::denies('tire_feature_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         if ($request->ajax()) {
-            $query = TireFeature::query()->select(sprintf('%s.*', (new TireFeature())->table));
+            $query = TireFeature::query()->withTranslation()->translatedIn(app()->getLocale())->get();
             $table = Datatables::of($query);
 
             $table->addColumn('placeholder', '&nbsp;');
@@ -36,12 +36,12 @@ class TireFeatureController extends Controller
                 $crudRoutePart = 'tire-features';
 
                 return view('partials.datatablesActions', compact(
-                'viewGate',
-                'editGate',
-                'deleteGate',
-                'crudRoutePart',
-                'row'
-            ));
+                    'viewGate',
+                    'editGate',
+                    'deleteGate',
+                    'crudRoutePart',
+                    'row'
+                ));
             });
 
             $table->editColumn('id', function ($row) {
@@ -53,10 +53,10 @@ class TireFeatureController extends Controller
             $table->editColumn('icon', function ($row) {
                 if ($photo = $row->icon) {
                     return sprintf(
-        '<a href="%s" target="_blank"><img src="%s" width="50px" height="50px"></a>',
-        $photo->url,
-        $photo->thumbnail
-    );
+                        '<a href="%s" target="_blank"><img src="%s" width="50px" height="50px"></a>',
+                        $photo->url,
+                        $photo->thumbnail
+                    );
                 }
 
                 return '';
@@ -70,6 +70,21 @@ class TireFeatureController extends Controller
         return view('admin.tireFeatures.index');
     }
 
+    public function store(StoreTireFeatureRequest $request)
+    {
+        $tireFeature = TireFeature::query()->create($request->validated());
+
+        if ($request->input('icon', false)) {
+            $tireFeature->addMedia(storage_path('tmp/uploads/' . basename($request->input('icon'))))->toMediaCollection('tire_feature');
+        }
+
+        if ($media = $request->input('ck-media', false)) {
+            Media::whereIn('id', $media)->update(['model_id' => $tireFeature->id]);
+        }
+
+        return redirect()->route('admin.tire-features.index');
+    }
+
     public function create()
     {
         abort_if(Gate::denies('tire_feature_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
@@ -77,16 +92,19 @@ class TireFeatureController extends Controller
         return view('admin.tireFeatures.create');
     }
 
-    public function store(StoreTireFeatureRequest $request)
+    public function update(UpdateTireFeatureRequest $request, TireFeature $tireFeature)
     {
-        $tireFeature = TireFeature::create($request->all());
+        $tireFeature->update($request->validated());
 
         if ($request->input('icon', false)) {
-            $tireFeature->addMedia(storage_path('tmp/uploads/' . basename($request->input('icon'))))->toMediaCollection('icon');
-        }
-
-        if ($media = $request->input('ck-media', false)) {
-            Media::whereIn('id', $media)->update(['model_id' => $tireFeature->id]);
+            if (!$tireFeature->icon || $request->input('icon') !== $tireFeature->icon->file_name) {
+                if ($tireFeature->icon) {
+                    $tireFeature->icon->delete();
+                }
+                $tireFeature->addMedia(storage_path('tmp/uploads/' . basename($request->input('icon'))))->toMediaCollection('tire_feature');
+            }
+        } elseif ($tireFeature->icon) {
+            $tireFeature->icon->delete();
         }
 
         return redirect()->route('admin.tire-features.index');
@@ -97,24 +115,6 @@ class TireFeatureController extends Controller
         abort_if(Gate::denies('tire_feature_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return view('admin.tireFeatures.edit', compact('tireFeature'));
-    }
-
-    public function update(UpdateTireFeatureRequest $request, TireFeature $tireFeature)
-    {
-        $tireFeature->update($request->all());
-
-        if ($request->input('icon', false)) {
-            if (!$tireFeature->icon || $request->input('icon') !== $tireFeature->icon->file_name) {
-                if ($tireFeature->icon) {
-                    $tireFeature->icon->delete();
-                }
-                $tireFeature->addMedia(storage_path('tmp/uploads/' . basename($request->input('icon'))))->toMediaCollection('icon');
-            }
-        } elseif ($tireFeature->icon) {
-            $tireFeature->icon->delete();
-        }
-
-        return redirect()->route('admin.tire-features.index');
     }
 
     public function show(TireFeature $tireFeature)
@@ -135,7 +135,10 @@ class TireFeatureController extends Controller
 
     public function massDestroy(MassDestroyTireFeatureRequest $request)
     {
-        TireFeature::whereIn('id', request('ids'))->delete();
+        foreach ($request->ids as $id) {
+            $feature = TireFeature::query()->where('id', $id)->first();
+            $feature->delete();
+        }
 
         return response(null, Response::HTTP_NO_CONTENT);
     }
@@ -144,10 +147,10 @@ class TireFeatureController extends Controller
     {
         abort_if(Gate::denies('tire_feature_create') && Gate::denies('tire_feature_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $model         = new TireFeature();
-        $model->id     = $request->input('crud_id', 0);
+        $model = new TireFeature();
+        $model->id = $request->input('crud_id', 0);
         $model->exists = true;
-        $media         = $model->addMediaFromRequest('upload')->toMediaCollection('ck-media');
+        $media = $model->addMediaFromRequest('upload')->toMediaCollection('ck-media');
 
         return response()->json(['id' => $media->id, 'url' => $media->getUrl()], Response::HTTP_CREATED);
     }

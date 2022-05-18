@@ -6,6 +6,7 @@ use App\Models\TireFeature;
 use Gate;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Response;
+use Illuminate\Validation\Rule;
 
 class StoreTireFeatureRequest extends FormRequest
 {
@@ -16,15 +17,20 @@ class StoreTireFeatureRequest extends FormRequest
 
     public function rules()
     {
-        return [
-            'name' => [
-                'string',
-                'required',
-                'unique:tire_features',
-            ],
+        $data = [
             'icon' => [
                 'required',
             ],
         ];
+
+        foreach (siteLanguages() as $locale) {
+            $data[$locale.'.name'] = [
+                'string',
+                'required',
+                Rule::unique('tire_feature_translations', 'name'),
+            ];
+        }
+
+        return $data;
     }
 }
