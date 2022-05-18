@@ -10,7 +10,6 @@ class CreateTireDesignsTable extends Migration
     {
         Schema::create('tire_designs', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
             $table->timestamps();
         });
     }

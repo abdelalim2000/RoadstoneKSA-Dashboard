@@ -23,7 +23,7 @@ class TireDesignController extends Controller
         abort_if(Gate::denies('tire_design_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         if ($request->ajax()) {
-            $query = TireDesign::query()->select(sprintf('%s.*', (new TireDesign())->table));
+            $query = TireDesign::query()->withTranslation()->translatedIn(app()->getLocale())->get();
             $table = Datatables::of($query);
 
             $table->addColumn('placeholder', '&nbsp;');
@@ -36,12 +36,12 @@ class TireDesignController extends Controller
                 $crudRoutePart = 'tire-designs';
 
                 return view('partials.datatablesActions', compact(
-                'viewGate',
-                'editGate',
-                'deleteGate',
-                'crudRoutePart',
-                'row'
-            ));
+                    'viewGate',
+                    'editGate',
+                    'deleteGate',
+                    'crudRoutePart',
+                    'row'
+                ));
             });
 
             $table->editColumn('id', function ($row) {
@@ -53,10 +53,10 @@ class TireDesignController extends Controller
             $table->editColumn('image', function ($row) {
                 if ($photo = $row->image) {
                     return sprintf(
-        '<a href="%s" target="_blank"><img src="%s" width="50px" height="50px"></a>',
-        $photo->url,
-        $photo->thumbnail
-    );
+                        '<a href="%s" target="_blank"><img src="%s" width="50px" height="50px"></a>',
+                        $photo->url,
+                        $photo->thumbnail
+                    );
                 }
 
                 return '';
@@ -70,6 +70,21 @@ class TireDesignController extends Controller
         return view('admin.tireDesigns.index');
     }
 
+    public function store(StoreTireDesignRequest $request)
+    {
+        $tireDesign = TireDesign::query()->create($request->validated());
+
+        if ($request->input('image', false)) {
+            $tireDesign->addMedia(storage_path('tmp/uploads/' . basename($request->input('image'))))->toMediaCollection('tire_design');
+        }
+
+        if ($media = $request->input('ck-media', false)) {
+            Media::whereIn('id', $media)->update(['model_id' => $tireDesign->id]);
+        }
+
+        return redirect()->route('admin.tire-designs.index');
+    }
+
     public function create()
     {
         abort_if(Gate::denies('tire_design_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
@@ -77,16 +92,19 @@ class TireDesignController extends Controller
         return view('admin.tireDesigns.create');
     }
 
-    public function store(StoreTireDesignRequest $request)
+    public function update(UpdateTireDesignRequest $request, TireDesign $tireDesign)
     {
-        $tireDesign = TireDesign::create($request->all());
+        $tireDesign->update($request->validated());
 
         if ($request->input('image', false)) {
-            $tireDesign->addMedia(storage_path('tmp/uploads/' . basename($request->input('image'))))->toMediaCollection('image');
-        }
-
-        if ($media = $request->input('ck-media', false)) {
-            Media::whereIn('id', $media)->update(['model_id' => $tireDesign->id]);
+            if (!$tireDesign->image || $request->input('image') !== $tireDesign->image->file_name) {
+                if ($tireDesign->image) {
+                    $tireDesign->image->delete();
+                }
+                $tireDesign->addMedia(storage_path('tmp/uploads/' . basename($request->input('image'))))->toMediaCollection('tire_design');
+            }
+        } elseif ($tireDesign->image) {
+            $tireDesign->image->delete();
         }
 
         return redirect()->route('admin.tire-designs.index');
@@ -97,24 +115,6 @@ class TireDesignController extends Controller
         abort_if(Gate::denies('tire_design_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return view('admin.tireDesigns.edit', compact('tireDesign'));
-    }
-
-    public function update(UpdateTireDesignRequest $request, TireDesign $tireDesign)
-    {
-        $tireDesign->update($request->all());
-
-        if ($request->input('image', false)) {
-            if (!$tireDesign->image || $request->input('image') !== $tireDesign->image->file_name) {
-                if ($tireDesign->image) {
-                    $tireDesign->image->delete();
-                }
-                $tireDesign->addMedia(storage_path('tmp/uploads/' . basename($request->input('image'))))->toMediaCollection('image');
-            }
-        } elseif ($tireDesign->image) {
-            $tireDesign->image->delete();
-        }
-
-        return redirect()->route('admin.tire-designs.index');
     }
 
     public function show(TireDesign $tireDesign)
@@ -135,7 +135,10 @@ class TireDesignController extends Controller
 
     public function massDestroy(MassDestroyTireDesignRequest $request)
     {
-        TireDesign::whereIn('id', request('ids'))->delete();
+        foreach ($request->ids as $id) {
+            $design = TireDesign::query()->where('id', $id)->first();
+            $design->delete();
+        }
 
         return response(null, Response::HTTP_NO_CONTENT);
     }
@@ -144,10 +147,10 @@ class TireDesignController extends Controller
     {
         abort_if(Gate::denies('tire_design_create') && Gate::denies('tire_design_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $model         = new TireDesign();
-        $model->id     = $request->input('crud_id', 0);
+        $model = new TireDesign();
+        $model->id = $request->input('crud_id', 0);
         $model->exists = true;
-        $media         = $model->addMediaFromRequest('upload')->toMediaCollection('ck-media');
+        $media = $model->addMediaFromRequest('upload')->toMediaCollection('ck-media');
 
         return response()->json(['id' => $media->id, 'url' => $media->getUrl()], Response::HTTP_CREATED);
     }

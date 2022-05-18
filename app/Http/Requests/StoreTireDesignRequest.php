@@ -6,6 +6,7 @@ use App\Models\TireDesign;
 use Gate;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Response;
+use Illuminate\Validation\Rule;
 
 class StoreTireDesignRequest extends FormRequest
 {
@@ -16,15 +17,20 @@ class StoreTireDesignRequest extends FormRequest
 
     public function rules()
     {
-        return [
-            'name' => [
-                'string',
-                'required',
-                'unique:tire_designs',
-            ],
+        $data = [
             'image' => [
                 'required',
             ],
         ];
+
+        foreach (siteLanguages() as $locale) {
+            $data[$locale.'.name'] = [
+                'string',
+                'required',
+                Rule::unique('tire_design_translations', 'name'),
+            ];
+        }
+
+        return $data;
     }
 }

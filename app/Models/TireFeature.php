@@ -49,7 +49,7 @@ class TireFeature extends Model implements HasMedia, TranslatableContracts
 
     public function getIconAttribute()
     {
-        $file = $this->getMedia('tire_feature')->last();
+        $file = $this->getFirstMedia('tire_feature');
         if ($file) {
             $file->url = $file->getUrl();
             $file->thumbnail = $file->getUrl('thumb');
