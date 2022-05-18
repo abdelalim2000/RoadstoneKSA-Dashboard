@@ -3,19 +3,15 @@
 namespace App\Models;
 
 use \DateTimeInterface;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Contact extends Model
 {
-    use HasFactory;
-
     public $table = 'contacts';
 
     protected $dates = [
         'created_at',
         'updated_at',
-        'deleted_at',
     ];
 
     protected $fillable = [
@@ -28,7 +24,6 @@ class Contact extends Model
         'status',
         'created_at',
         'updated_at',
-        'deleted_at',
     ];
 
     public function contact_type()

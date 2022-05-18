@@ -3,19 +3,15 @@
 namespace App\Models;
 
 use \DateTimeInterface;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class CarModel extends Model
 {
-    use HasFactory;
-
     public $table = 'car_models';
 
     protected $dates = [
         'created_at',
         'updated_at',
-        'deleted_at',
     ];
 
     protected $fillable = [
@@ -23,7 +19,6 @@ class CarModel extends Model
         'maker_id',
         'created_at',
         'updated_at',
-        'deleted_at',
     ];
 
     public function maker()

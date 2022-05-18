@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use \DateTimeInterface;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -19,7 +18,6 @@ class Location extends Model implements HasMedia
     protected $dates = [
         'created_at',
         'updated_at',
-        'deleted_at',
     ];
 
     protected $fillable = [
@@ -32,7 +30,6 @@ class Location extends Model implements HasMedia
         'active',
         'created_at',
         'updated_at',
-        'deleted_at',
     ];
 
     public function registerMediaConversions(Media $media = null): void

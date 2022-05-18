@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use \DateTimeInterface;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -12,7 +11,6 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 class CarType extends Model implements HasMedia
 {
     use InteractsWithMedia;
-    use HasFactory;
 
     public $table = 'car_types';
 
@@ -24,7 +22,6 @@ class CarType extends Model implements HasMedia
     protected $dates = [
         'created_at',
         'updated_at',
-        'deleted_at',
     ];
 
     protected $fillable = [
@@ -34,7 +31,6 @@ class CarType extends Model implements HasMedia
         'active',
         'created_at',
         'updated_at',
-        'deleted_at',
     ];
 
     public function registerMediaConversions(Media $media = null): void
