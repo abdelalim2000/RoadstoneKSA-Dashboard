@@ -6,6 +6,7 @@ use App\Models\Tire;
 use Gate;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Response;
+use Illuminate\Validation\Rule;
 
 class UpdateTireRequest extends FormRequest
 {
@@ -16,19 +17,11 @@ class UpdateTireRequest extends FormRequest
 
     public function rules()
     {
-        return [
-            'title' => [
-                'string',
-                'required',
-                'unique:tires,title,' . request()->route('tire')->id,
-            ],
+        $data = [
             'slug' => [
                 'string',
                 'required',
-                'unique:tires,slug,' . request()->route('tire')->id,
-            ],
-            'short_description' => [
-                'required',
+                Rule::unique('tires', 'slug')->ignore($this->tire),
             ],
             'video_link' => [
                 'string',
@@ -37,13 +30,14 @@ class UpdateTireRequest extends FormRequest
             'images' => [
                 'array',
             ],
-            'cta_link' => [
-                'string',
+            'breadcrumb' => [
                 'nullable',
             ],
-            'cta_text' => [
-                'string',
-                'nullable',
+            'tire_logo' => [
+                'required',
+            ],
+            'thumb' => [
+                'required',
             ],
             'dry_performance' => [
                 'numeric',
@@ -109,20 +103,53 @@ class UpdateTireRequest extends FormRequest
                 'integer',
             ],
             'tire_features' => [
+                'required',
                 'array',
             ],
             'tire_designs.*' => [
                 'integer',
             ],
             'tire_designs' => [
+                'required',
                 'array',
             ],
             'car_models.*' => [
                 'integer',
             ],
             'car_models' => [
+                'required',
                 'array',
             ],
+            'car_type_id' => [
+                'required',
+                Rule::exists('car_types', 'id')
+            ],
         ];
+
+        foreach (siteLanguages() as $locale) {
+            $data[$locale . '.title'] = [
+                'required',
+                'string',
+                Rule::unique('tire_translations', 'title')->ignore($this->tire->translate($locale) ? $this->tire->translate($locale)->id : $this->tire->id)
+            ];
+            $data[$locale . '.short_description'] = [
+                'required',
+                'string',
+            ];
+            $data[$locale . '.seo_keywords'] = [
+                'nullable',
+                'string',
+            ];
+            $data[$locale . '.seo_description'] = [
+                'nullable',
+                'string',
+            ];
+            $data[$locale . '.description'] = [
+                'nullable',
+                'string',
+            ];
+        }
+
+        return $data;
     }
 }

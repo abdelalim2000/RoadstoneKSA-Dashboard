@@ -10,15 +10,8 @@ class CreateTiresTable extends Migration
     {
         Schema::create('tires', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->unique();
-            $table->string('slug')->unique();
-            $table->longText('short_description');
-            $table->longText('seo_keywords')->nullable();
-            $table->longText('seo_description')->nullable();
-            $table->longText('description')->nullable();
+            $table->string('slug')->index();
             $table->string('video_link')->nullable();
-            $table->string('cta_link')->nullable();
-            $table->string('cta_text')->nullable();
             $table->float('dry_performance', 2, 1)->nullable();
             $table->float('wet_performance', 2, 1)->nullable();
             $table->float('rolling_resistance', 2, 1)->nullable();
@@ -31,6 +24,7 @@ class CreateTiresTable extends Migration
             $table->float('wet_grip', 2, 1)->nullable();
             $table->float('aquaplaning', 2, 1)->nullable();
             $table->float('ice', 2, 1)->nullable();
+            $table->unique('slug');
             $table->timestamps();
         });
     }

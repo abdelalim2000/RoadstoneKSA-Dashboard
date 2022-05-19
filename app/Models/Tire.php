@@ -2,15 +2,22 @@
 
 namespace App\Models;
 
-use \DateTimeInterface;
+use App\Traits\SetSlugTrait;
+use Astrotomic\Translatable\Contracts\Translatable as TranslatableContracts;
+use Astrotomic\Translatable\Translatable;
+use DateTimeInterface;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class Tire extends Model implements HasMedia
+class Tire extends Model implements HasMedia, TranslatableContracts
 {
     use InteractsWithMedia;
+    use Translatable;
+    use SetSlugTrait;
 
     public $table = 'tires';
 
@@ -27,15 +34,8 @@ class Tire extends Model implements HasMedia
     ];
 
     protected $fillable = [
-        'title',
         'slug',
-        'short_description',
-        'seo_keywords',
-        'seo_description',
-        'description',
         'video_link',
-        'cta_link',
-        'cta_text',
         'dry_performance',
         'wet_performance',
         'rolling_resistance',
@@ -53,6 +53,28 @@ class Tire extends Model implements HasMedia
         'updated_at',
     ];
 
+    protected array $translatedAttributes = [
+        'title',
+        'short_description',
+        'seo_keywords',
+        'seo_description',
+        'description',
+    ];
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('tire_thumb')
+            ->singleFile();
+
+        $this->addMediaCollection('tire_logo')
+            ->singleFile();
+
+        $this->addMediaCollection('tire_breadcrumb')
+            ->singleFile();
+
+        $this->addMediaCollection('tire_images');
+    }
+
     public function registerMediaConversions(Media $media = null): void
     {
         $this->addMediaConversion('thumb')->fit('crop', 50, 50);
@@ -61,11 +83,11 @@ class Tire extends Model implements HasMedia
 
     public function getBreadcrumbAttribute()
     {
-        $file = $this->getMedia('breadcrumb')->last();
+        $file = $this->getFirstMedia('tire_breadcrumb');
         if ($file) {
-            $file->url       = $file->getUrl();
+            $file->url = $file->getUrl();
             $file->thumbnail = $file->getUrl('thumb');
-            $file->preview   = $file->getUrl('preview');
+            $file->preview = $file->getUrl('preview');
         }
 
         return $file;
@@ -73,11 +95,11 @@ class Tire extends Model implements HasMedia
 
     public function getThumbAttribute()
     {
-        $file = $this->getMedia('thumb')->last();
+        $file = $this->getFirstMedia('tire_thumb');
         if ($file) {
-            $file->url       = $file->getUrl();
+            $file->url = $file->getUrl();
             $file->thumbnail = $file->getUrl('thumb');
-            $file->preview   = $file->getUrl('preview');
+            $file->preview = $file->getUrl('preview');
         }
 
         return $file;
@@ -85,11 +107,11 @@ class Tire extends Model implements HasMedia
 
     public function getTireLogoAttribute()
     {
-        $file = $this->getMedia('tire_logo')->last();
+        $file = $this->getFirstMedia('tire_logo');
         if ($file) {
-            $file->url       = $file->getUrl();
+            $file->url = $file->getUrl();
             $file->thumbnail = $file->getUrl('thumb');
-            $file->preview   = $file->getUrl('preview');
+            $file->preview = $file->getUrl('preview');
         }
 
         return $file;
@@ -97,7 +119,7 @@ class Tire extends Model implements HasMedia
 
     public function getImagesAttribute()
     {
-        $files = $this->getMedia('images');
+        $files = $this->getMedia('tire_images');
         $files->each(function ($item) {
             $item->url = $item->getUrl();
             $item->thumbnail = $item->getUrl('thumb');
@@ -107,27 +129,27 @@ class Tire extends Model implements HasMedia
         return $files;
     }
 
-    public function tire_features()
+    public function tire_features(): BelongsToMany
     {
         return $this->belongsToMany(TireFeature::class);
     }
 
-    public function tire_designs()
+    public function tire_designs(): BelongsToMany
     {
         return $this->belongsToMany(TireDesign::class);
     }
 
-    public function car_models()
+    public function car_models(): BelongsToMany
     {
         return $this->belongsToMany(CarModel::class);
     }
 
-    public function car_type()
+    public function car_type(): BelongsTo
     {
         return $this->belongsTo(CarType::class, 'car_type_id');
     }
 
-    protected function serializeDate(DateTimeInterface $date)
+    protected function serializeDate(DateTimeInterface $date): string
     {
         return $date->format('Y-m-d H:i:s');
     }

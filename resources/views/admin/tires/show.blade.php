@@ -129,22 +129,6 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.tire.fields.cta_link') }}
-                        </th>
-                        <td>
-                            {{ $tire->cta_link }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            {{ trans('cruds.tire.fields.cta_text') }}
-                        </th>
-                        <td>
-                            {{ $tire->cta_text }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
                             {{ trans('cruds.tire.fields.dry_performance') }}
                         </th>
                         <td>
