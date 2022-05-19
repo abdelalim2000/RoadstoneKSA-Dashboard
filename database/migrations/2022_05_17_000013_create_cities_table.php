@@ -10,12 +10,10 @@ class CreateCitiesTable extends Migration
     {
         Schema::create('cities', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
-            $table->string('slug')->unique();
+            $table->string('slug')->index();
             $table->longText('map');
-            $table->longText('seo_keywords')->nullable();
-            $table->longText('seo_description')->nullable();
             $table->boolean('active')->default(0)->nullable();
+            $table->unique('slug');
             $table->timestamps();
         });
     }

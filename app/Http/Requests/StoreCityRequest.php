@@ -6,6 +6,7 @@ use App\Models\City;
 use Gate;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Response;
+use Illuminate\Validation\Rule;
 
 class StoreCityRequest extends FormRequest
 {
@@ -16,23 +17,39 @@ class StoreCityRequest extends FormRequest
 
     public function rules()
     {
-        return [
-            'name' => [
-                'string',
-                'required',
-                'unique:cities',
-            ],
+        $data = [
             'image' => [
                 'required',
             ],
             'slug' => [
                 'string',
                 'required',
-                'unique:cities',
+                Rule::unique('cities', 'slug'),
             ],
             'map' => [
                 'required',
             ],
+            'active' => [
+                'nullable',
+            ]
         ];
+
+        foreach (siteLanguages() as $locale) {
+            $data[$locale.'.name'] = [
+                'string',
+                'required',
+                Rule::unique('city_translations', 'name'),
+            ];
+            $data[$locale.'.seo_description'] = [
+                'string',
+                'nullable',
+            ];
+            $data[$locale.'.seo_keywords'] = [
+                'string',
+                'nullable',
+            ];
+        }
+
+        return $data;
     }
 }

@@ -2,15 +2,20 @@
 
 namespace App\Models;
 
-use \DateTimeInterface;
+use App\Traits\SetSlugTrait;
+use Astrotomic\Translatable\Contracts\Translatable as TranslatableContracts;
+use Astrotomic\Translatable\Translatable;
+use DateTimeInterface;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class City extends Model implements HasMedia
+class City extends Model implements HasMedia, TranslatableContracts
 {
     use InteractsWithMedia;
+    use Translatable;
+    use SetSlugTrait;
 
     public $table = 'cities';
 
@@ -24,15 +29,24 @@ class City extends Model implements HasMedia
     ];
 
     protected $fillable = [
-        'name',
         'slug',
         'map',
-        'seo_keywords',
-        'seo_description',
         'active',
         'created_at',
         'updated_at',
     ];
+
+    protected array $translatedAttributes = [
+        'name',
+        'seo_keywords',
+        'seo_description',
+    ];
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('city')
+            ->singleFile();
+    }
 
     public function registerMediaConversions(Media $media = null): void
     {
@@ -42,11 +56,11 @@ class City extends Model implements HasMedia
 
     public function getImageAttribute()
     {
-        $file = $this->getMedia('image')->last();
+        $file = $this->getFirstMedia('city');
         if ($file) {
-            $file->url       = $file->getUrl();
+            $file->url = $file->getUrl();
             $file->thumbnail = $file->getUrl('thumb');
-            $file->preview   = $file->getUrl('preview');
+            $file->preview = $file->getUrl('preview');
         }
 
         return $file;

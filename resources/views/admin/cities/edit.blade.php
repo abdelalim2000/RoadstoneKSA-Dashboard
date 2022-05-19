@@ -10,16 +10,52 @@
         <form method="POST" action="{{ route("admin.cities.update", [$city->id]) }}" enctype="multipart/form-data">
             @method('PUT')
             @csrf
-            <div class="form-group">
-                <label class="required" for="name">{{ trans('cruds.city.fields.name') }}</label>
-                <input class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" type="text" name="name" id="name" value="{{ old('name', $city->name) }}" required>
-                @if($errors->has('name'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('name') }}
-                    </div>
-                @endif
-                <span class="help-block">{{ trans('cruds.city.fields.name_helper') }}</span>
-            </div>
+
+            @foreach(siteLanguages() as $locale)
+                <div class="form-group">
+                    <label class="required" for="{{$locale}}-name">{{ trans('cruds.city.fields.name') }}
+                        [{{$locale}}]</label>
+                    <input class="form-control {{ $errors->has($locale.'.name') ? 'is-invalid' : '' }}" type="text"
+                           name="{{$locale}}[name]"
+                           id="{{$locale}}-name" value="{{ old($locale.'.name', $city->translate($locale, true)->name) }}" required>
+                    @if($errors->has($locale.'.name'))
+                        <div class="invalid-feedback">
+                            {{ $errors->first($locale.'.name') }}
+                        </div>
+                    @endif
+                    <span class="help-block">{{ trans('cruds.city.fields.name_helper') }}</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="{{$locale}}-seo_keywords">{{ trans('cruds.city.fields.seo_keywords') }} [{{$locale}}
+                        ]</label>
+                    <textarea class="form-control {{ $errors->has($locale.'.seo_keywords') ? 'is-invalid' : '' }}"
+                              name="{{$locale}}[seo_keywords]"
+                              id="{{$locale}}-seo_keywords">{{ old($locale.'.seo_keywords',$city->translate($locale, true)->seo_keywords) }}</textarea>
+                    @if($errors->has($locale.'.seo_keywords'))
+                        <div class="invalid-feedback">
+                            {{ $errors->first($locale.'.seo_keywords') }}
+                        </div>
+                    @endif
+                    <span class="help-block">{{ trans('cruds.city.fields.seo_keywords_helper') }}</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="{{$locale}}-seo_description">{{ trans('cruds.city.fields.seo_description') }}
+                        [{{$locale}}]</label>
+                    <textarea
+                        class="form-control {{ $errors->has($locale.'.seo_description') ? 'is-invalid' : '' }}"
+                        name="{{$locale}}[seo_description]"
+                        id="{{$locale}}-seo_description">{{ old($locale.'.seo_description',$city->translate($locale, true)->seo_description) }}</textarea>
+                    @if($errors->has($locale.'.seo_description'))
+                        <div class="invalid-feedback">
+                            {{ $errors->first($locale.'.seo_description') }}
+                        </div>
+                    @endif
+                    <span class="help-block">{{ trans('cruds.city.fields.seo_description_helper') }}</span>
+                </div>
+            @endforeach
+
             <div class="form-group">
                 <label class="required" for="image">{{ trans('cruds.city.fields.image') }}</label>
                 <div class="needsclick dropzone {{ $errors->has('image') ? 'is-invalid' : '' }}" id="image-dropzone">
@@ -31,6 +67,7 @@
                 @endif
                 <span class="help-block">{{ trans('cruds.city.fields.image_helper') }}</span>
             </div>
+
             <div class="form-group">
                 <label class="required" for="slug">{{ trans('cruds.city.fields.slug') }}</label>
                 <input class="form-control {{ $errors->has('slug') ? 'is-invalid' : '' }}" type="text" name="slug" id="slug" value="{{ old('slug', $city->slug) }}" required>
@@ -41,6 +78,7 @@
                 @endif
                 <span class="help-block">{{ trans('cruds.city.fields.slug_helper') }}</span>
             </div>
+
             <div class="form-group">
                 <label for="map">{{ trans('cruds.city.fields.map') }}</label>
                 <textarea class="form-control ckeditor {{ $errors->has('map') ? 'is-invalid' : '' }}" name="map" id="map">{!! old('map', $city->map) !!}</textarea>
@@ -51,26 +89,7 @@
                 @endif
                 <span class="help-block">{{ trans('cruds.city.fields.map_helper') }}</span>
             </div>
-            <div class="form-group">
-                <label for="seo_keywords">{{ trans('cruds.city.fields.seo_keywords') }}</label>
-                <textarea class="form-control {{ $errors->has('seo_keywords') ? 'is-invalid' : '' }}" name="seo_keywords" id="seo_keywords">{{ old('seo_keywords', $city->seo_keywords) }}</textarea>
-                @if($errors->has('seo_keywords'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('seo_keywords') }}
-                    </div>
-                @endif
-                <span class="help-block">{{ trans('cruds.city.fields.seo_keywords_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <label for="seo_description">{{ trans('cruds.city.fields.seo_description') }}</label>
-                <textarea class="form-control {{ $errors->has('seo_description') ? 'is-invalid' : '' }}" name="seo_description" id="seo_description">{{ old('seo_description', $city->seo_description) }}</textarea>
-                @if($errors->has('seo_description'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('seo_description') }}
-                    </div>
-                @endif
-                <span class="help-block">{{ trans('cruds.city.fields.seo_description_helper') }}</span>
-            </div>
+
             <div class="form-group">
                 <div class="form-check {{ $errors->has('active') ? 'is-invalid' : '' }}">
                     <input type="hidden" name="active" value="0">
@@ -84,6 +103,7 @@
                 @endif
                 <span class="help-block">{{ trans('cruds.city.fields.active_helper') }}</span>
             </div>
+
             <div class="form-group">
                 <button class="btn btn-danger" type="submit">
                     {{ trans('global.save') }}
