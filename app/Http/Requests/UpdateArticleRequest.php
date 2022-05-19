@@ -6,6 +6,7 @@ use App\Models\Article;
 use Gate;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Response;
+use Illuminate\Validation\Rule;
 
 class UpdateArticleRequest extends FormRequest
 {
@@ -16,26 +17,40 @@ class UpdateArticleRequest extends FormRequest
 
     public function rules()
     {
-        return [
-            'title' => [
-                'string',
-                'required',
-                'unique:articles,title,' . request()->route('article')->id,
-            ],
+        $data = [
             'slug' => [
                 'string',
                 'required',
-                'unique:articles,slug,' . request()->route('article')->id,
+                Rule::unique('articles', 'slug')->ignore($this->article),
             ],
             'image' => [
                 'required',
             ],
-            'description' => [
-                'required',
-            ],
-            'article' => [
-                'required',
-            ],
+            'publish' => [
+                'nullable',
+            ]
         ];
+
+        foreach (siteLanguages() as $locale) {
+            $data[$locale . '.title'] = [
+                'string',
+                'required',
+                Rule::unique('article_translations', 'title')->ignore($this->article->translate($locale) ? $this->article->translate($locale)->id : $this->article->id),
+            ];
+            $data[$locale . '.description'] = [
+                'required',
+            ];
+            $data[$locale . '.article'] = [
+                'required',
+            ];
+            $data[$locale . '.seo_description'] = [
+                'nullable',
+            ];
+            $data[$locale . '.seo_keywords'] = [
+                'nullable',
+            ];
+        }
+
+        return $data;
     }
 }

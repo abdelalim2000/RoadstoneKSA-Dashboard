@@ -23,7 +23,7 @@ class ArticleController extends Controller
         abort_if(Gate::denies('article_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         if ($request->ajax()) {
-            $query = Article::query()->select(sprintf('%s.*', (new Article())->table));
+            $query = Article::query()->withTranslation()->translatedIn(app()->getLocale())->get();
             $table = Datatables::of($query);
 
             $table->addColumn('placeholder', '&nbsp;');
@@ -36,12 +36,12 @@ class ArticleController extends Controller
                 $crudRoutePart = 'articles';
 
                 return view('partials.datatablesActions', compact(
-                'viewGate',
-                'editGate',
-                'deleteGate',
-                'crudRoutePart',
-                'row'
-            ));
+                    'viewGate',
+                    'editGate',
+                    'deleteGate',
+                    'crudRoutePart',
+                    'row'
+                ));
             });
 
             $table->editColumn('id', function ($row) {
@@ -56,10 +56,10 @@ class ArticleController extends Controller
             $table->editColumn('image', function ($row) {
                 if ($photo = $row->image) {
                     return sprintf(
-        '<a href="%s" target="_blank"><img src="%s" width="50px" height="50px"></a>',
-        $photo->url,
-        $photo->thumbnail
-    );
+                        '<a href="%s" target="_blank"><img src="%s" width="50px" height="50px"></a>',
+                        $photo->url,
+                        $photo->thumbnail
+                    );
                 }
 
                 return '';
@@ -79,6 +79,21 @@ class ArticleController extends Controller
         return view('admin.articles.index');
     }
 
+    public function store(StoreArticleRequest $request)
+    {
+        $article = Article::query()->create($request->validated());
+
+        if ($request->input('image', false)) {
+            $article->addMedia(storage_path('tmp/uploads/' . basename($request->input('image'))))->toMediaCollection('article');
+        }
+
+        if ($media = $request->input('ck-media', false)) {
+            Media::whereIn('id', $media)->update(['model_id' => $article->id]);
+        }
+
+        return redirect()->route('admin.articles.index');
+    }
+
     public function create()
     {
         abort_if(Gate::denies('article_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
@@ -86,16 +101,19 @@ class ArticleController extends Controller
         return view('admin.articles.create');
     }
 
-    public function store(StoreArticleRequest $request)
+    public function update(UpdateArticleRequest $request, Article $article)
     {
-        $article = Article::create($request->all());
+        $article->update($request->validated());
 
         if ($request->input('image', false)) {
-            $article->addMedia(storage_path('tmp/uploads/' . basename($request->input('image'))))->toMediaCollection('image');
-        }
-
-        if ($media = $request->input('ck-media', false)) {
-            Media::whereIn('id', $media)->update(['model_id' => $article->id]);
+            if (!$article->image || $request->input('image') !== $article->image->file_name) {
+                if ($article->image) {
+                    $article->image->delete();
+                }
+                $article->addMedia(storage_path('tmp/uploads/' . basename($request->input('image'))))->toMediaCollection('article');
+            }
+        } elseif ($article->image) {
+            $article->image->delete();
         }
 
         return redirect()->route('admin.articles.index');
@@ -106,24 +124,6 @@ class ArticleController extends Controller
         abort_if(Gate::denies('article_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return view('admin.articles.edit', compact('article'));
-    }
-
-    public function update(UpdateArticleRequest $request, Article $article)
-    {
-        $article->update($request->all());
-
-        if ($request->input('image', false)) {
-            if (!$article->image || $request->input('image') !== $article->image->file_name) {
-                if ($article->image) {
-                    $article->image->delete();
-                }
-                $article->addMedia(storage_path('tmp/uploads/' . basename($request->input('image'))))->toMediaCollection('image');
-            }
-        } elseif ($article->image) {
-            $article->image->delete();
-        }
-
-        return redirect()->route('admin.articles.index');
     }
 
     public function show(Article $article)
@@ -144,7 +144,10 @@ class ArticleController extends Controller
 
     public function massDestroy(MassDestroyArticleRequest $request)
     {
-        Article::whereIn('id', request('ids'))->delete();
+        foreach ($request->ids as $id) {
+            $article = Article::query()->where('id', $id)->first();
+            $article->delete();
+        }
 
         return response(null, Response::HTTP_NO_CONTENT);
     }
@@ -153,10 +156,10 @@ class ArticleController extends Controller
     {
         abort_if(Gate::denies('article_create') && Gate::denies('article_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $model         = new Article();
-        $model->id     = $request->input('crud_id', 0);
+        $model = new Article();
+        $model->id = $request->input('crud_id', 0);
         $model->exists = true;
-        $media         = $model->addMediaFromRequest('upload')->toMediaCollection('ck-media');
+        $media = $model->addMediaFromRequest('upload')->toMediaCollection('ck-media');
 
         return response()->json(['id' => $media->id, 'url' => $media->getUrl()], Response::HTTP_CREATED);
     }

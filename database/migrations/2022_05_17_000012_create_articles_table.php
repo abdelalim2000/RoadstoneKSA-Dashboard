@@ -10,13 +10,9 @@ class CreateArticlesTable extends Migration
     {
         Schema::create('articles', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->unique();
-            $table->string('slug')->unique();
-            $table->longText('seo_keywords')->nullable();
-            $table->longText('seo_description')->nullable();
-            $table->longText('description');
-            $table->longText('article');
+            $table->string('slug')->index();
             $table->boolean('publish')->default(0)->nullable();
+            $table->unique('slug');
             $table->timestamps();
         });
     }
