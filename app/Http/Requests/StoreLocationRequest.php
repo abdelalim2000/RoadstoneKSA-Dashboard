@@ -6,6 +6,7 @@ use App\Models\Location;
 use Gate;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Response;
+use Illuminate\Validation\Rule;
 
 class StoreLocationRequest extends FormRequest
 {
@@ -16,30 +17,39 @@ class StoreLocationRequest extends FormRequest
 
     public function rules()
     {
-        return [
-            'name' => [
-                'string',
-                'required',
-                'unique:locations',
-            ],
+        $data = [
             'city_id' => [
                 'required',
                 'integer',
-            ],
-            'address' => [
-                'required',
+                Rule::exists('cities', 'id')
             ],
             'phone' => [
                 'string',
                 'required',
             ],
-            'working_hour' => [
-                'string',
-                'nullable',
-            ],
             'map' => [
                 'required',
             ],
+            'active' => [
+                'nullable',
+            ],
         ];
+
+        foreach (siteLanguages() as $locale) {
+            $data[$locale . '.name'] = [
+                'string',
+                'required',
+                Rule::unique('location_translations', 'name'),
+            ];
+            $data[$locale . '.address'] = [
+                'required',
+            ];
+            $data[$locale . '.working_hour'] = [
+                'string',
+                'nullable',
+            ];
+        }
+
+        return $data;
     }
 }

@@ -2,16 +2,14 @@
 
 namespace App\Models;
 
-use \DateTimeInterface;
+use Astrotomic\Translatable\Contracts\Translatable as TranslatableContracts;
+use Astrotomic\Translatable\Translatable;
+use DateTimeInterface;
 use Illuminate\Database\Eloquent\Model;
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\MediaLibrary\InteractsWithMedia;
-use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class Location extends Model implements HasMedia
+class Location extends Model implements TranslatableContracts
 {
-    use InteractsWithMedia;
-    use HasFactory;
+    use Translatable;
 
     public $table = 'locations';
 
@@ -21,22 +19,19 @@ class Location extends Model implements HasMedia
     ];
 
     protected $fillable = [
-        'name',
         'city_id',
-        'address',
         'phone',
-        'working_hour',
         'map',
         'active',
         'created_at',
         'updated_at',
     ];
 
-    public function registerMediaConversions(Media $media = null): void
-    {
-        $this->addMediaConversion('thumb')->fit('crop', 50, 50);
-        $this->addMediaConversion('preview')->fit('crop', 120, 120);
-    }
+    protected $translatedAttributes = [
+        'name',
+        'address',
+        'working_hour',
+    ];
 
     public function city()
     {

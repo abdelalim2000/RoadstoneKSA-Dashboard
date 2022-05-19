@@ -24,7 +24,7 @@ class LocationController extends Controller
         abort_if(Gate::denies('location_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         if ($request->ajax()) {
-            $query = Location::with(['city'])->select(sprintf('%s.*', (new Location())->table));
+            $query = Location::query()->with(['city'])->withTranslation()->translatedIn(app()->getLocale())->get();
             $table = Datatables::of($query);
 
             $table->addColumn('placeholder', '&nbsp;');
@@ -37,12 +37,12 @@ class LocationController extends Controller
                 $crudRoutePart = 'locations';
 
                 return view('partials.datatablesActions', compact(
-                'viewGate',
-                'editGate',
-                'deleteGate',
-                'crudRoutePart',
-                'row'
-            ));
+                    'viewGate',
+                    'editGate',
+                    'deleteGate',
+                    'crudRoutePart',
+                    'row'
+                ));
             });
 
             $table->editColumn('id', function ($row) {
@@ -76,18 +76,9 @@ class LocationController extends Controller
         return view('admin.locations.index');
     }
 
-    public function create()
-    {
-        abort_if(Gate::denies('location_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        $cities = City::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        return view('admin.locations.create', compact('cities'));
-    }
-
     public function store(StoreLocationRequest $request)
     {
-        $location = Location::create($request->all());
+        $location = Location::create($request->validated());
 
         if ($media = $request->input('ck-media', false)) {
             Media::whereIn('id', $media)->update(['model_id' => $location->id]);
@@ -96,22 +87,31 @@ class LocationController extends Controller
         return redirect()->route('admin.locations.index');
     }
 
-    public function edit(Location $location)
+    public function create()
     {
-        abort_if(Gate::denies('location_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('location_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $cities = City::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $cities = City::query()->get();
 
-        $location->load('city');
-
-        return view('admin.locations.edit', compact('cities', 'location'));
+        return view('admin.locations.create', compact('cities'));
     }
 
     public function update(UpdateLocationRequest $request, Location $location)
     {
-        $location->update($request->all());
+        $location->update($request->validated());
 
         return redirect()->route('admin.locations.index');
+    }
+
+    public function edit(Location $location)
+    {
+        abort_if(Gate::denies('location_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        $cities = City::query()->get();
+
+        $location->load('city');
+
+        return view('admin.locations.edit', compact('cities', 'location'));
     }
 
     public function show(Location $location)
@@ -143,10 +143,10 @@ class LocationController extends Controller
     {
         abort_if(Gate::denies('location_create') && Gate::denies('location_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $model         = new Location();
-        $model->id     = $request->input('crud_id', 0);
+        $model = new Location();
+        $model->id = $request->input('crud_id', 0);
         $model->exists = true;
-        $media         = $model->addMediaFromRequest('upload')->toMediaCollection('ck-media');
+        $media = $model->addMediaFromRequest('upload')->toMediaCollection('ck-media');
 
         return response()->json(['id' => $media->id, 'url' => $media->getUrl()], Response::HTTP_CREATED);
     }

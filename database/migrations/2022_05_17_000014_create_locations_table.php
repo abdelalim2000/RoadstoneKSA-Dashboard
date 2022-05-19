@@ -10,10 +10,7 @@ class CreateLocationsTable extends Migration
     {
         Schema::create('locations', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
-            $table->longText('address');
             $table->string('phone');
-            $table->string('working_hour')->nullable();
             $table->longText('map');
             $table->boolean('active')->default(0)->nullable();
             $table->timestamps();
