@@ -19,7 +19,7 @@ class ContactTypeController extends Controller
         abort_if(Gate::denies('contact_type_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         if ($request->ajax()) {
-            $query = ContactType::query()->select(sprintf('%s.*', (new ContactType())->table));
+            $query = ContactType::query()->withTranslation()->translatedIn(app()->getLocale())->get();
             $table = Datatables::of($query);
 
             $table->addColumn('placeholder', '&nbsp;');
@@ -32,12 +32,12 @@ class ContactTypeController extends Controller
                 $crudRoutePart = 'contact-types';
 
                 return view('partials.datatablesActions', compact(
-                'viewGate',
-                'editGate',
-                'deleteGate',
-                'crudRoutePart',
-                'row'
-            ));
+                    'viewGate',
+                    'editGate',
+                    'deleteGate',
+                    'crudRoutePart',
+                    'row'
+                ));
             });
 
             $table->editColumn('id', function ($row) {
@@ -55,18 +55,18 @@ class ContactTypeController extends Controller
         return view('admin.contactTypes.index');
     }
 
+    public function store(StoreContactTypeRequest $request)
+    {
+        $contactType = ContactType::create($request->validated());
+
+        return redirect()->route('admin.contact-types.index');
+    }
+
     public function create()
     {
         abort_if(Gate::denies('contact_type_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return view('admin.contactTypes.create');
-    }
-
-    public function store(StoreContactTypeRequest $request)
-    {
-        $contactType = ContactType::create($request->all());
-
-        return redirect()->route('admin.contact-types.index');
     }
 
     public function edit(ContactType $contactType)
@@ -78,7 +78,7 @@ class ContactTypeController extends Controller
 
     public function update(UpdateContactTypeRequest $request, ContactType $contactType)
     {
-        $contactType->update($request->all());
+        $contactType->update($request->validated());
 
         return redirect()->route('admin.contact-types.index');
     }

@@ -85,7 +85,7 @@ class MakerController extends Controller
         $maker = Maker::create($request->all());
 
         if ($request->input('image', false)) {
-            $maker->addMedia(storage_path('tmp/uploads/' . basename($request->input('image'))))->toMediaCollection('image');
+            $maker->addMedia(storage_path('tmp/uploads/' . basename($request->input('image'))))->toMediaCollection('maker');
         }
 
         if ($media = $request->input('ck-media', false)) {
@@ -111,7 +111,7 @@ class MakerController extends Controller
                 if ($maker->image) {
                     $maker->image->delete();
                 }
-                $maker->addMedia(storage_path('tmp/uploads/' . basename($request->input('image'))))->toMediaCollection('image');
+                $maker->addMedia(storage_path('tmp/uploads/' . basename($request->input('image'))))->toMediaCollection('maker');
             }
         } elseif ($maker->image) {
             $maker->image->delete();
@@ -138,7 +138,10 @@ class MakerController extends Controller
 
     public function massDestroy(MassDestroyMakerRequest $request)
     {
-        Maker::whereIn('id', request('ids'))->delete();
+        foreach ($request->ids as $id) {
+            $maker= Maker::query()->where('id', $id)->first();
+            $maker->delete();
+        }
 
         return response(null, Response::HTTP_NO_CONTENT);
     }

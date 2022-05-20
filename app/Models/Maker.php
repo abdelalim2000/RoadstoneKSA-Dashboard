@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use \DateTimeInterface;
+use DateTimeInterface;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -29,6 +29,12 @@ class Maker extends Model implements HasMedia
         'created_at',
     ];
 
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('maker')
+            ->singleFile();
+    }
+
     public function registerMediaConversions(Media $media = null): void
     {
         $this->addMediaConversion('thumb')->fit('crop', 50, 50);
@@ -37,11 +43,11 @@ class Maker extends Model implements HasMedia
 
     public function getImageAttribute()
     {
-        $file = $this->getMedia('image')->last();
+        $file = $this->getFirstMedia('maker');
         if ($file) {
-            $file->url       = $file->getUrl();
+            $file->url = $file->getUrl();
             $file->thumbnail = $file->getUrl('thumb');
-            $file->preview   = $file->getUrl('preview');
+            $file->preview = $file->getUrl('preview');
         }
 
         return $file;

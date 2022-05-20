@@ -16,11 +16,15 @@ class StoreContactTypeRequest extends FormRequest
 
     public function rules()
     {
-        return [
-            'name' => [
+        $data = [];
+
+        foreach (siteLanguages() as $locale) {
+            $data[$locale . '.name'] = [
                 'string',
                 'required',
-            ],
-        ];
+            ];
+        }
+
+        return $data;
     }
 }

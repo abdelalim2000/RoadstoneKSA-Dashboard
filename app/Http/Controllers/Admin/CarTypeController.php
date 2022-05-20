@@ -36,12 +36,12 @@ class CarTypeController extends Controller
                 $crudRoutePart = 'car-types';
 
                 return view('partials.datatablesActions', compact(
-                'viewGate',
-                'editGate',
-                'deleteGate',
-                'crudRoutePart',
-                'row'
-            ));
+                    'viewGate',
+                    'editGate',
+                    'deleteGate',
+                    'crudRoutePart',
+                    'row'
+                ));
             });
 
             $table->editColumn('id', function ($row) {
@@ -59,10 +59,10 @@ class CarTypeController extends Controller
             $table->editColumn('image', function ($row) {
                 if ($photo = $row->image) {
                     return sprintf(
-        '<a href="%s" target="_blank"><img src="%s" width="50px" height="50px"></a>',
-        $photo->url,
-        $photo->thumbnail
-    );
+                        '<a href="%s" target="_blank"><img src="%s" width="50px" height="50px"></a>',
+                        $photo->url,
+                        $photo->thumbnail
+                    );
                 }
 
                 return '';
@@ -70,10 +70,10 @@ class CarTypeController extends Controller
             $table->editColumn('breadcrumb', function ($row) {
                 if ($photo = $row->breadcrumb) {
                     return sprintf(
-        '<a href="%s" target="_blank"><img src="%s" width="50px" height="50px"></a>',
-        $photo->url,
-        $photo->thumbnail
-    );
+                        '<a href="%s" target="_blank"><img src="%s" width="50px" height="50px"></a>',
+                        $photo->url,
+                        $photo->thumbnail
+                    );
                 }
 
                 return '';
@@ -90,23 +90,16 @@ class CarTypeController extends Controller
         return view('admin.carTypes.index');
     }
 
-    public function create()
-    {
-        abort_if(Gate::denies('car_type_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        return view('admin.carTypes.create');
-    }
-
     public function store(StoreCarTypeRequest $request)
     {
         $carType = CarType::create($request->all());
 
         if ($request->input('image', false)) {
-            $carType->addMedia(storage_path('tmp/uploads/' . basename($request->input('image'))))->toMediaCollection('image');
+            $carType->addMedia(storage_path('tmp/uploads/' . basename($request->input('image'))))->toMediaCollection('car_type_image');
         }
 
         if ($request->input('breadcrumb', false)) {
-            $carType->addMedia(storage_path('tmp/uploads/' . basename($request->input('breadcrumb'))))->toMediaCollection('breadcrumb');
+            $carType->addMedia(storage_path('tmp/uploads/' . basename($request->input('breadcrumb'))))->toMediaCollection('car_type_breadcrumb');
         }
 
         if ($media = $request->input('ck-media', false)) {
@@ -116,11 +109,11 @@ class CarTypeController extends Controller
         return redirect()->route('admin.car-types.index');
     }
 
-    public function edit(CarType $carType)
+    public function create()
     {
-        abort_if(Gate::denies('car_type_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('car_type_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return view('admin.carTypes.edit', compact('carType'));
+        return view('admin.carTypes.create');
     }
 
     public function update(UpdateCarTypeRequest $request, CarType $carType)
@@ -132,7 +125,7 @@ class CarTypeController extends Controller
                 if ($carType->image) {
                     $carType->image->delete();
                 }
-                $carType->addMedia(storage_path('tmp/uploads/' . basename($request->input('image'))))->toMediaCollection('image');
+                $carType->addMedia(storage_path('tmp/uploads/' . basename($request->input('image'))))->toMediaCollection('car_type_image');
             }
         } elseif ($carType->image) {
             $carType->image->delete();
@@ -143,13 +136,20 @@ class CarTypeController extends Controller
                 if ($carType->breadcrumb) {
                     $carType->breadcrumb->delete();
                 }
-                $carType->addMedia(storage_path('tmp/uploads/' . basename($request->input('breadcrumb'))))->toMediaCollection('breadcrumb');
+                $carType->addMedia(storage_path('tmp/uploads/' . basename($request->input('breadcrumb'))))->toMediaCollection('car_type_breadcrumb');
             }
         } elseif ($carType->breadcrumb) {
             $carType->breadcrumb->delete();
         }
 
         return redirect()->route('admin.car-types.index');
+    }
+
+    public function edit(CarType $carType)
+    {
+        abort_if(Gate::denies('car_type_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        return view('admin.carTypes.edit', compact('carType'));
     }
 
     public function show(CarType $carType)
@@ -170,7 +170,10 @@ class CarTypeController extends Controller
 
     public function massDestroy(MassDestroyCarTypeRequest $request)
     {
-        CarType::whereIn('id', request('ids'))->delete();
+        foreach ($request->ids as $id) {
+            $type = CarType::query()->where('id', $id)->first();
+            $type->delete();
+        }
 
         return response(null, Response::HTTP_NO_CONTENT);
     }
@@ -179,10 +182,10 @@ class CarTypeController extends Controller
     {
         abort_if(Gate::denies('car_type_create') && Gate::denies('car_type_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $model         = new CarType();
-        $model->id     = $request->input('crud_id', 0);
+        $model = new CarType();
+        $model->id = $request->input('crud_id', 0);
         $model->exists = true;
-        $media         = $model->addMediaFromRequest('upload')->toMediaCollection('ck-media');
+        $media = $model->addMediaFromRequest('upload')->toMediaCollection('ck-media');
 
         return response()->json(['id' => $media->id, 'url' => $media->getUrl()], Response::HTTP_CREATED);
     }

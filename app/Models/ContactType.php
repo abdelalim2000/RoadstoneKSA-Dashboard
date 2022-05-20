@@ -2,11 +2,15 @@
 
 namespace App\Models;
 
+use Astrotomic\Translatable\Contracts\Translatable as TranslatableContracts;
+use Astrotomic\Translatable\Translatable;
 use DateTimeInterface;
 use Illuminate\Database\Eloquent\Model;
 
-class ContactType extends Model
+class ContactType extends Model implements TranslatableContracts
 {
+    use Translatable;
+
     public $table = 'contact_types';
 
     protected $dates = [
@@ -15,9 +19,12 @@ class ContactType extends Model
     ];
 
     protected $fillable = [
-        'name',
         'created_at',
         'updated_at',
+    ];
+
+    protected $translatedAttributes = [
+        'name'
     ];
 
     protected function serializeDate(DateTimeInterface $date)

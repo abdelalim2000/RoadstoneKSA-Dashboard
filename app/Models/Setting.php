@@ -2,16 +2,20 @@
 
 namespace App\Models;
 
-use \DateTimeInterface;
+use Astrotomic\Translatable\Contracts\Translatable as TranslatableContracts;
+use Astrotomic\Translatable\Translatable;
+use DateTimeInterface;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class Setting extends Model implements HasMedia
+class Setting extends Model implements HasMedia, TranslatableContracts
 {
     use InteractsWithMedia;
+    use Translatable;
 
     public $table = 'settings';
 
@@ -29,14 +33,25 @@ class Setting extends Model implements HasMedia
 
     protected $fillable = [
         'key',
-        'text',
-        'short_description',
-        'long_description',
         'date',
         'number',
         'created_at',
         'updated_at',
     ];
+
+    protected $translatedAttributes = [
+        'text',
+        'short_description',
+        'long_description',
+    ];
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('setting_image')
+            ->singleFile();
+
+        $this->addMediaCollection('setting_images');
+    }
 
     public function registerMediaConversions(Media $media = null): void
     {
@@ -56,11 +71,11 @@ class Setting extends Model implements HasMedia
 
     public function getImageAttribute()
     {
-        $file = $this->getMedia('image')->last();
+        $file = $this->getFirstMedia('setting_image');
         if ($file) {
-            $file->url       = $file->getUrl();
+            $file->url = $file->getUrl();
             $file->thumbnail = $file->getUrl('thumb');
-            $file->preview   = $file->getUrl('preview');
+            $file->preview = $file->getUrl('preview');
         }
 
         return $file;
@@ -73,7 +88,7 @@ class Setting extends Model implements HasMedia
 
     public function getMultiImageAttribute()
     {
-        $files = $this->getMedia('multi_image');
+        $files = $this->getMedia('setting_images');
         $files->each(function ($item) {
             $item->url = $item->getUrl();
             $item->thumbnail = $item->getUrl('thumb');

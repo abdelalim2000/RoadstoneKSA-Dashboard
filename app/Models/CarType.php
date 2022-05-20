@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use \DateTimeInterface;
+use DateTimeInterface;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -33,6 +33,15 @@ class CarType extends Model implements HasMedia
         'updated_at',
     ];
 
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('car_type_image')
+            ->singleFile();
+
+        $this->addMediaCollection('car_type_breadcrumb')
+            ->singleFile();
+    }
+
     public function registerMediaConversions(Media $media = null): void
     {
         $this->addMediaConversion('thumb')->fit('crop', 50, 50);
@@ -41,11 +50,11 @@ class CarType extends Model implements HasMedia
 
     public function getImageAttribute()
     {
-        $file = $this->getMedia('image')->last();
+        $file = $this->getFirstMedia('car_type_image');
         if ($file) {
-            $file->url       = $file->getUrl();
+            $file->url = $file->getUrl();
             $file->thumbnail = $file->getUrl('thumb');
-            $file->preview   = $file->getUrl('preview');
+            $file->preview = $file->getUrl('preview');
         }
 
         return $file;
@@ -53,11 +62,11 @@ class CarType extends Model implements HasMedia
 
     public function getBreadcrumbAttribute()
     {
-        $file = $this->getMedia('breadcrumb')->last();
+        $file = $this->getFirstMedia('car_type_breadcrumb');
         if ($file) {
-            $file->url       = $file->getUrl();
+            $file->url = $file->getUrl();
             $file->thumbnail = $file->getUrl('thumb');
-            $file->preview   = $file->getUrl('preview');
+            $file->preview = $file->getUrl('preview');
         }
 
         return $file;

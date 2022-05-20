@@ -16,11 +16,15 @@ class UpdateContactTypeRequest extends FormRequest
 
     public function rules()
     {
-        return [
-            'name' => [
+        $data = [];
+
+        foreach (siteLanguages() as $locale) {
+            $data[$locale . '.name'] = [
                 'string',
                 'required',
-            ],
-        ];
+            ];
+        }
+
+        return $data;
     }
 }
