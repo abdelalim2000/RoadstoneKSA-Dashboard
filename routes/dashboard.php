@@ -116,8 +116,11 @@ Route::group(
         Route::resource('site-translations', 'SiteTranslationController');
 
         // Import Data
-        Route::delete('import-datas/destroy', 'ImportDataController@massDestroy')->name('import-datas.massDestroy');
-        Route::resource('import-datas', 'ImportDataController');
+//        Route::delete('import-datas/destroy', 'ImportDataController@massDestroy')->name('import-datas.massDestroy');
+        Route::resource('import-datas', 'ImportDataController')->only(['index']);
+        Route::post('import-datas/car-type/import', 'ImportDataController@carTypeImport')->name('import-datas.car-type-import');
+        Route::post('import-datas/maker/import', 'ImportDataController@makerImport')->name('import-datas.maker-import');
+        Route::post('import-datas/car-model/import', 'ImportDataController@carModelImport')->name('import-datas.car-model-import');
     });
     Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {
         // Change password

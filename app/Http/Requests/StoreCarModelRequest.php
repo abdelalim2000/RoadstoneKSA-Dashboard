@@ -6,6 +6,7 @@ use App\Models\CarModel;
 use Gate;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Response;
+use Illuminate\Validation\Rule;
 
 class StoreCarModelRequest extends FormRequest
 {
@@ -20,6 +21,7 @@ class StoreCarModelRequest extends FormRequest
             'name' => [
                 'string',
                 'required',
+                Rule::unique('car_models', 'name')
             ],
             'maker_id' => [
                 'required',

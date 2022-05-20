@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\SetSlugTrait;
 use DateTimeInterface;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
@@ -11,6 +12,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 class CarType extends Model implements HasMedia
 {
     use InteractsWithMedia;
+    use SetSlugTrait;
 
     public $table = 'car_types';
 
