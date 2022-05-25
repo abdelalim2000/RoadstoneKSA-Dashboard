@@ -2,7 +2,7 @@
 
 namespace App\Imports;
 
-use App\Models\CarModel;
+use App\Models\TireFeature;
 use Illuminate\Support\Collection;
 use Illuminate\Validation\Rule;
 use Maatwebsite\Excel\Concerns\Importable;
@@ -15,18 +15,22 @@ use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithValidation;
 
-class CarModelImport implements ToCollection, SkipsEmptyRows, SkipsOnError, SkipsOnFailure, WithValidation, WithHeadingRow
+class TireFeatureImport implements ToCollection, SkipsEmptyRows, SkipsOnError, SkipsOnFailure, WithValidation, WithHeadingRow
 {
     use Importable;
     use SkipsErrors;
     use SkipsFailures;
 
-    public function collection(Collection $rows)
+    public function collection(Collection $collection)
     {
-        foreach ($rows as $row) {
-            CarModel::query()->create([
-                'name' => $row['name'],
-                'maker_id' => $row['car_id'],
+        foreach ($collection as $item) {
+            TireFeature::query()->create([
+                'en' => [
+                    'name' => $item['en_name']
+                ],
+                'ar' => [
+                    'name' => $item['ar_name']
+                ]
             ]);
         }
     }
@@ -34,22 +38,16 @@ class CarModelImport implements ToCollection, SkipsEmptyRows, SkipsOnError, Skip
     public function rules(): array
     {
         return [
-            '*.name' => [
+            '*.en_name' => [
                 'required',
                 'string',
-                Rule::unique('car_models', 'name')
+                Rule::unique('tire_feature_translations', 'name')
             ],
-            '*.car_id' => [
+            '*.ar_name' => [
                 'required',
-                Rule::exists('makers', 'id')
-            ]
+                'string',
+                Rule::unique('tire_feature_translations', 'name')
+            ],
         ];
-    }
-
-    public function prepareForValidation($data)
-    {
-        $data['name'] = (string)$data['name'];
-
-        return $data;
     }
 }

@@ -121,6 +121,10 @@ Route::group(
         Route::post('import-datas/car-type/import', 'ImportDataController@carTypeImport')->name('import-datas.car-type-import');
         Route::post('import-datas/maker/import', 'ImportDataController@makerImport')->name('import-datas.maker-import');
         Route::post('import-datas/car-model/import', 'ImportDataController@carModelImport')->name('import-datas.car-model-import');
+        Route::post('import-datas/tire-feature/import', 'ImportDataController@tireFeatureImport')->name('import-datas.tire-feature-import');
+        Route::post('import-datas/tire-design/import', 'ImportDataController@tireDesignImport')->name('import-datas.tire-design-import');
+        Route::post('import-datas/tire/import', 'ImportDataController@tireImport')->name('import-datas.tires-import');
+        Route::post('import-datas/tire-size/import', 'ImportDataController@tireSizeImport')->name('import-datas.tire-sizes-import');
     });
     Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {
         // Change password
