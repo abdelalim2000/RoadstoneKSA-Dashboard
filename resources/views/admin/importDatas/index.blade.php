@@ -124,7 +124,7 @@
                           enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
-                            <label for="maker" class="required">Car Models Import</label>
+                            <label for="car_model" class="required">Car Models Import</label>
                             <input type="file" name="car_model" class="form-control-file">
                             <span
                                 class="help-block">Data needed in Excel sheet is (name - car_id)</span>
@@ -151,7 +151,7 @@
                           enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
-                            <label for="maker" class="required">Tire Features Import</label>
+                            <label for="tire_feature" class="required">Tire Features Import</label>
                             <input type="file" name="tire_feature" class="form-control-file">
                             <span class="help-block">Data needed in Excel sheet is (en_name, ar_name)</span>
                         </div>
@@ -174,7 +174,7 @@
                           enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
-                            <label for="maker" class="required">Tire Design Import</label>
+                            <label for="tire_design" class="required">Tire Design Import</label>
                             <input type="file" name="tire_design" class="form-control-file">
                             <span class="help-block">Data needed in Excel sheet is (en_name, ar_name)</span>
                         </div>
@@ -197,7 +197,7 @@
                           enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
-                            <label for="maker" class="required">Tires Import</label>
+                            <label for="tires" class="required">Tires Import</label>
                             <input type="file" name="tire" class="form-control-file">
                             <span class="help-block">Data needed in Excel sheet is </span>
                             <table class="table table-responsive table-stripped">
@@ -278,7 +278,7 @@
                           enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
-                            <label for="maker" class="required">Tire Sizes Import</label>
+                            <label for="tire_size" class="required">Tire Sizes Import</label>
                             <input type="file" name="tire_size" class="form-control-file">
                             <span class="help-block">Data needed in Excel sheet is (width, ratio, rim_diameter, load_index, speed_rating, tire_id)</span>
                         </div>
@@ -294,17 +294,103 @@
 
         {{--    Articles imports    --}}
         <div class="tab-pane fade" id="articles" role="tabpanel" aria-labelledby="contact-tab">
+            <div class="card">
+                <div class="card-header">
+                    {{ trans('cruds.importData.title') }} Articles
+                </div>
 
+                <div class="card-body">
+                    <form action="{{ route('admin.import-datas.article-import') }}" method="post"
+                          enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-group">
+                            <label for="article" class="required">Article Import</label>
+                            <input type="file" name="article" class="form-control-file">
+                            <span class="help-block">Data needed in Excel sheet is (en_title, ar_title, en_description, ar_description, en_article, ar_article, slug, en_seo_keywords, ar_seo_keywords, en_seo_description, ar_seo_description, publish(1 or 0))</span>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-danger" type="submit">
+                                {{ trans('global.save') }}
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
 
         {{--    Distributars imports    --}}
         <div class="tab-pane fade" id="distributars" role="tabpanel" aria-labelledby="contact-tab">
+            <div class="card">
+                <div class="card-header">
+                    {{ trans('cruds.importData.title') }} Cities
+                </div>
 
+                <div class="card-body">
+                    <form action="{{ route('admin.import-datas.city-import') }}" method="post"
+                          enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-group">
+                            <label for="city" class="required">Cities Import</label>
+                            <input type="file" name="city" class="form-control-file">
+                            <span class="help-block">Data needed in Excel sheet is (en_name, ar_name, en_seo_keywords, ar_seo_keywords, en_seo_description, ar_seo_description, slug, map, active (1 or 0) )</span>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-danger" type="submit">
+                                {{ trans('global.save') }}
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    {{ trans('cruds.importData.title') }} Locations
+                </div>
+
+                <div class="card-body">
+                    <form action="{{ route('admin.import-datas.location-import') }}" method="post"
+                          enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-group">
+                            <label for="location" class="required">Location Import</label>
+                            <input type="file" name="location" class="form-control-file">
+                            <span class="help-block">Data needed in Excel sheet is (en_name, ar_name, en_address, ar_address, en_working_hour, ar_working_hour, city_id, phone, map, active (1 or 0) )</span>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-danger" type="submit">
+                                {{ trans('global.save') }}
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
 
         {{--    news imports    --}}
         <div class="tab-pane fade" id="news" role="tabpanel" aria-labelledby="contact-tab">
+            <div class="card">
+                <div class="card-header">
+                    {{ trans('cruds.importData.title') }} News
+                </div>
 
+                <div class="card-body">
+                    <form action="{{ route('admin.import-datas.news-import') }}" method="post"
+                          enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-group">
+                            <label for="news" class="required">news Import</label>
+                            <input type="file" name="news" class="form-control-file">
+                            <span class="help-block">Data needed in Excel sheet is (name, email)</span>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-danger" type="submit">
+                                {{ trans('global.save') }}
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 

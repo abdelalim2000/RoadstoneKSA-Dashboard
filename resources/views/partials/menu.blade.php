@@ -266,7 +266,7 @@
                     @endcan
                     @can('site_translation_access')
                         <li class="c-sidebar-nav-item">
-                            <a href="{{ route("admin.site-translations.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/site-translations") || request()->is("admin/site-translations/*") ? "c-active" : "" }}">
+                            <a href="{{ route("languages.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/site-translations") || request()->is("admin/site-translations/*") ? "c-active" : "" }}">
                                 <i class="fa-fw fas fa-language c-sidebar-nav-icon">
 
                                 </i>
