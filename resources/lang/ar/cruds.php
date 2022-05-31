@@ -283,6 +283,8 @@ return [
             'seo_keywords_helper'    => ' ',
             'seo_description'        => 'Seo Description',
             'seo_description_helper' => ' ',
+            'alt'        => 'Image Alt',
+            'alt_helper' => ' ',
             'image'                  => 'Image',
             'image_helper'           => ' ',
             'description'            => 'Description',

@@ -208,7 +208,7 @@
         Dropzone.options.imageDropzone = {
             url: '{{ route('admin.settings.storeMedia') }}',
             maxFilesize: 2, // MB
-            acceptedFiles: '.jpeg,.jpg,.png,.gif,.svg',
+            acceptedFiles: '.jpeg,.jpg,.png,.gif,.svg,.webp',
             maxFiles: 1,
             addRemoveLinks: true,
             headers: {
@@ -313,7 +313,7 @@
         Dropzone.options.multiImageDropzone = {
             url: '{{ route('admin.settings.storeMedia') }}',
             maxFilesize: 2, // MB
-            acceptedFiles: '.jpeg,.jpg,.png,.gif,.svg',
+            acceptedFiles: '.jpeg,.jpg,.png,.gif,.svg,.webp',
             addRemoveLinks: true,
             headers: {
                 'X-CSRF-TOKEN': "{{ csrf_token() }}"

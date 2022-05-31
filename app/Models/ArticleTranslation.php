@@ -16,6 +16,7 @@ class ArticleTranslation extends Model
         'locale',
         'seo_keywords',
         'seo_description',
+        'alt',
         'description',
         'article',
         'article_id',

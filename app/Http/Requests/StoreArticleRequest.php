@@ -49,6 +49,9 @@ class StoreArticleRequest extends FormRequest
             $data[$locale . '.seo_keywords'] = [
                 'nullable',
             ];
+            $data[$locale . '.alt'] = [
+                'nullable',
+            ];
         }
 
         return $data;

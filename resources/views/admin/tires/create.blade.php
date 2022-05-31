@@ -484,7 +484,7 @@
         Dropzone.options.breadcrumbDropzone = {
             url: '{{ route('admin.tires.storeMedia') }}',
             maxFilesize: 2, // MB
-            acceptedFiles: '.jpeg,.jpg,.png,.gif',
+            acceptedFiles: '.jpeg,.jpg,.png,.gif,.webp',
             maxFiles: 1,
             addRemoveLinks: true,
             headers: {
@@ -538,7 +538,7 @@
         Dropzone.options.thumbDropzone = {
             url: '{{ route('admin.tires.storeMedia') }}',
             maxFilesize: 2, // MB
-            acceptedFiles: '.jpeg,.jpg,.png,.gif',
+            acceptedFiles: '.jpeg,.jpg,.png,.gif,.webp',
             maxFiles: 1,
             addRemoveLinks: true,
             headers: {
@@ -592,7 +592,7 @@
         Dropzone.options.tireLogoDropzone = {
             url: '{{ route('admin.tires.storeMedia') }}',
             maxFilesize: 2, // MB
-            acceptedFiles: '.jpeg,.jpg,.png,.gif',
+            acceptedFiles: '.jpeg,.jpg,.png,.gif,.webp',
             maxFiles: 1,
             addRemoveLinks: true,
             headers: {
@@ -647,7 +647,7 @@
         Dropzone.options.imagesDropzone = {
             url: '{{ route('admin.tires.storeMedia') }}',
             maxFilesize: 2, // MB
-            acceptedFiles: '.jpeg,.jpg,.png,.gif',
+            acceptedFiles: '.jpeg,.jpg,.png,.gif,.webp',
             addRemoveLinks: true,
             headers: {
                 'X-CSRF-TOKEN': "{{ csrf_token() }}"

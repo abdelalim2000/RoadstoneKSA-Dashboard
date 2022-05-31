@@ -41,6 +41,7 @@ class Article extends Model implements HasMedia, TranslatableContracts
         'seo_description',
         'description',
         'article',
+        'alt',
     ];
 
     public function registerMediaCollections():void

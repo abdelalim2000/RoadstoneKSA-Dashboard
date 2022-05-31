@@ -82,6 +82,21 @@
                         @endif
                         <span class="help-block">{{ trans('cruds.article.fields.seo_description_helper') }}</span>
                     </div>
+
+                    <div class="form-group">
+                        <label for="{{$locale}}-alt">{{ trans('cruds.article.fields.alt') }}
+                            [{{$locale}}]</label>
+                        <textarea
+                            class="form-control {{ $errors->has($locale.'.alt') ? 'is-invalid' : '' }}"
+                            name="{{$locale}}[alt]"
+                            id="{{$locale}}-alt">{{ old($locale.'.alt') }}</textarea>
+                        @if($errors->has($locale.'.alt'))
+                            <div class="invalid-feedback">
+                                {{ $errors->first($locale.'.alt') }}
+                            </div>
+                        @endif
+                        <span class="help-block">{{ trans('cruds.article.fields.alt_helper') }}</span>
+                    </div>
                 @endforeach
 
                 <div class="form-group">
@@ -141,7 +156,7 @@
         Dropzone.options.imageDropzone = {
             url: '{{ route('admin.articles.storeMedia') }}',
             maxFilesize: 2, // MB
-            acceptedFiles: '.jpeg,.jpg,.png,.gif',
+            acceptedFiles: '.jpeg,.jpg,.png,.gif,.webp',
             maxFiles: 1,
             addRemoveLinks: true,
             headers: {
