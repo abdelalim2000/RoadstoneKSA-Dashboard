@@ -10,7 +10,6 @@ class AddRelationshipFieldsToCarModelsTable extends Migration
     {
         Schema::table('car_models', function (Blueprint $table) {
             $table->foreignId('maker_id')->nullable()->references('id')->on('makers');
-            $table->unique(['name', 'maker_id']);
         });
     }
 

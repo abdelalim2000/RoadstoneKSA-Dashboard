@@ -37,7 +37,6 @@ class CarModelImport implements ToCollection, SkipsEmptyRows, SkipsOnError, Skip
             '*.name' => [
                 'required',
                 'string',
-                Rule::unique('car_models', 'name')
             ],
             '*.car_id' => [
                 'required',
