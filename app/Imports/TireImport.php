@@ -80,7 +80,7 @@ class TireImport implements ToCollection, SkipsEmptyRows, SkipsOnError, SkipsOnF
                 Rule::unique('tire_translations', 'title')
             ],
             '*.en_short_description' => [
-                'required',
+                'nullable',
                 'string',
             ],
             '*.en_seo_keywords' => [
