@@ -92,7 +92,7 @@ class TireImport implements ToCollection, SkipsEmptyRows, SkipsOnError, SkipsOnF
                 'string',
             ],
             '*.ar_short_description' => [
-                'required',
+                'nullable',
                 'string',
             ],
             '*.ar_seo_keywords' => [

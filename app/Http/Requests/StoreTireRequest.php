@@ -133,7 +133,7 @@ class StoreTireRequest extends FormRequest
                 Rule::unique('tire_translations', 'title')
             ];
             $data[$locale . '.short_description'] = [
-                'required',
+                'nullable',
                 'string',
             ];
             $data[$locale . '.seo_keywords'] = [

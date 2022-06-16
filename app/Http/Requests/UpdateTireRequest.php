@@ -133,7 +133,7 @@ class UpdateTireRequest extends FormRequest
                 Rule::unique('tire_translations', 'title')->ignore($this->tire->translate($locale) ? $this->tire->translate($locale)->id : $this->tire->id)
             ];
             $data[$locale . '.short_description'] = [
-                'required',
+                'nullable',
                 'string',
             ];
             $data[$locale . '.seo_keywords'] = [

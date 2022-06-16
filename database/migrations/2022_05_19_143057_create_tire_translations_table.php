@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->id();
             $table->string('title')->unique();
             $table->string('locale')->index();
-            $table->longText('short_description');
+            $table->longText('short_description')->nullable();
             $table->longText('seo_keywords')->nullable();
             $table->longText('seo_description')->nullable();
             $table->longText('description')->nullable();
