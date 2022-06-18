@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Pages\HomePageController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -9,6 +10,6 @@ Route::group(
         'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
     ], function () {
 
-    Route::view('', 'welcome');
+    Route::get('', [HomePageController::class, 'index'])->name('home');
 
 });

@@ -11,7 +11,16 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-    .postCss('resources/css/app.css', 'public/css', [
-        //
-    ]);
+mix.js('resources/assets/js/main.js', 'public/assets/js/main.js')
+    .js('resources/assets/js/script.js', 'public/assets/js/script.js')
+    .js('resources/assets/js/slick.js', 'public/assets/js/slick.js')
+    .js('resources/assets/js/typed.min.js', 'public/assets/js/typed.min.js')
+    .copyDirectory('resources/assets/css/fonts', 'public/assets/css/fonts')
+    .css('resources/assets/css/owl.carousel.min.css', 'public/assets/css/owl.carousel.min.css')
+    .css('resources/assets/css/owl.theme.default.min.css', 'public/assets/css/owl.theme.default.min.css')
+    .css('resources/assets/css/style.css', 'public/assets/css/style.css')
+    .css('resources/assets/css/style-rtl.css', 'public/assets/css/style-rtl.css')
+    .options({
+        processCssUrls: false
+    })
+    .version();
