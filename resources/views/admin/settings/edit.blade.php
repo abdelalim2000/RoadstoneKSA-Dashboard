@@ -261,7 +261,7 @@
     <script>
         Dropzone.options.fileDropzone = {
             url: '{{ route('admin.settings.storeMedia') }}',
-            maxFilesize: 8, // MB
+            maxFilesize: 16, // MB
             maxFiles: 1,
             addRemoveLinks: true,
             headers: {
