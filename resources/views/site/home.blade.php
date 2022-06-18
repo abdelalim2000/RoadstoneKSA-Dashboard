@@ -213,7 +213,7 @@
                         <!-- //image tire 1  -->
                     </div>
                     <div class="align-items-center d-flex imagee justify-content-center tire-image">
-                        <img src="{{ $item->image }}" alt="{{ $item->name }}"/>
+                        {{ $item->image }}
                     </div>
                 </div>
             </section>
@@ -225,10 +225,13 @@
             <div class="container py-6">
                 <h2 class="section-main-heading retailers-heading pb-5">{{ trans('website.home.retailer') }}</h2>
                 <div class="retailersCity owl-carousel owl-theme">
-                    @forelse($cities as $item)
+                    @forelse($cities as $key=>$item)
                         <div class="city-content">
-                            <div class="city riyada" style="background-image: url({{ $item->image }})"></div>
-                            <span class="city-name same-dis">{{ $item->name }}</span>
+                            <div @class(["city riyada", "same-dis" => $key % 2 != 0, "same-dis-ather" => $key % 2 == 0])
+                                 style="background-image: url('{{ $item->image->getUrl() }}')"></div>
+                            <span class="city-name">
+                                {{ $item->name }}
+                            </span>
                         </div>
                     @empty
                     @endforelse
