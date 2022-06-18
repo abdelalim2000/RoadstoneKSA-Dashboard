@@ -60,7 +60,7 @@ class TireImport implements ToCollection, SkipsEmptyRows, SkipsOnError, SkipsOnF
 
             $tire->tire_features()->sync($features);
             $tire->tire_designs()->sync($designs);
-            if (count($models) > 0) {
+            if (!$models[0] == 0) {
                 $tire->car_models()->sync($models);
             }
         }
