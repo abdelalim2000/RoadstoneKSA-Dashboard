@@ -1,4 +1,7 @@
-<!-- start rightSide nav -->
+@php
+    use Carbon\Carbon;
+
+@endphp
 <nav class="nav-container">
     <div class="menu-toggle">
         <input type="checkbox" id="toggle" class="input-toggler">
@@ -49,102 +52,120 @@
                                 <div class="col-md-6">
                                     <ul class="sidebar-menu-content-item list-unstyled my-item mt-md-5">
                                         <li class="nav-item">
-                                            <a class="nav-link link-active px-3" href="{{ route('home') }}">Home</a>
+                                            <a class="nav-link link-active px-3" href="{{ route('home') }}">
+                                                {{ trans('website.menu.home') }}
+                                            </a>
                                         </li>
                                         <li class="nav-item drowp-item">
-                                            <a class="nav-link sup-menu link-active px-3" href="#">Tires</a>
+                                            <a class="nav-link sup-menu link-active px-3" href="#">
+                                                {{ trans('website.menu.tires') }}
+                                            </a>
                                             <ul class="drowp-item-container list-unstyled">
-                                                <li class="tire-item"><a class="tire-link link-active"
-                                                                         href="./passenger.html">passenger Car</a></li>
-                                                <li class="tire-item"><a class="tire-link link-active" href="">suv
-                                                        car</a></li>
-                                                <li class="tire-item"><a class="tire-link link-active" href="">van &
-                                                        light truck</a></li>
+                                                @forelse($types as $item)
+                                                    <li class="tire-item">
+                                                        <a class="tire-link link-active" href="">
+                                                            {{ $item->name }}
+                                                        </a>
+                                                    </li>
+                                                @empty
+                                                @endforelse
                                             </ul>
                                         </li>
                                         <li class="nav-item drowp-item">
-                                            <a class="nav-link sup-menu link-active px-3" href="">Retailes</a>
+                                            <a class="nav-link sup-menu link-active px-3" href="">
+                                                {{ trans('website.menu.retailers') }}
+                                            </a>
                                             <div class="drowp-item-container mt-5 d-flex justify-content-around">
                                                 <ul class="list-unstyled">
-                                                    <li class="city-item"><a class="city-link link-active" href="">riyadh</a>
-                                                    </li>
-                                                    <li class="city-item"><a class="city-link link-active" href="">gaddah</a>
-                                                    </li>
-                                                    <li class="city-item"><a class="city-link link-active"
-                                                                             href="">damam</a></li>
-                                                    <li class="city-item"><a class="city-link link-active"
-                                                                             href="">jizan</a></li>
-                                                </ul>
-                                                <ul class="list-unstyled">
-                                                    <li class="city-item"><a class="city-link link-active" href="">sakaka</a>
-                                                    </li>
-                                                    <li class="city-item"><a class="city-link link-active" href="">khamis</a>
-                                                    </li>
-                                                    <li class="city-item"><a class="city-link link-active" href="">qassim</a>
-                                                    </li>
-                                                    <li class="city-item"><a class="city-link link-active"
-                                                                             href="">taif</a></li>
-                                                    <li class="city-item"><a class="city-link link-active" href="">madina</a>
-                                                    </li>
+                                                    @forelse($cities as $item)
+                                                        <li class="city-item">
+                                                            <a class="city-link link-active" href="">
+                                                                {{ $item->name }}
+                                                            </a>
+                                                        </li>
+                                                    @empty
+                                                    @endforelse
                                                 </ul>
                                             </div>
                                         </li>
-                                        <li class="nav-item"><a class="nav-link link-active px-3" href="./about.html">About
-                                                Roadstone</a></li>
-                                        <li class="nav-item"><a class="nav-link link-active px-3"
-                                                                href="./guide-blogs.html">Guid & Blog</a></li>
-                                        <li class="nav-item"><a class="nav-link link-active px-3"
-                                                                href="contact-us.html">Contact Us</a></li>
+                                        <li class="nav-item">
+                                            <a class="nav-link link-active px-3" href="{{ route('about') }}">
+                                                {{ trans('website.menu.about') }}
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link link-active px-3" href="">
+                                                {{ trans('website.menu.blog') }}
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link link-active px-3" href="">
+                                                {{ trans('website.menu.contact') }}
+                                            </a>
+                                        </li>
                                     </ul>
                                 </div>
                                 <div class="col-md-3 d-none d-md-block">
                                     <div class="head-office">
-                                        <h5 class="head-office-title">head office</h5>
+                                        <h5 class="head-office-title">{{ trans('website.menu.head-office') }}</h5>
                                         <p class="head-office-desc">
-                                            king fahd rd, al faisaliyah, al<br>faysaliyah,dammam 32272,<br>saudi arabia
+                                            {!! trans('website.global.company-address') !!}
                                         </p>
                                     </div>
                                     <div class="mobile-number">
-                                        <h5 class="mobile-number-title">mobile number</h5>
-                                        <p class="mobile-number-content">+966123456789</p>
+                                        <h5 class="mobile-number-title">{{ trans('website.menu.mobile') }}</h5>
+                                        <a href="tel:{{ settingText('phone', 'text') }}"
+                                           class="mobile-number-content">{{ settingText('phone', 'text') }}</a>
                                     </div>
                                     <div class="email-address">
-                                        <h5 class="email-address-title">email address</h5>
-                                        <p class="email-address-content">Uname@Domain.com</p>
+                                        <h5 class="email-address-title">{{ trans('website.menu.email') }}</h5>
+                                        <a href="mailto:{{ settingText('email', 'text') }}"
+                                           class="email-address-content">{{ settingText('email', 'text') }}</a>
                                     </div>
                                 </div>
                                 <div
                                     class="col-12 d-flex flex-column flex-md-row justify-content-between align-self-end align-items-md-baseline position-relative pb-2">
-                                    <div class="copy-right text-center">COPYRIGHT© 2022 Arabian Tires Group. ALL RIGHTS
+                                    <div class="copy-right text-center">
+                                        COPYRIGHT© {{ Carbon::now()->format('Y') }} Arabian Tires Group. ALL
+                                        RIGHTS
                                         RESERVED.
                                     </div>
                                     <div class="sidebar-social">
                                         <ul class="social-container list-inline text-center">
                                             <li class="social-item list-unstyled list-inline-item">
-                                                <a href="#"> <img class="social-icon" src="./dist/imgs/facebook.png"
-                                                                  alt="facebook icon"></a>
+                                                <a href="{{ settingText('facebook', 'text') }}">
+                                                    <img class="social-icon" src="{{ mix('assets/imgs/facebook.png') }}"
+                                                         alt="facebook icon">
+                                                </a>
                                             </li>
                                             <li class="social-item list-unstyled list-inline-item">
-                                                <a href="#"><img class="social-icon" src="./dist/imgs/instagram.png"
-                                                                 alt="instagram icon"></a>
+                                                <a href="{{ settingText('instagram', 'text') }}">
+                                                    <img class="social-icon"
+                                                         src="{{ mix('assets/imgs/instagram.png') }}"
+                                                         alt="instagram icon">
+                                                </a>
                                             </li>
                                             <li class="social-item list-unstyled list-inline-item">
-                                                <a href="#"><img class="social-icon" src="./dist/imgs/twitter.png"
-                                                                 alt="twitter icon"></a>
+                                                <a href="{{ settingText('twitter', 'text') }}">
+                                                    <img class="social-icon" src="{{ mix('assets/imgs/twitter.png') }}"
+                                                         alt="twitter icon">
+                                                </a>
                                             </li>
                                         </ul>
                                     </div>
                                     <div class="sidebar-terms">
                                         <ul class="footer-terms list-inline text-center m-0">
                                             <li class="footer-terms-item list-unstyled list-inline-item">
-                                                <a class="nav-link menu-link" href="#">Privacy Policy</a>
+                                                <a class="nav-link menu-link"
+                                                   href="#">{{ trans('website.menu.privacy') }}</a>
                                             </li>
                                             <li class="footer-terms-item list-unstyled list-inline-item">
-                                                <a class="nav-link menu-link" href="#">Terms Of Conditions</a>
+                                                <a class="nav-link menu-link"
+                                                   href="#">{{ trans('website.menu.terms') }}</a>
                                             </li>
-                                            <li class="footer-terms-item list-unstyled list-inline-item">
-                                                <a class="nav-link menu-link" href="#">Terms Of Conditions</a>
-                                            </li>
+                                            {{--                                            <li class="footer-terms-item list-unstyled list-inline-item">--}}
+                                            {{--                                                <a class="nav-link menu-link" href="#">Terms Of Conditions</a>--}}
+                                            {{--                                            </li>--}}
                                         </ul>
                                     </div>
                                 </div>
@@ -159,7 +180,7 @@
         <ul class="side-nav-content list-unstyled">
             <li class="side-nav-item nav-item">
                 <a class="side-nav-link nav-link" data-bs-toggle="modal" data-bs-target="#staticBackdrop" href="#">
-                    <img src="./dist/imgs/svgexport-6 (73).png" class="pb-2" alt="find tire icon">
+                    <img src="{{ mix('assets/imgs/svgexport-6 (73).png') }}" class="pb-2" alt="find tire icon">
                     <span class="side-nav-link-title">Find Your Tire</span>
                 </a>
             </li>
@@ -167,14 +188,14 @@
             <li class="side-nav-item nav-item">
                 <a class="side-nav-link nav-link" href="#">
                     <span class="side-nav-link-title">Find Nearest Retailers</span>
-                    <img src="./dist/imgs/svgexport-6 (80).png" class="nearset-icon pb-2"
+                    <img src="{{ mix('assets/imgs/svgexport-6 (80).png') }}" class="nearset-icon pb-2"
                          alt="find nearset retailers icon">
                 </a>
             </li>
         </ul>
         <div class="contact">
-            <a class="contact-link" href="#">
-                <img src="./dist/imgs/whatsappIcon.png" alt="Whatsapp icon">
+            <a class="contact-link" href="{{ settingText('whatsapp', 'text') }}">
+                <img src="{{ mix('assets/imgs/whatsappIcon.png') }}" alt="Whatsapp icon">
             </a>
         </div>
     </div>
