@@ -1,4 +1,28 @@
-/* change slider direction  */
+@font-face {
+    font-family: "NotoSansKR";
+    src: url("./fonts/NotoSansKR-Light.otf");
+    font-weight: 300;
+    font-display: block;
+}
+@font-face {
+    font-family: "NotoSansKR";
+    src: url("./fonts/NotoSansKR-Regular.otf");
+    font-weight: 500;
+    font-display: block;
+}
+@font-face {
+    font-family: "NotoSansKR";
+    src: url("./fonts/NotoSansKR-Black.otf");
+    font-weight: 900;
+    font-display: block;
+}
+@font-face {
+    font-family: "NotoSansKR";
+    src: url("./fonts/NotoSansKR-Bold.otf");
+    font-weight: 600;
+    font-display: block;
+}
+
 .owl-stage-outer{
   position:relative;
   overflow:hidden;
@@ -448,30 +472,6 @@
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-@font-face {
-  font-family: "NotoSansKR";
-  src: url("../css/fonts/NotoSansKR-Light.otf");
-  font-weight: 300;
-  font-display: block;
-}
-@font-face {
-  font-family: "NotoSansKR";
-  src: url("../css/fonts/NotoSansKR-Regular.otf");
-  font-weight: 500;
-  font-display: block;
-}
-@font-face {
-  font-family: "NotoSansKR";
-  src: url("../css/fonts/NotoSansKR-Black.otf");
-  font-weight: 900;
-  font-display: block;
-}
-@font-face {
-  font-family: "NotoSansKR";
-  src: url("../css/fonts/NotoSansKR-Bold.otf");
-  font-weight: 600;
-  font-display: block;
-}
 body {
   font-family: "NotoSansKR";
   user-select: none;

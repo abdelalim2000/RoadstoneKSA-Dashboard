@@ -1,3 +1,27 @@
+@font-face {
+    font-family: "NotoSansKR";
+    src: url("./fonts/NotoSansKR-Light.otf");
+    font-weight: 300;
+    font-display: block;
+}
+@font-face {
+    font-family: "NotoSansKR";
+    src: url("./fonts/NotoSansKR-Regular.otf");
+    font-weight: 500;
+    font-display: block;
+}
+@font-face {
+    font-family: "NotoSansKR";
+    src: url("./fonts/NotoSansKR-Black.otf");
+    font-weight: 900;
+    font-display: block;
+}
+@font-face {
+    font-family: "NotoSansKR";
+    src: url("./fonts/NotoSansKR-Bold.otf");
+    font-weight: 600;
+    font-display: block;
+}
 .main-footer .global-footer .menu-link, .main-footer .menu-item .menu-link,
 .main-footer .social-item .menu-link, .retailers-main .retailers-container .retailers-content .retailers-cities .retailersCity-content .btnFindStore-container .findStore-link, .passenger-main .passenger-container .pass-tires .pass-car .explore-more a, .modal-body .nav-tabs .nav-search, .modal.show .modal-header .btn-modal-close, .btn-back-up, .btn-submit, .btn-more, .nav-container .menu-toggle .sidebar .sidebar-menu .menu-container .sidebar-menu-content-item .drowp-item .drowp-item-container .tire-item .tire-link,
 .nav-container .menu-toggle .sidebar .sidebar-menu .menu-container .sidebar-menu-content-item .drowp-item .drowp-item-container .tire-item .city-link,
@@ -150,30 +174,7 @@
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-@font-face {
-  font-family: "NotoSansKR";
-  src: url("../css/fonts/NotoSansKR-Light.otf");
-  font-weight: 300;
-  font-display: block;
-}
-@font-face {
-  font-family: "NotoSansKR";
-  src: url("../css/fonts/NotoSansKR-Regular.otf");
-  font-weight: 500;
-  font-display: block;
-}
-@font-face {
-  font-family: "NotoSansKR";
-  src: url("../css/fonts/NotoSansKR-Black.otf");
-  font-weight: 900;
-  font-display: block;
-}
-@font-face {
-  font-family: "NotoSansKR";
-  src: url("../css/fonts/NotoSansKR-Bold.otf");
-  font-weight: 600;
-  font-display: block;
-}
+
 body {
   font-family: "NotoSansKR";
   user-select: none;
