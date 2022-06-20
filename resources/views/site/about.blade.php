@@ -11,7 +11,7 @@
         <nav class="navbar fixed-top ps-md-3">
             <div class="container-fluid">
                 <a class="navbar-brand"  href="{{ route('home') }}">
-                    <img class="navbar-brand-logo" src="{{ settingImage('about-breadcrumb') }}" alt="RoadStone Logo">
+                    <img class="navbar-brand-logo" src="{{ settingImage('logo') }}" alt="RoadStone Logo">
                 </a>
                 <div class="d-flex ms-auto">
                     <div class="pe-4">
@@ -37,7 +37,7 @@
                 </div>
             </div>
         </nav>
-        <div class="header-img"></div>
+        <div class="header-img" style="background-image:url('{{ settingImage('about-breadcrumb') }}');"></div>
     </header>
     <!-- end header -->
 

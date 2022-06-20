@@ -1,6 +1,10 @@
 <?php
 
 return array (
+  'blog' => 
+  array (
+    'header' => 'read our most recent news',
+  ),
   'form' => 
   array (
     'email' => 'Email Address',

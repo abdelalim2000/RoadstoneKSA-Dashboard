@@ -241,7 +241,7 @@
                 @forelse($articles as $item)
                     <div
                         class="tire-bg tire-bg-x"
-                        style="background-image: url('{{  $item->image ? $item->image->getUrl() : '' }}');background-repeat: no-repeat;background-size: cover;">
+                        style="background-image: url('{{  $item->image ? $item->image->getUrl() : '' }}');background-repeat: no-repeat;background-size: cover;background-position: center center">
                         <div class="tireSize-content">
                             <h2 class="tireSize-heading">{{ $item->title }}</h2>
                             <p class="tireSize-desc">
