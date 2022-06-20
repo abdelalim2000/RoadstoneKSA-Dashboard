@@ -12,7 +12,9 @@ Route::group(
         'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
     ], function () {
 
-    Route::get('', [HomePageController::class, 'index'])->name('home');
+    Route::view('', 'welcome');
+
+    Route::get('home-page', [HomePageController::class, 'index'])->name('home');
     Route::get('about-roadstone', [AboutPageController::class, 'index'])->name('about');
 
     // Blogs Route
