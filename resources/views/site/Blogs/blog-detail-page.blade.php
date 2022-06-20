@@ -10,6 +10,9 @@
         p {
             color: #BCBEC0 !important;
         }
+        span {
+            color: #BCBEC0 !important;
+        }
     </style>
 @endpush
 
