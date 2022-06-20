@@ -29,7 +29,7 @@ function settingDate($key): string
 
 function settingImage($key): string
 {
-    $setting = Setting::query()->where('key', $key)->first();
+    $setting = Setting::query()->where('key', $key)->with('media')->first();
 
     if (empty($setting)) {
         return '';
@@ -38,12 +38,12 @@ function settingImage($key): string
     if ($setting && $setting->image == null) {
         return '';
     }
-    return $setting->image->url;
+    return $setting->image->getUrl();
 }
 
 function settingMultiple($key)
 {
-    $setting = Setting::query()->where('key', $key)->first();
+    $setting = Setting::query()->where('key', $key)->with('media')->first();
 
     if (empty($setting)) {
         return '';
@@ -54,7 +54,7 @@ function settingMultiple($key)
 
 function settingFile($key): string
 {
-    $file = Setting::query()->where('key', $key)->first();
+    $file = Setting::query()->where('key', $key)->with('media')->first();
 
     if ($file == null) {
         return '';

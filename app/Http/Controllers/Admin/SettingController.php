@@ -106,7 +106,7 @@ class SettingController extends Controller
         $setting = Setting::create($request->all());
 
         if ($request->input('image', false)) {
-            $setting->addMedia(storage_path('tmp/uploads/' . basename($request->input('image'))))->toMediaCollection('image');
+            $setting->addMedia(storage_path('tmp/uploads/' . basename($request->input('image'))))->toMediaCollection('setting_image');
         }
 
         if ($request->input('file', false)) {
@@ -114,7 +114,7 @@ class SettingController extends Controller
         }
 
         foreach ($request->input('multi_image', []) as $file) {
-            $setting->addMedia(storage_path('tmp/uploads/' . basename($file)))->toMediaCollection('multi_image');
+            $setting->addMedia(storage_path('tmp/uploads/' . basename($file)))->toMediaCollection('setting_images');
         }
 
         if ($media = $request->input('ck-media', false)) {
@@ -140,7 +140,7 @@ class SettingController extends Controller
                 if ($setting->image) {
                     $setting->image->delete();
                 }
-                $setting->addMedia(storage_path('tmp/uploads/' . basename($request->input('image'))))->toMediaCollection('image');
+                $setting->addMedia(storage_path('tmp/uploads/' . basename($request->input('image'))))->toMediaCollection('setting_image');
             }
         } elseif ($setting->image) {
             $setting->image->delete();
@@ -167,7 +167,7 @@ class SettingController extends Controller
         $media = $setting->multi_image->pluck('file_name')->toArray();
         foreach ($request->input('multi_image', []) as $file) {
             if (count($media) === 0 || !in_array($file, $media)) {
-                $setting->addMedia(storage_path('tmp/uploads/' . basename($file)))->toMediaCollection('multi_image');
+                $setting->addMedia(storage_path('tmp/uploads/' . basename($file)))->toMediaCollection('setting_images');
             }
         }
 

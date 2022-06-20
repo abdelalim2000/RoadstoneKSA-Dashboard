@@ -111,7 +111,7 @@
                            href="{{ route('about') }}">{{ trans('website.menu.about') }}</a>
                     </li>
                     <li class="nav-item menu-item list-unstyled list-inline-item">
-                        <a class="nav-link menu-link" href="#">{{ trans('website.menu.blog') }}</a>
+                        <a class="nav-link menu-link" href="{{ route('blogs') }}">{{ trans('website.menu.blog') }}</a>
                     </li>
                     <li class="nav-item menu-item list-unstyled list-inline-item">
                         <a class="nav-link menu-link" href="#">{{ trans('website.menu.contact') }}</a>

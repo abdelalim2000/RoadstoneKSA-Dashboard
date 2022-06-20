@@ -94,7 +94,7 @@
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link link-active px-3" href="">
+                                            <a class="nav-link link-active px-3" href="{{ route('blogs') }}">
                                                 {{ trans('website.menu.blog') }}
                                             </a>
                                         </li>

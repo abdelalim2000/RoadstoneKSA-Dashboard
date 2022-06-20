@@ -247,7 +247,7 @@
                             <p class="tireSize-desc">
                                 {{ $item->shord_description }}
                             </p>
-                            <a href="" class="read-more">
+                            <a href="{{ route('blogs.show', $item->slug) }}" class="read-more">
                                 <span class="more-tire me-3">{{ trans('website.global.read-more') }}</span>
                                 <img src="{{ mix('assets/imgs/readMoreArrow.png') }}" alt="Read More Arrow"/>
                             </a>

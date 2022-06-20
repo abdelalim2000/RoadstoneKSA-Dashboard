@@ -30,6 +30,8 @@
     <!-- select2 link -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet"/>
 
+    <link rel="stylesheet" href="{{ mix('assets/css/royal-preload.css') }}">
+
     @if(app()->getLocale() == 'ar')
         <link rel="stylesheet" href="{{ mix('assets/css/style-rtl.css') }}">
     @else
@@ -61,6 +63,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollTrigger.min.js"></script>
 <script src="{{ mix('assets/js/slick.js') }}"></script>
+<script src="{{mix('assets/js/royal_preloader.min.js')}}"></script>
 <script src="{{ mix('assets/js/script.js') }}"></script>
 <script src="{{ mix('assets/js/main.js') }}"></script>
 @stack('js')
@@ -74,6 +77,24 @@
         });
     }
     scrollDown.addEventListener('click', btnScrollBottom);
+</script>
+<script>
+
+    window.jQuery = window.$ = jQuery;
+    (function ($) {
+        "use strict";
+        //Preloader
+        Royal_Preloader.config({
+            mode: 'logo',
+            logo: '{{ settingImage('logo') }}',
+            logo_size: [180, 54],
+            showProgress: true,
+            showPercentage: true,
+            text_colour: '#ED1C24',
+            background: '#1C1B24'
+        });
+    })(jQuery);
+
 </script>
 </body>
 </html>
