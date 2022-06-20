@@ -263,6 +263,7 @@
             url: '{{ route('admin.settings.storeMedia') }}',
             maxFilesize: 16, // MB
             maxFiles: 1,
+            timeout: 60,
             addRemoveLinks: true,
             headers: {
                 'X-CSRF-TOKEN': "{{ csrf_token() }}"
