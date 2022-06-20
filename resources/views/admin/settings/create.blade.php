@@ -268,7 +268,7 @@
                 'X-CSRF-TOKEN': "{{ csrf_token() }}"
             },
             params: {
-                size: 8
+                size: 16
             },
             success: function (file, response) {
                 $('form').find('input[name="file"]').remove()
