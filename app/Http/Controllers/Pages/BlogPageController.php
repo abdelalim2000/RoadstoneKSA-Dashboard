@@ -13,7 +13,7 @@ class BlogPageController extends Controller
 {
     public function index(): Factory|View|Application
     {
-        $articles = Article::query()->where('publish', true)->with('media')->paginate(1);
+        $articles = Article::query()->where('publish', true)->with('media')->paginate(6);
         return view('site.Blogs.blog-page', compact([
             'articles',
         ]));

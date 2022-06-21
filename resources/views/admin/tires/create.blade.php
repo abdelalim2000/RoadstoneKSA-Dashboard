@@ -26,21 +26,21 @@
                         <span class="help-block">{{ trans('cruds.tire.fields.title_helper') }}</span>
                     </div>
 
-                    <div class="form-group">
-                        <label class="required"
-                               for="{{$locale}}-short_description">{{ trans('cruds.tire.fields.short_description') }}
-                            [{{$locale}}]</label>
-                        <textarea
-                            class="form-control {{ $errors->has($locale.'.short_description') ? 'is-invalid' : '' }}"
-                            name="{{$locale}}[short_description]" id="{{$locale}}-short_description"
-                            required>{{ old($locale.'.short_description') }}</textarea>
-                        @if($errors->has($locale.'.short_description'))
-                            <div class="invalid-feedback">
-                                {{ $errors->first($locale.'.short_description') }}
-                            </div>
-                        @endif
-                        <span class="help-block">{{ trans('cruds.tire.fields.short_description_helper') }}</span>
-                    </div>
+{{--                    <div class="form-group">--}}
+{{--                        <label class="required"--}}
+{{--                               for="{{$locale}}-short_description">{{ trans('cruds.tire.fields.short_description') }}--}}
+{{--                            [{{$locale}}]</label>--}}
+{{--                        <textarea--}}
+{{--                            class="form-control {{ $errors->has($locale.'.short_description') ? 'is-invalid' : '' }}"--}}
+{{--                            name="{{$locale}}[short_description]" id="{{$locale}}-short_description"--}}
+{{--                            required>{{ old($locale.'.short_description') }}</textarea>--}}
+{{--                        @if($errors->has($locale.'.short_description'))--}}
+{{--                            <div class="invalid-feedback">--}}
+{{--                                {{ $errors->first($locale.'.short_description') }}--}}
+{{--                            </div>--}}
+{{--                        @endif--}}
+{{--                        <span class="help-block">{{ trans('cruds.tire.fields.short_description_helper') }}</span>--}}
+{{--                    </div>--}}
 
                     <div class="form-group">
                         <label for="{{$locale}}-description">{{ trans('cruds.tire.fields.description') }} [{{$locale}}
@@ -361,7 +361,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="required" for="car_models">{{ trans('cruds.tire.fields.car_model') }}</label>
+                    <label for="car_models">{{ trans('cruds.tire.fields.car_model') }}</label>
                     <div style="padding-bottom: 4px">
                         <span class="btn btn-info btn-xs select-all"
                               style="border-radius: 0">{{ trans('global.select_all') }}</span>
@@ -369,7 +369,7 @@
                               style="border-radius: 0">{{ trans('global.deselect_all') }}</span>
                     </div>
                     <select class="form-control select2 {{ $errors->has('car_models') ? 'is-invalid' : '' }}"
-                            name="car_models[]" id="car_models" multiple required>
+                            name="car_models[]" id="car_models" multiple>
                         @foreach($car_models as $car_model)
                             <option
                                 value="{{ $car_model->id }}" {{ in_array($car_model->id, old('car_models', [])) ? 'selected' : '' }}>{{ $car_model->name }}</option>

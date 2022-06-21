@@ -129,7 +129,7 @@ class StoreTireRequest extends FormRequest
                 'integer',
             ],
             'car_models' => [
-                'required',
+                'nullable',
                 'array',
             ],
             'car_type_id' => [
@@ -144,10 +144,10 @@ class StoreTireRequest extends FormRequest
                 'string',
                 Rule::unique('tire_translations', 'title')
             ];
-            $data[$locale . '.short_description'] = [
-                'nullable',
-                'string',
-            ];
+//            $data[$locale . '.short_description'] = [
+//                'nullable',
+//                'string',
+//            ];
             $data[$locale . '.seo_keywords'] = [
                 'nullable',
                 'string',
