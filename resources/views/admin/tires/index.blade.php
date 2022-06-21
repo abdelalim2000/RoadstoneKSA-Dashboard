@@ -30,9 +30,9 @@
                     <th>
                         {{ trans('cruds.tire.fields.slug') }}
                     </th>
-                    <th>
-                        {{ trans('cruds.tire.fields.short_description') }}
-                    </th>
+{{--                    <th>--}}
+{{--                        {{ trans('cruds.tire.fields.short_description') }}--}}
+{{--                    </th>--}}
                     <th>
                         {{ trans('cruds.tire.fields.thumb') }}
                     </th>
