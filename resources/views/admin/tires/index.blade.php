@@ -98,7 +98,7 @@
 { data: 'id', name: 'id' },
 { data: 'title', name: 'title' },
 { data: 'slug', name: 'slug' },
-{ data: 'short_description', name: 'short_description' },
+// { data: 'short_description', name: 'short_description' },
 { data: 'thumb', name: 'thumb', sortable: false, searchable: false },
 { data: 'car_type_name', name: 'car_type.name' },
 { data: 'actions', name: '{{ trans('global.actions') }}' }
@@ -112,7 +112,7 @@
       $($.fn.dataTable.tables(true)).DataTable()
           .columns.adjust();
   });
-  
+
 });
 
 </script>

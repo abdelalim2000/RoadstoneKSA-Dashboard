@@ -61,9 +61,9 @@ class TireController extends Controller
             $table->editColumn('slug', function ($row) {
                 return $row->slug ? $row->slug : '';
             });
-            $table->editColumn('short_description', function ($row) {
-                return $row->short_description ? $row->short_description : '';
-            });
+//            $table->editColumn('short_description', function ($row) {
+//                return $row->short_description ? $row->short_description : '';
+//            });
             $table->editColumn('thumb', function ($row) {
                 if ($photo = $row->thumb) {
                     return sprintf(

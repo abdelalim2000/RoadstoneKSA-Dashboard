@@ -39,14 +39,14 @@
                             {{ $tire->slug }}
                         </td>
                     </tr>
-                    <tr>
-                        <th>
-                            {{ trans('cruds.tire.fields.short_description') }}
-                        </th>
-                        <td>
-                            {{ $tire->short_description }}
-                        </td>
-                    </tr>
+{{--                    <tr>--}}
+{{--                        <th>--}}
+{{--                            {{ trans('cruds.tire.fields.short_description') }}--}}
+{{--                        </th>--}}
+{{--                        <td>--}}
+{{--                            {{ $tire->short_description }}--}}
+{{--                        </td>--}}
+{{--                    </tr>--}}
                     <tr>
                         <th>
                             {{ trans('cruds.tire.fields.seo_keywords') }}
