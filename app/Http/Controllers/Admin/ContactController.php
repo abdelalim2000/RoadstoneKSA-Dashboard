@@ -76,9 +76,7 @@ class ContactController extends Controller
     {
         abort_if(Gate::denies('contact_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $contact_types = ContactType::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        return view('admin.contacts.create', compact('contact_types'));
+        return view('admin.contacts.create');
     }
 
     public function store(StoreContactRequest $request)
@@ -92,11 +90,7 @@ class ContactController extends Controller
     {
         abort_if(Gate::denies('contact_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $contact_types = ContactType::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        $contact->load('contact_type');
-
-        return view('admin.contacts.edit', compact('contact', 'contact_types'));
+        return view('admin.contacts.edit', compact('contact'));
     }
 
     public function update(UpdateContactRequest $request, Contact $contact)

@@ -17,10 +17,7 @@ class UpdateContactRequest extends FormRequest
     public function rules()
     {
         return [
-            'contact_type_id' => [
-                'required',
-                'integer',
-            ],
+
         ];
     }
 }

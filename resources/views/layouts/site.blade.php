@@ -67,6 +67,7 @@
 <script src="{{ mix('assets/js/script.js') }}"></script>
 <script src="{{ mix('assets/js/main.js') }}"></script>
 @stack('js')
+@include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
 <script>
     let scrollDown = document.querySelector(".scrollDown-link");
     //Function that scroll down

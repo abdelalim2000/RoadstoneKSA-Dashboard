@@ -99,7 +99,7 @@
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link link-active px-3" href="">
+                                            <a class="nav-link link-active px-3" href="{{ route('contact') }}">
                                                 {{ trans('website.menu.contact') }}
                                             </a>
                                         </li>

@@ -11,20 +11,6 @@
             @method('PUT')
             @csrf
             <div class="form-group">
-                <label class="required" for="contact_type_id">{{ trans('cruds.contact.fields.contact_type') }}</label>
-                <select class="form-control select2 {{ $errors->has('contact_type') ? 'is-invalid' : '' }}" name="contact_type_id" id="contact_type_id" required>
-                    @foreach($contact_types as $id => $entry)
-                        <option value="{{ $id }}" {{ (old('contact_type_id') ? old('contact_type_id') : $contact->contact_type->id ?? '') == $id ? 'selected' : '' }}>{{ $entry }}</option>
-                    @endforeach
-                </select>
-                @if($errors->has('contact_type'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('contact_type') }}
-                    </div>
-                @endif
-                <span class="help-block">{{ trans('cruds.contact.fields.contact_type_helper') }}</span>
-            </div>
-            <div class="form-group">
                 <div class="form-check {{ $errors->has('status') ? 'is-invalid' : '' }}">
                     <input type="hidden" name="status" value="0">
                     <input class="form-check-input" type="checkbox" name="status" id="status" value="1" {{ $contact->status || old('status', 0) === 1 ? 'checked' : '' }}>

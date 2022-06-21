@@ -5,10 +5,19 @@ return array (
   array (
     'header' => 'read our most recent news',
   ),
+  'contact' => 
+  array (
+    'header' => 'drop us an email',
+    'info' => 'Contact Info',
+  ),
   'form' => 
   array (
     'email' => 'Email Address',
     'full-name' => 'Full Name',
+    'interest' => 'Area of interest',
+    'message' => 'Enter your message here',
+    'phone' => 'Mobile Number',
+    'subject' => 'Subject',
     'submit' => 'Submit',
   ),
   'global' => 
@@ -42,5 +51,11 @@ return array (
     'retailers' => 'Retailers',
     'terms' => 'Terms Of Conditions',
     'tires' => 'Tires',
+  ),
+  'message' => 
+  array (
+    'success' => 'Success',
+    'success-contact-message' => 'Your message have been sent successfully',
+    'success-news-message' => 'Thanks for your subscription',
   ),
 );

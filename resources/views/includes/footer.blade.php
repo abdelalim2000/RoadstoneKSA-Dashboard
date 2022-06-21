@@ -5,27 +5,37 @@
                 <div class="newLetter-container row justify-content-center">
                     <div class="col-sm-12 col-md-10 d-flex justify-content-between flex-column flex-lg-row">
                         <h2 class="newLetter-heading mb-0">{{ trans('website.global.newsletter') }}</h2>
-                        <form>
+                        <form action="{{ route('news.store') }}" method="post" novalidate>
+                            @csrf
                             <div class="row me-9 justify-content-center justify-content-lg-evenly">
                                 <div class="col-12 col-sm-8 col-md-7 col-lg-4">
-                                    <input type="text" class="form-control input-name" id="fieldInputName"
-                                           aria-describedby="nameHelp"
-                                           placeholder="{{ trans('website.form.full-name') }}"/>
-                                    <small id="nameHelp" class="form-text wrong-text"></small>
+                                    <input type="text"
+                                           class="form-control input-name @error('name') is-invalid @enderror"
+                                           placeholder="{{ trans('website.form.full-name') }}" name="name"
+                                           value="{{ old('name') }}"/>
+                                    @error('name')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
                                 </div>
                                 <div class="col-12 col-sm-8 col-md-7 col-lg-4">
-                                    <input type="email" class="form-control input-email" id="fieldInputEmail1"
-                                           aria-describedby="emailHelp"
-                                           placeholder="{{ trans('website.form.email') }}"/>
-                                    <small id="emailHelp" class="form-text wrong-text"></small>
+                                    <input type="email"
+                                           class="form-control input-email @error('name') is-invalid @enderror"
+                                           placeholder="{{ trans('website.form.email') }}" name="email"
+                                           value="{{ old('email') }}"/>
+                                    @error('email')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
                                 </div>
                                 <div class="col-12 col-md-10 col-lg-2 d-flex justify-content-center">
-                                    <a href="#" class="text-decoration-none">
-                                        <button type="submit" class="btn btn-submit">
-                                            {{ trans('website.form.submit') }}
-                                            <img src="{{ mix('assets/imgs/readMoreArrow.png') }}" alt="Arrow Icon"/>
-                                        </button>
-                                    </a>
+                                    <button type="submit" class="btn btn-submit text-decoration-none"
+                                            style="border: none;outline: none;">
+                                        {{ trans('website.form.submit') }}
+                                        <img src="{{ mix('assets/imgs/readMoreArrow.png') }}" alt="Arrow Icon"/>
+                                    </button>
                                 </div>
                             </div>
                         </form>
@@ -96,9 +106,7 @@
                 </div>
             </div>
             <hr class="hr-line"/>
-            <div
-                class="d-flex justify-content-between flex-column flex-lg-row"
-            >
+            <div class="d-flex justify-content-between flex-column flex-lg-row">
                 <ul class="nav">
                     <li class="nav-item menu-item list-inline">
                         <a class="nav-link menu-link ps-0" href="#">{{ trans('website.menu.tires') }}</a>
@@ -114,7 +122,8 @@
                         <a class="nav-link menu-link" href="{{ route('blogs') }}">{{ trans('website.menu.blog') }}</a>
                     </li>
                     <li class="nav-item menu-item list-unstyled list-inline-item">
-                        <a class="nav-link menu-link" href="#">{{ trans('website.menu.contact') }}</a>
+                        <a class="nav-link menu-link"
+                           href="{{ route('contact') }}">{{ trans('website.menu.contact') }}</a>
                     </li>
                 </ul>
                 <ul class="social-container list-inline">

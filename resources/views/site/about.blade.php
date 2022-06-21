@@ -1,9 +1,9 @@
 @extends('layouts.site')
 @section('title', 'Roadstone KSA - About Roadstone')
 @section('og_title', 'Roadstone KSA - About Roadstone')
-@section('seo_description',  trans('website.seo.home-seo-description') )
-@section('og_description',  trans('website.seo.home-seo-description') )
-@section('seo_keywords', trans('website.seo.home-seo-keywords') )
+@section('seo_description',  trans('website.seo.about-seo-description') )
+@section('og_description',  trans('website.seo.about-seo-description') )
+@section('seo_keywords', trans('website.seo.about-seo-keywords') )
 
 @section('content')
     <!-- start header -->
