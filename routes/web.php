@@ -5,6 +5,7 @@ use App\Http\Controllers\Pages\BlogPageController;
 use App\Http\Controllers\Pages\ContactPageController;
 use App\Http\Controllers\Pages\HomePageController;
 use App\Http\Controllers\Pages\NewsStoreController;
+use App\Http\Controllers\Pages\TirePageController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -18,6 +19,11 @@ Route::group(
 
     Route::get('home-page', [HomePageController::class, 'index'])->name('home');
     Route::get('about-roadstone', [AboutPageController::class, 'index'])->name('about');
+
+    // Tires route
+    Route::get('tires', [TirePageController::class, 'index'])->name('tires');
+    Route::get('tires/{carType:slug}/type', [TirePageController::class, 'typePage'])->name('tires.type');
+    Route::get('tires/{tire:slug}/details', [TirePageController::class, 'show'])->name('tires.show');
 
     // Blogs Route
     Route::get('guide-blogs', [BlogPageController::class, 'index'])->name('blogs');

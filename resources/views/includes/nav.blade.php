@@ -57,13 +57,14 @@
                                             </a>
                                         </li>
                                         <li class="nav-item drowp-item">
-                                            <a class="nav-link sup-menu link-active px-3" href="#">
+                                            <a class="nav-link sup-menu link-active px-3" href="{{ route('tires') }}">
                                                 {{ trans('website.menu.tires') }}
                                             </a>
                                             <ul class="drowp-item-container list-unstyled">
                                                 @forelse($types as $item)
                                                     <li class="tire-item">
-                                                        <a class="tire-link link-active" href="">
+                                                        <a class="tire-link link-active"
+                                                           href="{{ route('tires.type', $item->slug) }}">
                                                             {{ $item->name }}
                                                         </a>
                                                     </li>

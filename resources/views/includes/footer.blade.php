@@ -100,7 +100,7 @@
                                     />
                                 </g>
                             </svg>
-                            <span class="back-to-up">back to top</span>
+                            <span class="back-to-up">{{ trans('website.global.back-to-top') }}</span>
                         </a>
                     </div>
                 </div>
@@ -109,7 +109,7 @@
             <div class="d-flex justify-content-between flex-column flex-lg-row">
                 <ul class="nav">
                     <li class="nav-item menu-item list-inline">
-                        <a class="nav-link menu-link ps-0" href="#">{{ trans('website.menu.tires') }}</a>
+                        <a class="nav-link menu-link ps-0" href="{{ route('tires') }}">{{ trans('website.menu.tires') }}</a>
                     </li>
                     <li class="nav-item menu-item list-unstyled list-inline-item">
                         <a class="nav-link menu-link" href="#">{{ trans('website.menu.retailers') }}</a>

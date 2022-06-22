@@ -539,6 +539,7 @@
             }
         }
     </script>
+
     <script>
         Dropzone.options.thumbDropzone = {
             url: '{{ route('admin.tires.storeMedia') }}',
@@ -593,6 +594,7 @@
             }
         }
     </script>
+
     <script>
         Dropzone.options.tireLogoDropzone = {
             url: '{{ route('admin.tires.storeMedia') }}',
@@ -647,6 +649,7 @@
             }
         }
     </script>
+
     <script>
         var uploadedImagesMap = {}
         Dropzone.options.imagesDropzone = {
@@ -663,6 +666,7 @@
                 height: 4096
             },
             success: function (file, response) {
+                console.log(file)
                 $('form').append('<input type="hidden" name="images[]" value="' + response.name + '">')
                 uploadedImagesMap[file.name] = response.name
             },
@@ -680,15 +684,11 @@
             init: function () {
                 @if(isset($tire) && $tire->images)
                 var files = {!! json_encode($tire->images) !!}
-                for(
-                var i
-            in
-                files
-            )
+                for(var i in files)
                 {
                     var file = files[i]
                     this.options.addedfile.call(this, file)
-                    this.options.thumbnail.call(this, file, file.preview)
+                    this.options.thumbnail.call(this, file, file.preview_url)
                     file.previewElement.classList.add('dz-complete')
                     $('form').append('<input type="hidden" name="images[]" value="' + file.file_name + '">')
                 }
