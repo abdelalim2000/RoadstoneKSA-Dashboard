@@ -187,11 +187,8 @@
                                             {{ $item->description }}
                                         </p>
                                     </div>
-                                    <span
-                                        id="typed"
-                                        class="section-typed d-none d-xl-block"
-                                    ></span>
-                                    <a href=""
+                                    <span id="typed" class="section-typed d-none d-xl-block"></span>
+                                    <a href="{{ route('tires.type', $item->slug) }}"
                                        class="show-more-section-one text-danger text-uppercase text-decoration-none fw-bold">
                                         {{ trans('website.home.see-more') }}
                                         <img

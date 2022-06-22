@@ -42,9 +42,9 @@
 
     <title>@yield('title', 'Roadstone KSA - Homepage')</title>
 
-    {!! settingText('scripts', 'short_description') !!}
+    {!! settingText('scripts-head', 'short_description') !!}
 </head>
-<body>
+<body class="royal_preloader" data-lang="{{ app()->getLocale() }}">
 
 
 @yield('content')
@@ -97,5 +97,6 @@
     })(jQuery);
 
 </script>
+{!! settingText('scripts-head', 'short_description') !!}
 </body>
 </html>

@@ -22,6 +22,7 @@ return array (
   ),
   'global' => 
   array (
+    'back-to-top' => 'Back To Top',
     'company-address' => 'king fahd rd, al faisaliyah, al<br>faysaliyah,dammam 32272,<br>saudi arabia',
     'newsletter' => 'Newsletter Signup',
     'read-more' => 'read more',
@@ -54,8 +55,33 @@ return array (
   ),
   'message' => 
   array (
+    'info' => 'Info',
+    'info-tire-not-found' => 'Sorry there is no tires in this section yet',
     'success' => 'Success',
     'success-contact-message' => 'Your message have been sent successfully',
     'success-news-message' => 'Thanks for your subscription',
+  ),
+  'rim-diameter' => 'Rim Diameter',
+  'tire' => 
+  array (
+    'aquaplaning' => 'Aquaplaning',
+    'aspect-ratio' => 'Aspect Ratio',
+    'comfort-noise' => 'Comfort Noise',
+    'dry-performance' => 'dry Performance',
+    'durability' => 'durability',
+    'fuel-consumption' => 'Fuel Consumption',
+    'ice' => 'ice',
+    'key-performance' => 'Key Performance<br>Indicators',
+    'load-index' => 'Load Index',
+    'rim-diameter' => 'Rim Diameter',
+    'rolling-resistance' => 'Rolling Resistance',
+    'size' => 'Sizes',
+    'snow' => 'snow',
+    'speed-rating' => 'Speed Rating',
+    'wear' => 'wear',
+    'wet-grip' => 'Wet Grip',
+    'wet-handling' => 'Wet Handling',
+    'wet-performance' => 'wet performance',
+    'width' => 'Width',
   ),
 );
