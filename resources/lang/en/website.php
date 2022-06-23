@@ -61,6 +61,10 @@ return array (
     'success-contact-message' => 'Your message have been sent successfully',
     'success-news-message' => 'Thanks for your subscription',
   ),
+  'retailer' => 
+  array (
+    'find' => 'find store',
+  ),
   'rim-diameter' => 'Rim Diameter',
   'tire' => 
   array (

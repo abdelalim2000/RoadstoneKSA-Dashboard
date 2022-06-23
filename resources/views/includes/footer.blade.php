@@ -112,7 +112,7 @@
                         <a class="nav-link menu-link ps-0" href="{{ route('tires') }}">{{ trans('website.menu.tires') }}</a>
                     </li>
                     <li class="nav-item menu-item list-unstyled list-inline-item">
-                        <a class="nav-link menu-link" href="#">{{ trans('website.menu.retailers') }}</a>
+                        <a class="nav-link menu-link" href="{{ route('retailer') }}">{{ trans('website.menu.retailers') }}</a>
                     </li>
                     <li class="nav-item menu-item list-unstyled list-inline-item">
                         <a class="nav-link menu-link"

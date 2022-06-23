@@ -36,4 +36,7 @@ Route::group(
     // News Route
     Route::post('news/send', [NewsStoreController::class, 'store'])->name('news.store');
 
+    // Retialers Route
+    Route::get('retailers', [\App\Http\Controllers\Pages\RetailerPageController::class, 'index'])->name('retailer');
+
 });

@@ -7,6 +7,7 @@ use Astrotomic\Translatable\Contracts\Translatable as TranslatableContracts;
 use Astrotomic\Translatable\Translatable;
 use DateTimeInterface;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -64,6 +65,11 @@ class City extends Model implements HasMedia, TranslatableContracts
         }
 
         return $file;
+    }
+
+    public function locations(): HasMany
+    {
+        return $this->hasMany(Location::class, 'city_id');
     }
 
     protected function serializeDate(DateTimeInterface $date)

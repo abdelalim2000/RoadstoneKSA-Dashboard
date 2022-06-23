@@ -27,6 +27,9 @@
     @endif
 
     @stack('addional-css')
+    <!-- Owl carousel js link cdn -->
+    <link rel="stylesheet" href="{{ mix('assets/css/owl.carousel.min.css') }}"/>
+    <link rel="stylesheet" href="{{ mix('assets/css/owl.theme.default.min.css') }}"/>
     <!-- select2 link -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet"/>
 

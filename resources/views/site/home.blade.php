@@ -5,11 +5,6 @@
 @section('og_description',  trans('website.seo.home-seo-description') )
 @section('seo_keywords', trans('website.seo.home-seo-keywords') )
 
-@push('addional-css')
-    <link rel="stylesheet" href="{{ mix('assets/css/owl.carousel.min.css') }}"/>
-    <link rel="stylesheet" href="{{ mix('assets/css/owl.theme.default.min.css') }}"/>
-@endpush
-
 @section('content')
 
     <header>

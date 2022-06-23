@@ -73,14 +73,16 @@
                                             </ul>
                                         </li>
                                         <li class="nav-item drowp-item">
-                                            <a class="nav-link sup-menu link-active px-3" href="">
+                                            <a class="nav-link sup-menu link-active px-3"
+                                               href="{{ route('retailer') }}">
                                                 {{ trans('website.menu.retailers') }}
                                             </a>
                                             <div class="drowp-item-container mt-5 d-flex justify-content-around">
                                                 <ul class="list-unstyled">
                                                     @forelse($cities as $item)
                                                         <li class="city-item">
-                                                            <a class="city-link link-active" href="">
+                                                            <a class="city-link link-active"
+                                                               href="{{ route('retailer') }}">
                                                                 {{ $item->name }}
                                                             </a>
                                                         </li>
