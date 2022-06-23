@@ -56,7 +56,9 @@ class TireSizeImport implements ToCollection, SkipsEmptyRows, WithHeadingRow, Wi
             ],
             '*.speed_rating' => [
                 'required',
-                'integer'
+                'string',
+                'max:3',
+                'min:1'
             ],
             '*.tire_id' => [
                 'required',
@@ -72,7 +74,7 @@ class TireSizeImport implements ToCollection, SkipsEmptyRows, WithHeadingRow, Wi
         $data['ratio'] = (int)$data['ratio'];
         $data['rim_diameter'] = (int)$data['rim_diameter'];
         $data['load_index'] = (int)$data['load_index'];
-        $data['speed_rating'] = (int)$data['speed_rating'];
+        $data['speed_rating'] = (string)$data['speed_rating'];
         $data['tire_id'] = (int)$data['tire_id'];
 
         return $data;
