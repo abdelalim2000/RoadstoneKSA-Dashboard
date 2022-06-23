@@ -67,6 +67,23 @@ return array (
     'find' => 'find store',
   ),
   'rim-diameter' => 'Rim Diameter',
+  'seo' => 
+  array (
+    'about-seo-description' => 'about',
+    'about-seo-keywords' => 'about',
+    'blog-seo-description' => 'blog',
+    'blog-seo-keywords' => 'blog',
+    'contact-seo-description' => 'contact',
+    'contact-seo-keywords' => 'contact',
+    'home-seo-description' => 'home',
+    'home-seo-keywords' => 'home',
+    'privacy-seo-description' => 'privacy',
+    'privacy-seo-keywords' => 'privacy',
+    'term-seo-description' => 'terms',
+    'term-seo-keywords' => 'terms',
+    'tire-seo-description' => 'tire',
+    'tire-seo-keywords' => 'tires',
+  ),
   'tire' => 
   array (
     'aquaplaning' => 'Aquaplaning',

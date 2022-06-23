@@ -5,6 +5,7 @@ use App\Http\Controllers\Pages\BlogPageController;
 use App\Http\Controllers\Pages\ContactPageController;
 use App\Http\Controllers\Pages\HomePageController;
 use App\Http\Controllers\Pages\NewsStoreController;
+use App\Http\Controllers\Pages\RetailerPageController;
 use App\Http\Controllers\Pages\TirePageController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -37,6 +38,15 @@ Route::group(
     Route::post('news/send', [NewsStoreController::class, 'store'])->name('news.store');
 
     // Retialers Route
-    Route::get('retailers', [\App\Http\Controllers\Pages\RetailerPageController::class, 'index'])->name('retailer');
+    Route::get('retailers', [RetailerPageController::class, 'index'])->name('retailer');
+
+    // Terms and privacy routes
+    Route::get('terms-condition', function () {
+        return view('site.term-page');
+    })->name('terms');
+
+    Route::get('privacy-policy', function () {
+        return view('site.privacy-page');
+    })->name('privacy');
 
 });

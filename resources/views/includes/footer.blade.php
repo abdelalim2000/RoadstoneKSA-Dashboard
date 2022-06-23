@@ -156,10 +156,10 @@
                 </div>
                 <ul class="footer-terms list-inline m-0">
                     <li class="footer-terms-item list-unstyled list-inline-item">
-                        <a class="nav-link menu-link" href="#">{{ trans('website.menu.privacy') }}</a>
+                        <a class="nav-link menu-link" href="{{ route('privacy') }}">{{ trans('website.menu.privacy') }}</a>
                     </li>
                     <li class="footer-terms-item list-unstyled list-inline-item">
-                        <a class="nav-link menu-link" href="#">{{ trans('website.menu.terms') }}</a>
+                        <a class="nav-link menu-link" href="{{ route('terms') }}">{{ trans('website.menu.terms') }}</a>
                     </li>
                     {{--                        <li class="footer-terms-item list-unstyled list-inline-item">--}}
                     {{--                            <a class="nav-link menu-link pe-0" href="#">Terms Of Conditions</a>--}}
