@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use \DateTimeInterface;
+use DateTimeInterface;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class CarModel extends Model
 {
@@ -21,12 +23,17 @@ class CarModel extends Model
         'updated_at',
     ];
 
-    public function maker()
+    public function maker(): BelongsTo
     {
         return $this->belongsTo(Maker::class, 'maker_id');
     }
 
-    protected function serializeDate(DateTimeInterface $date)
+    public function tires(): BelongsToMany
+    {
+        return $this->belongsToMany(Tire::class);
+    }
+
+    protected function serializeDate(DateTimeInterface $date): string
     {
         return $date->format('Y-m-d H:i:s');
     }

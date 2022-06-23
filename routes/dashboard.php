@@ -125,6 +125,7 @@ Route::group(
         Route::post('import-datas/tire-design/import', 'ImportDataController@tireDesignImport')->name('import-datas.tire-design-import');
         Route::post('import-datas/tire/import', 'ImportDataController@tireImport')->name('import-datas.tires-import');
         Route::post('import-datas/tire-size/import', 'ImportDataController@tireSizeImport')->name('import-datas.tire-sizes-import');
+        Route::post('import-datas/tire-model/import', 'ImportDataController@tireModelImport')->name('import-datas.tire-model-import');
         Route::post('import-datas/article/import', 'ImportDataController@articleImport')->name('import-datas.article-import');
         Route::post('import-datas/city/import', 'ImportDataController@cityImport')->name('import-datas.city-import');
         Route::post('import-datas/location/import', 'ImportDataController@locationImport')->name('import-datas.location-import');

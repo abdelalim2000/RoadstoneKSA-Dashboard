@@ -9,6 +9,7 @@ use App\Imports\CarTypeImport;
 use App\Imports\CityImport;
 use App\Imports\LocationImport;
 use App\Imports\MakerImport;
+use App\Imports\ModelTireImport;
 use App\Imports\NewsImport;
 use App\Imports\TireDesignImport;
 use App\Imports\TireFeatureImport;
@@ -142,6 +143,22 @@ class ImportDataController extends Controller
         }
 
         return redirect()->route('admin.import-datas.index')->with('success', 'Tire Sizes Data Imported Successfully');
+    }
+
+    public function tireModelImport(Request $request): RedirectResponse
+    {
+        if (!$request->file('tire_model')) {
+            return back()->with('error', 'Please upload file first');
+        }
+
+        $tireModel = new ModelTireImport;
+        $tireModel->import($request->file('tire_model'));
+
+        if ($tireModel->failures()->isNotEmpty()) {
+            return redirect()->route('admin.import-datas.index')->with('failures', $tireModel->failures());
+        }
+
+        return redirect()->route('admin.import-datas.index')->with('success', 'Tire Models Data Imported Successfully');
     }
 
     public function articleImport(Request $request): RedirectResponse

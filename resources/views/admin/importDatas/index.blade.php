@@ -290,6 +290,29 @@
                     </form>
                 </div>
             </div>
+
+            <div class="card">
+                <div class="card-header">
+                    {{ trans('cruds.importData.title') }} Tire Models
+                </div>
+
+                <div class="card-body">
+                    <form action="{{ route('admin.import-datas.tire-model-import') }}" method="post"
+                          enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-group">
+                            <label for="tire_size" class="required">Tire Models Import</label>
+                            <input type="file" name="tire_model" class="form-control-file">
+                            <span class="help-block">Data needed in Excel sheet is (model_id, tire_id)</span>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-danger" type="submit">
+                                {{ trans('global.save') }}
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
 
         {{--    Articles imports    --}}

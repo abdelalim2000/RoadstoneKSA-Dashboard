@@ -126,7 +126,7 @@
                             $word = explode(' ',$item->name);
                             array_splice($word, -1);
                         @endphp
-                        {{ implode($word) }} <span class="span-change-color">{{ end($str) }}</span>
+                        {{ implode($word) }} {!! count(explode(' ', $item->name)) > 2 ? '<br/>' : null !!}<span class="span-change-color">{{ end($str) }}</span>
                     </h1>
                     <div class="animate-one">
                         <div class="passenger-svg-content">
