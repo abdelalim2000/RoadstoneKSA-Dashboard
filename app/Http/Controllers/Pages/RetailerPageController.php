@@ -8,6 +8,7 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class RetailerPageController extends Controller
 {
@@ -20,6 +21,11 @@ class RetailerPageController extends Controller
                 $query->where('active', true);
             })
             ->get();
+
+        if ($cities->count() == 0){
+            Alert::info(trans('website.message.info'), trans('website.message.info-retailer-not-found'));
+        }
+
         return view('site.retailer-page', compact('cities'));
     }
 }

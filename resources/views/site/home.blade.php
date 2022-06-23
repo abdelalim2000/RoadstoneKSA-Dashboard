@@ -220,9 +220,9 @@
                     @empty
                     @endforelse
                 </div>
-                <a href="" class="d-block text-center">
+                <a href="{{ route('retailer') }}" class="d-block text-center">
                     <button type="button" class="btn btn-more-retailer btn-more">
-                        Explore More
+                        {{ trans('website.global.read-more') }}
                     </button>
                 </a>
             </div>

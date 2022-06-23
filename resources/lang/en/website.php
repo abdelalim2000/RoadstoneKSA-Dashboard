@@ -56,6 +56,7 @@ return array (
   'message' => 
   array (
     'info' => 'Info',
+    'info-retailer-not-found' => 'Sorry but there is no branches open  for now check later',
     'info-tire-not-found' => 'Sorry there is no tires in this section yet',
     'success' => 'Success',
     'success-contact-message' => 'Your message have been sent successfully',
