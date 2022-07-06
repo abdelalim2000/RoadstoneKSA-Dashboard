@@ -133,7 +133,7 @@
                                                  aria-valuemin="0"
                                                  aria-valuemax="100"></div>
                                         </div>
-                                        <strong>{{ $tire->$tire->dry_performance }}</strong>
+                                        <strong>{{ $tire->dry_performance }}</strong>
                                     </div>
                                 @endif
 
