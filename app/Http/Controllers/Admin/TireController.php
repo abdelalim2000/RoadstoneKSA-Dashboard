@@ -26,7 +26,15 @@ class TireController extends Controller
     {
         abort_if(Gate::denies('tire_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
+        $time_limit = ini_get('max_execution_time');
+        $memory_limit = ini_get('memory_limit');
+
+        set_time_limit(0);
+        ini_set('memory_limit', '-1');
+
         if ($request->ajax()) {
+
+
             $query = Tire::query()
                 ->with(['tire_features', 'tire_designs', 'car_models', 'car_type'])
                 ->withTranslation()
@@ -82,6 +90,9 @@ class TireController extends Controller
 
             return $table->make(true);
         }
+
+        set_time_limit($time_limit);
+        ini_set('memory_limit', $memory_limit);
 
         return view('admin.tires.index');
     }
