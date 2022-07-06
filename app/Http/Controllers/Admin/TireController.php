@@ -30,7 +30,7 @@ class TireController extends Controller
 
 
             $query = Tire::query()
-                ->with(['car_type'])
+                ->with(['media', 'car_type'])
                 ->withTranslation()
                 ->get();
             $table = Datatables::of($query);
@@ -62,20 +62,17 @@ class TireController extends Controller
             $table->editColumn('slug', function ($row) {
                 return $row->slug ? $row->slug : '';
             });
-//            $table->editColumn('short_description', function ($row) {
-//                return $row->short_description ? $row->short_description : '';
-//            });
-//            $table->editColumn('thumb', function ($row) {
-//                if ($photo = $row->thumb) {
-//                    return sprintf(
-//                        '<a href="%s" target="_blank"><img src="%s" width="50px" height="50px"></a>',
-//                        $photo->url,
-//                        $photo->thumbnail
-//                    );
-//                }
-//
-//                return '';
-//            });
+            $table->editColumn('thumb', function ($row) {
+                if ($photo = $row->thumb) {
+                    return sprintf(
+                        '<a href="%s" target="_blank"><img src="%s" width="50px" height="50px"></a>',
+                        $photo->url,
+                        $photo->thumbnail
+                    );
+                }
+
+                return '';
+            });
             $table->addColumn('car_type_name', function ($row) {
                 return $row->car_type ? $row->car_type->name : '';
             });

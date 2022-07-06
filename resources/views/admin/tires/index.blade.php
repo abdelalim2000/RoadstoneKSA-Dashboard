@@ -30,12 +30,9 @@
                     <th>
                         {{ trans('cruds.tire.fields.slug') }}
                     </th>
-                    {{--                    <th>--}}
-                    {{--                        {{ trans('cruds.tire.fields.short_description') }}--}}
-                    {{--                    </th>--}}
-{{--                    <th>--}}
-{{--                        {{ trans('cruds.tire.fields.thumb') }}--}}
-{{--                    </th>--}}
+                    <th>
+                        {{ trans('cruds.tire.fields.thumb') }}
+                    </th>
                     <th>
                         {{ trans('cruds.tire.fields.car_type') }}
                     </th>
@@ -99,8 +96,7 @@
                     {data: 'id', name: 'id'},
                     {data: 'title', name: 'title'},
                     {data: 'slug', name: 'slug'},
-// { data: 'short_description', name: 'short_description' },
-//                     {data: 'thumb', name: 'thumb', sortable: false, searchable: false},
+                    {data: 'thumb', name: 'thumb', sortable: false, searchable: false},
                     {data: 'car_type_name', name: 'car_type.name'},
                     {data: 'actions', name: '{{ trans('global.actions') }}'}
                 ],
