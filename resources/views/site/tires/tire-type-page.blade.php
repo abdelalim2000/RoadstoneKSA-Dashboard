@@ -62,7 +62,7 @@
                             <div class="col-md-6 pe-3 pb-4">
                                 <div class="pass-car-tire shadow-sm ">
                                     <div class="sport-tire-content">
-                                        {{ $item->tire_logo->img()->attributes(['class' => 'w-50', 'alt' => $item->title]) }}
+                                        {{ $item->tire_logo ? $item->tire_logo->img()->attributes(['class' => 'w-50', 'alt' => $item->title]) : '' }}
                                         <h2 class="sport-tire-heading">
                                             {{ $item->title }}
                                         </h2>
@@ -234,7 +234,7 @@
                                         </div>
                                         <div class="sport-img">
                                             <a href="{{ route('tires.show', $item->slug) }}">
-                                                {{ $item->thumb->img()->attributes(['class' => 'img-fluid', 'alt' => $item->title]) }}
+                                                {{ $item->thumb ? $item->thumb->img()->attributes(['class' => 'w-50', 'alt' => $item->title]) : '' }}
                                             </a>
                                         </div>
                                     </div>
