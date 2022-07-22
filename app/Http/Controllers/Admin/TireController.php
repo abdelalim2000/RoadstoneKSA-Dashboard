@@ -17,6 +17,7 @@ use Illuminate\Http\Request;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Symfony\Component\HttpFoundation\Response;
 use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Support\Facades\Cache;
 
 class TireController extends Controller
 {
@@ -120,13 +121,21 @@ class TireController extends Controller
     {
         abort_if(Gate::denies('tire_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $tire_features = TireFeature::query()->get();
+        $tire_features = Cache::rememberForever('tire_features', function(){
+            return TireFeature::query()->listsTranslations('name')->pluck('name', 'id');
+        });
 
-        $tire_designs = TireDesign::query()->get();
+        $tire_designs = Cache::rememberForever('tire_designs', function(){
+            return TireDesign::query()->listsTranslations('name')->pluck('name', 'id');
+        });
 
-        $car_models = CarModel::query()->get();
+        $car_models = Cache::rememberForever('car_models', function(){
+            return CarModel::query()->pluck('name', 'id');
+        });
 
-        $car_types = CarType::query()->get();
+        $car_types = Cache::rememberForever('car_types', function(){
+            return CarType::query()->pluck('name', 'id');
+        });
 
         return view('admin.tires.create', compact('car_models', 'car_types', 'tire_designs', 'tire_features'));
     }
@@ -193,16 +202,24 @@ class TireController extends Controller
     {
         abort_if(Gate::denies('tire_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $tire_features = TireFeature::query()->get();
+        $tire_features = Cache::rememberForever('tire_features', function(){
+            return TireFeature::query()->listsTranslations('name')->pluck('name', 'id');
+        });
 
-        $tire_designs = TireDesign::query()->get();
+        $tire_designs = Cache::rememberForever('tire_designs', function(){
+            return TireDesign::query()->listsTranslations('name')->pluck('name', 'id');
+        });
 
-        $car_models = CarModel::query()->get();
+        $car_models = Cache::rememberForever('car_models', function(){
+            return CarModel::query()->pluck('name', 'id');
+        });
 
-        $car_types = CarType::query()->get();
+        $car_types = Cache::rememberForever('car_types', function(){
+            return CarType::query()->pluck('name', 'id');
+        });
 
-        $tire->load('tire_features', 'tire_designs', 'car_models', 'car_type');
-        $tire->load('media');
+
+        $tire->load(['tire_features', 'tire_designs', 'car_models', 'car_type','media']);
 
         return view('admin.tires.edit', compact('car_models', 'car_types', 'tire', 'tire_designs', 'tire_features'));
     }
