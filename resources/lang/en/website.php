@@ -32,7 +32,7 @@ return array (
     'about-desc' => 'ROADSTONE, associated brand produced by NEXEN TIRE, has Yangsan                         plant in Korea and 500,000 square meter large Qingdao plant in                         China, one of the world\'s biggest Tire markets. And in March 2012,                         it has opened its third plant in Changnyeong, Korea.',
     'about-title' => 'About Roadstone',
     'explore-button' => 'Explore More',
-    'hero-caption' => '<strong>LET’S SEE THE</strong> <strong class="d-block">WORLD <span class="sub-heading-color">TOGETHER</span></strong>',
+    'hero-caption' => '<strong>GLOW YOUR ROAD.</strong> <strong class="d-block">IT\'S REAL <span class="sub-heading-color">PERFORMANCE</span></strong>',
     'hero-first-description' => '“One’s journey on the road is long and adventurous.It’s better                             shared with you.',
     'hero-second-description' => '“We care about your safety, tomorrow, and happiness.',
     'retailer' => 'Retailers',
@@ -88,7 +88,7 @@ return array (
   array (
     'aquaplaning' => 'Aquaplaning',
     'aspect-ratio' => 'Aspect Ratio',
-    'comfort-noise' => 'Comfort Noise',
+    'comfort-noise' => 'Comfort / Noise',
     'dry-performance' => 'dry Performance',
     'durability' => 'durability',
     'fuel-consumption' => 'Fuel Consumption',

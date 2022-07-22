@@ -1,0 +1,10 @@
+[30-Jun-2022 08:33:39 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function json_decode() in /home/roadwjvo/dashboard.roadstoneksa.com/storage/framework/maintenance.php:9
+Stack trace:
+#0 /home/roadwjvo/dashboard.roadstoneksa.com/public/index.php(20): require()
+#1 {main}
+  thrown in /home/roadwjvo/dashboard.roadstoneksa.com/storage/framework/maintenance.php on line 9
+[30-Jun-2022 08:33:43 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function json_decode() in /home/roadwjvo/dashboard.roadstoneksa.com/storage/framework/maintenance.php:9
+Stack trace:
+#0 /home/roadwjvo/dashboard.roadstoneksa.com/public/index.php(20): require()
+#1 {main}
+  thrown in /home/roadwjvo/dashboard.roadstoneksa.com/storage/framework/maintenance.php on line 9
