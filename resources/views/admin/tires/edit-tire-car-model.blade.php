@@ -7,7 +7,7 @@
         </div>
 
         <div class="card-body">
-            <form method="POST" action="{{ route("admin.tires.model.update", [$tire->id]) }}">
+            <form method="POST" action="{{ route("admin.tires.models.update", [$tire->id]) }}">
                 @method('PUT')
                 @csrf
 
