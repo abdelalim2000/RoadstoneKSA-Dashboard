@@ -70,6 +70,7 @@ Route::group(
         Route::post('tires/media', 'TireController@storeMedia')->name('tires.storeMedia');
         Route::post('tires/ckmedia', 'TireController@storeCKEditorImages')->name('tires.storeCKEditorImages');
         Route::get('tires/edit-models/{tire}', 'TireController@editCarModel')->name('tires.models');
+        Route::put('tires/edit-models/{tire}/update', 'TireController@UpdateCarModel')->name('tires.models.update');
         Route::resource('tires', 'TireController');
 
         // Article

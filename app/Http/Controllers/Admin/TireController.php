@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\Traits\MediaUploadingTrait;
 use App\Http\Requests\MassDestroyTireRequest;
 use App\Http\Requests\StoreTireRequest;
+use App\Http\Requests\UpdateTireCarModelRequest;
 use App\Http\Requests\UpdateTireRequest;
 use App\Models\CarModel;
 use App\Models\CarType;
@@ -13,6 +14,9 @@ use App\Models\Tire;
 use App\Models\TireDesign;
 use App\Models\TireFeature;
 use Gate;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Symfony\Component\HttpFoundation\Response;
@@ -121,19 +125,19 @@ class TireController extends Controller
     {
         abort_if(Gate::denies('tire_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $tire_features = Cache::rememberForever('tire_features', function(){
+        $tire_features = Cache::rememberForever('tire_features', function () {
             return TireFeature::query()->listsTranslations('name')->pluck('name', 'id');
         });
 
-        $tire_designs = Cache::rememberForever('tire_designs', function(){
+        $tire_designs = Cache::rememberForever('tire_designs', function () {
             return TireDesign::query()->listsTranslations('name')->pluck('name', 'id');
         });
 
-        $car_models = Cache::rememberForever('car_models', function(){
+        $car_models = Cache::rememberForever('car_models', function () {
             return CarModel::query()->pluck('name', 'id');
         });
 
-        $car_types = Cache::rememberForever('car_types', function(){
+        $car_types = Cache::rememberForever('car_types', function () {
             return CarType::query()->pluck('name', 'id');
         });
 
@@ -198,30 +202,25 @@ class TireController extends Controller
         return redirect()->route('admin.tires.index');
     }
 
-    public function edit(Tire $tire)
+    public function edit(Tire $tire): Factory|View|Application
     {
         abort_if(Gate::denies('tire_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $tire_features = Cache::rememberForever('tire_features', function(){
+        $tire_features = Cache::rememberForever('tire_features', function () {
             return TireFeature::query()->listsTranslations('name')->pluck('name', 'id');
         });
 
-        $tire_designs = Cache::rememberForever('tire_designs', function(){
+        $tire_designs = Cache::rememberForever('tire_designs', function () {
             return TireDesign::query()->listsTranslations('name')->pluck('name', 'id');
         });
 
-        $car_models = Cache::rememberForever('car_models', function(){
-            return CarModel::query()->pluck('name', 'id');
-        });
-
-        $car_types = Cache::rememberForever('car_types', function(){
+        $car_types = Cache::rememberForever('car_types', function () {
             return CarType::query()->pluck('name', 'id');
         });
 
+        $tire->load(['tire_features', 'tire_designs', 'car_type', 'media']);
 
-        $tire->load(['tire_features', 'tire_designs', 'car_models', 'car_type','media']);
-
-        return view('admin.tires.edit', compact('car_models', 'car_types', 'tire', 'tire_designs', 'tire_features'));
+        return view('admin.tires.edit', compact('car_types', 'tire', 'tire_designs', 'tire_features'));
     }
 
     public function show(Tire $tire)
@@ -242,9 +241,26 @@ class TireController extends Controller
         return back();
     }
 
-    public function editCarModel(Tire $tire)
+    public function editCarModel(Tire $tire): Factory|View|Application
     {
+        $car_models = Cache::rememberForever('car_models', function () {
+            return CarModel::query()->pluck('name', 'id');
+        });
 
+        $tire->load('car_models');
+
+        return \view('admin.tires.edit-tire-car-model', compact('car_models', 'tire'));
+    }
+
+    public function updateCarModel(UpdateTireCarModelRequest $request,Tire $tire): Factory|View|Application
+    {
+        $car_models = Cache::rememberForever('car_models', function () {
+            return CarModel::query()->pluck('name', 'id');
+        });
+
+        $tire->load('car_models');
+
+        return \view('admin.tires.edit-tire-car-model', compact('car_models', 'tire'));
     }
 
     public function massDestroy(MassDestroyTireRequest $request)

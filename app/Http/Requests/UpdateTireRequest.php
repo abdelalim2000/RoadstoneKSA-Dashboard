@@ -125,13 +125,6 @@ class UpdateTireRequest extends FormRequest
                 'required',
                 'array',
             ],
-            'car_models.*' => [
-                'integer',
-            ],
-            'car_models' => [
-                'nullable',
-                'array',
-            ],
             'car_type_id' => [
                 'required',
                 Rule::exists('car_types', 'id')
