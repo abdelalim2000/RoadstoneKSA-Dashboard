@@ -7,7 +7,7 @@
         </div>
 
         <div class="card-body">
-            <form method="POST" action="{{ route("admin.tires.models.update", [$tire->id]) }}">
+            <form method="POST" action="{{ route("admin.tires.models.update", $tire_id) }}">
                 @method('PUT')
                 @csrf
 
@@ -23,7 +23,7 @@
                             name="car_models[]" id="car_models" multiple>
                         @foreach($car_models as $key=>$item)
                             <option
-                                value="{{ $key }}" {{ (in_array($key, old('car_models', [])) || $tire->car_models->contains($key)) ? 'selected' : '' }}>{{ $item }}</option>
+                                value="{{ $key }}" {{ (in_array($key, old('car_models', [])) || $tire_car_model->contains($key)) ? 'selected' : '' }}>{{ $item }}</option>
                         @endforeach
                     </select>
                     @if($errors->has('car_models'))

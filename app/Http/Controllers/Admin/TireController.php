@@ -17,6 +17,7 @@ use Gate;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Symfony\Component\HttpFoundation\Response;
@@ -150,7 +151,6 @@ class TireController extends Controller
 
         $tire->tire_features()->sync($request->input('tire_features', []));
         $tire->tire_designs()->sync($request->input('tire_designs', []));
-        $tire->car_models()->sync($request->input('car_models', []));
 
         if ($request->input('breadcrumb', false)) {
             if (!$tire->breadcrumb || $request->input('breadcrumb') !== $tire->breadcrumb->file_name) {
@@ -247,20 +247,20 @@ class TireController extends Controller
             return CarModel::query()->pluck('name', 'id');
         });
 
-        $tire->load('car_models');
+        $tire_id = $tire->id;
 
-        return \view('admin.tires.edit-tire-car-model', compact('car_models', 'tire'));
+        $tire_car_model = CarModel::query()->whereHas('tires', function ($query) use ($tire) {
+            $query->where('tire_id', $tire->id);
+        })->pluck('id');
+
+        return \view('admin.tires.edit-tire-car-model', compact(['car_models', 'tire', 'tire_id', 'tire_car_model']));
     }
 
-    public function updateCarModel(UpdateTireCarModelRequest $request,Tire $tire): Factory|View|Application
+    public function updateCarModel(UpdateTireCarModelRequest $request, Tire $tire): RedirectResponse
     {
-        $car_models = Cache::rememberForever('car_models', function () {
-            return CarModel::query()->pluck('name', 'id');
-        });
+        $tire->car_models()->sync($request->input('car_models', []));
 
-        $tire->load('car_models');
-
-        return \view('admin.tires.edit-tire-car-model', compact('car_models', 'tire'));
+        return redirect()->route('admin.tires.index');
     }
 
     public function massDestroy(MassDestroyTireRequest $request)
