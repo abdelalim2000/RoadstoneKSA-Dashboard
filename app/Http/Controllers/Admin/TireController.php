@@ -44,7 +44,7 @@ class TireController extends Controller
                 $deleteGate = 'tire_delete';
                 $crudRoutePart = 'tires';
 
-                return view('partials.datatablesActions', compact(
+                return view('partials.datatablesTireActions', compact(
                     'viewGate',
                     'editGate',
                     'deleteGate',
@@ -223,6 +223,11 @@ class TireController extends Controller
         $tire->delete();
 
         return back();
+    }
+
+    public function editCarModel(Tire $tire)
+    {
+
     }
 
     public function massDestroy(MassDestroyTireRequest $request)
