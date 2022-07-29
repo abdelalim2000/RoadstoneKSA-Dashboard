@@ -17,13 +17,13 @@ class ContactPageController extends Controller
 {
     public function index(): View|Factory|RedirectResponse|Application
     {
-        $types = ContactType::query()->get();
+        $contactTypes = ContactType::query()->get();
 
-        if (count($types) == 0) {
+        if (count($contactTypes) == 0) {
             return back();
         }
 
-        return view('site.contact-page', compact('types'));
+        return view('site.contact-page', compact('contactTypes'));
     }
 
     public function store(ContactStoreRequest $request): RedirectResponse

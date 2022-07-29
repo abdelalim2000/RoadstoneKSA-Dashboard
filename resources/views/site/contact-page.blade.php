@@ -97,7 +97,7 @@
                                                 style="background-color:#1c1b24;border: 1px solid #f5f5f7;border-radius: 0;color: #f5f5f7;font-size: 14px;">
                                             <option disabled selected
                                                     value="{{ null }}">{{ trans('website.form.interest') }}</option>
-                                            @forelse($types as $item)
+                                            @forelse($contactTypes as $item)
                                                 <option
                                                     @selected(old('contact_type_id') == $item->id) value="{{ $item->id }}">{{ $item->name }}</option>
                                             @empty
