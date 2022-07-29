@@ -3,7 +3,7 @@
 return array (
   'blog' => 
   array (
-    'header' => 'read our most recent news',
+    'header' => 'Read our most recent blogs',
   ),
   'contact' => 
   array (
@@ -33,8 +33,8 @@ return array (
     'about-title' => 'About Roadstone',
     'explore-button' => 'Explore More',
     'hero-caption' => '<strong>GLOW YOUR ROAD.</strong> <strong class="d-block">IT\'S REAL <span class="sub-heading-color">PERFORMANCE</span></strong>',
-    'hero-first-description' => '“One’s journey on the road is long and adventurous.It’s better                             shared with you.',
-    'hero-second-description' => '“We care about your safety, tomorrow, and happiness.',
+    'hero-first-description' => '',
+    'hero-second-description' => 'We care about your safety, tomorrow, and happiness.',
     'retailer' => 'Retailers',
     'scroll-down' => 'Scroll Down',
     'see-more' => 'See More',
@@ -50,7 +50,7 @@ return array (
     'mobile' => 'Mobile Number',
     'privacy' => 'Privacy Policy',
     'retailers' => 'Retailers',
-    'terms' => 'Terms Of Conditions',
+    'terms' => 'Terms and Conditions',
     'tires' => 'Tires',
   ),
   'message' => 
