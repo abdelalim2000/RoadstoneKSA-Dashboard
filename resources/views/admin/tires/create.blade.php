@@ -324,9 +324,9 @@
                     </div>
                     <select class="form-control select2 {{ $errors->has('tire_features') ? 'is-invalid' : '' }}"
                             name="tire_features[]" id="tire_features" multiple required>
-                        @foreach($tire_features as $tire_feature)
+                        @foreach($tire_features as $key=>$tire_feature)
                             <option
-                                value="{{ $tire_feature->id }}" {{ in_array($tire_feature->id, old('tire_features', [])) ? 'selected' : '' }}>{{ $tire_feature->name }}</option>
+                                value="{{ $key }}" {{ in_array($key, old('tire_features', [])) ? 'selected' : '' }}>{{ $tire_feature }}</option>
                         @endforeach
                     </select>
                     @if($errors->has('tire_features'))
@@ -347,9 +347,9 @@
                     </div>
                     <select class="form-control select2 {{ $errors->has('tire_designs') ? 'is-invalid' : '' }}"
                             name="tire_designs[]" id="tire_designs" multiple required>
-                        @foreach($tire_designs as $tire_design)
+                        @foreach($tire_designs as $key=>$tire_design)
                             <option
-                                value="{{ $tire_design->id }}" {{ in_array($tire_design->id, old('tire_designs', [])) ? 'selected' : '' }}>{{ $tire_design->name }}</option>
+                                value="{{ $key }}" {{ in_array($key, old('tire_designs', [])) ? 'selected' : '' }}>{{ $tire_design }}</option>
                         @endforeach
                     </select>
                     @if($errors->has('tire_designs'))
@@ -370,9 +370,9 @@
                     </div>
                     <select class="form-control select2 {{ $errors->has('car_models') ? 'is-invalid' : '' }}"
                             name="car_models[]" id="car_models" multiple>
-                        @foreach($car_models as $car_model)
+                        @foreach($car_models as $key=>$car_model)
                             <option
-                                value="{{ $car_model->id }}" {{ in_array($car_model->id, old('car_models', [])) ? 'selected' : '' }}>{{ $car_model->name }}</option>
+                                value="{{ $key }}" {{ in_array($key, old('car_models', [])) ? 'selected' : '' }}>{{ $car_model }}</option>
                         @endforeach
                     </select>
                     @if($errors->has('car_models'))
@@ -387,9 +387,9 @@
                     <label class="required" for="car_type_id">{{ trans('cruds.tire.fields.car_type') }}</label>
                     <select class="form-control select2 {{ $errors->has('car_type') ? 'is-invalid' : '' }}"
                             name="car_type_id" id="car_type_id" required>
-                        @foreach($car_types as $entry)
+                        @foreach($car_types as $key=>$entry)
                             <option
-                                value="{{ $entry->id }}" {{ old('car_type_id') == $entry->id ? 'selected' : '' }}>{{ $entry->name }}</option>
+                                value="{{ $key }}" {{ old('car_type_id') == $key ? 'selected' : '' }}>{{ $entry }}</option>
                         @endforeach
                     </select>
                     @if($errors->has('car_type'))

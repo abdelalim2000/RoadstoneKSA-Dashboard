@@ -202,7 +202,7 @@ class TireController extends Controller
         return redirect()->route('admin.tires.index');
     }
 
-    public function edit(Tire $tire): Factory|View|Application
+    public function edit(Tire $tire)
     {
         abort_if(Gate::denies('tire_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
