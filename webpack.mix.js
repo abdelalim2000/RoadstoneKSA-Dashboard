@@ -14,7 +14,7 @@ const mix = require('laravel-mix');
 mix.js('resources/assets/js/main.js', 'public/assets/js/main.js')
     .js('resources/assets/js/script.js', 'public/assets/js/script.js')
     .js('resources/assets/js/slick.js', 'public/assets/js/slick.js')
-    .js('resources/assets/js/typed.min.js', 'public/assets/js/typed.min.js')
+    .copy('resources/assets/js/typed.min.js', 'public/assets/js/typed.min.js')
     .copy('resources/assets/js/royal_preloader.min.js', 'public/assets/js/royal_preloader.min.js')
     .copyDirectory('resources/assets/css/fonts', 'public/assets/css/fonts')
     .copyDirectory('resources/assets/imgs', 'public/assets/imgs')

@@ -1,40 +1,16 @@
-@font-face {
-    font-family: "NotoSansKR";
-    src: url("./fonts/NotoSansKR-Light.otf");
-    font-weight: 300;
-    font-display: block;
-}
-@font-face {
-    font-family: "NotoSansKR";
-    src: url("./fonts/NotoSansKR-Regular.otf");
-    font-weight: 500;
-    font-display: block;
-}
-@font-face {
-    font-family: "NotoSansKR";
-    src: url("./fonts/NotoSansKR-Black.otf");
-    font-weight: 900;
-    font-display: block;
-}
-@font-face {
-    font-family: "NotoSansKR";
-    src: url("./fonts/NotoSansKR-Bold.otf");
-    font-weight: 600;
-    font-display: block;
-}
 .main-footer .global-footer .menu-link, .main-footer .menu-item .menu-link,
-.main-footer .social-item .menu-link, .retailers-main .retailers-container .retailers-content .retailers-cities .retailersCity-content .btnFindStore-container .findStore-link, .passenger-main .passenger-container .pass-tires .pass-car .explore-more a, .modal-body .nav-tabs .nav-search, .modal.show .modal-header .btn-modal-close, .btn-back-up, .btn-submit, .btn-more, .nav-container .menu-toggle .sidebar .sidebar-menu .menu-container .sidebar-menu-content-item .drowp-item .drowp-item-container .tire-item .tire-link,
+.main-footer .social-item .menu-link, .retailers-main .retailers-container .retailers-content .retailers-cities .retailersCity-content .btnFindStore-container .findStore-link, .modal-body .nav-tabs .nav-search, .modal.show .modal-header .btn-modal-close, .btn-back-up, .btn-submit, .btn-more, .nav-container .menu-toggle .sidebar .sidebar-menu .menu-container .sidebar-menu-content-item .drowp-item .drowp-item-container .tire-item .tire-link,
 .nav-container .menu-toggle .sidebar .sidebar-menu .menu-container .sidebar-menu-content-item .drowp-item .drowp-item-container .tire-item .city-link,
 .nav-container .menu-toggle .sidebar .sidebar-menu .menu-container .sidebar-menu-content-item .drowp-item .drowp-item-container .city-item .tire-link,
 .nav-container .menu-toggle .sidebar .sidebar-menu .menu-container .sidebar-menu-content-item .drowp-item .drowp-item-container .city-item .city-link, .nav-container .menu-toggle .sidebar .sidebar-menu .menu-container .sidebar-menu-content-item .nav-item .nav-link, .navbar .lang-link {
   text-decoration: none;
 }
 .main-footer .global-footer .menu-link:focus, .main-footer .menu-item .menu-link:focus,
-.main-footer .social-item .menu-link:focus, .retailers-main .retailers-container .retailers-content .retailers-cities .retailersCity-content .btnFindStore-container .findStore-link:focus, .passenger-main .passenger-container .pass-tires .pass-car .explore-more a:focus, .modal-body .nav-tabs .nav-search:focus, .modal.show .modal-header .btn-modal-close:focus, .btn-back-up:focus, .btn-submit:focus, .btn-more:focus, .nav-container .menu-toggle .sidebar .sidebar-menu .menu-container .sidebar-menu-content-item .drowp-item .drowp-item-container .tire-item .tire-link:focus,
+.main-footer .social-item .menu-link:focus, .retailers-main .retailers-container .retailers-content .retailers-cities .retailersCity-content .btnFindStore-container .findStore-link:focus, .modal-body .nav-tabs .nav-search:focus, .modal.show .modal-header .btn-modal-close:focus, .btn-back-up:focus, .btn-submit:focus, .btn-more:focus, .nav-container .menu-toggle .sidebar .sidebar-menu .menu-container .sidebar-menu-content-item .drowp-item .drowp-item-container .tire-item .tire-link:focus,
 .nav-container .menu-toggle .sidebar .sidebar-menu .menu-container .sidebar-menu-content-item .drowp-item .drowp-item-container .tire-item .city-link:focus,
 .nav-container .menu-toggle .sidebar .sidebar-menu .menu-container .sidebar-menu-content-item .drowp-item .drowp-item-container .city-item .tire-link:focus,
 .nav-container .menu-toggle .sidebar .sidebar-menu .menu-container .sidebar-menu-content-item .drowp-item .drowp-item-container .city-item .city-link:focus, .nav-container .menu-toggle .sidebar .sidebar-menu .menu-container .sidebar-menu-content-item .nav-item .nav-link:focus, .navbar .lang-link:focus, .main-footer .global-footer .menu-link:hover, .main-footer .menu-item .menu-link:hover,
-.main-footer .social-item .menu-link:hover, .retailers-main .retailers-container .retailers-content .retailers-cities .retailersCity-content .btnFindStore-container .findStore-link:hover, .passenger-main .passenger-container .pass-tires .pass-car .explore-more a:hover, .modal-body .nav-tabs .nav-search:hover, .modal.show .modal-header .btn-modal-close:hover, .btn-back-up:hover, .btn-submit:hover, .btn-more:hover, .nav-container .menu-toggle .sidebar .sidebar-menu .menu-container .sidebar-menu-content-item .drowp-item .drowp-item-container .tire-item .tire-link:hover,
+.main-footer .social-item .menu-link:hover, .retailers-main .retailers-container .retailers-content .retailers-cities .retailersCity-content .btnFindStore-container .findStore-link:hover, .modal-body .nav-tabs .nav-search:hover, .modal.show .modal-header .btn-modal-close:hover, .btn-back-up:hover, .btn-submit:hover, .btn-more:hover, .nav-container .menu-toggle .sidebar .sidebar-menu .menu-container .sidebar-menu-content-item .drowp-item .drowp-item-container .tire-item .tire-link:hover,
 .nav-container .menu-toggle .sidebar .sidebar-menu .menu-container .sidebar-menu-content-item .drowp-item .drowp-item-container .tire-item .city-link:hover,
 .nav-container .menu-toggle .sidebar .sidebar-menu .menu-container .sidebar-menu-content-item .drowp-item .drowp-item-container .city-item .tire-link:hover,
 .nav-container .menu-toggle .sidebar .sidebar-menu .menu-container .sidebar-menu-content-item .drowp-item .drowp-item-container .city-item .city-link:hover, .nav-container .menu-toggle .sidebar .sidebar-menu .menu-container .sidebar-menu-content-item .nav-item .nav-link:hover, .navbar .lang-link:hover {
@@ -113,12 +89,12 @@
   text-transform: capitalize;
 }
 
-.sportUltra-main .products .products-performance .products-performance-content .products-heading, .passenger-main .passenger-container .pass-tires .pass-car .pass-car-tire .sport-tire-content .sport-tire-heading {
+.sportUltra-main .products .products-performance .products-performance-content .products-heading {
   font-weight: 900;
   text-transform: uppercase;
 }
 
-.sportUltra-main .products .per-indicator .per-indicator-container .per-indecator-heading, .sportUltra-main .products .products-performance .tire-features .tire-features-content .tire-feature-heading, .passenger-main .passenger-container .pass-tires .pass-car .sport-performance .progress-container .progress-heading {
+.sportUltra-main .products .per-indicator .per-indicator-container .per-indecator-heading, .sportUltra-main .products .products-performance .tire-features .tire-features-content .tire-feature-heading {
   font-size: 12px;
   font-weight: 600;
   text-transform: capitalize;
@@ -174,7 +150,30 @@
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-
+@font-face {
+  font-family: "NotoSansKR";
+  src: url("../css/fonts/NotoSansKR-Light.otf");
+  font-weight: 300;
+  font-display: block;
+}
+@font-face {
+  font-family: "NotoSansKR";
+  src: url("../css/fonts/NotoSansKR-Regular.otf");
+  font-weight: 500;
+  font-display: block;
+}
+@font-face {
+  font-family: "NotoSansKR";
+  src: url("../css/fonts/NotoSansKR-Black.otf");
+  font-weight: 900;
+  font-display: block;
+}
+@font-face {
+  font-family: "NotoSansKR";
+  src: url("../css/fonts/NotoSansKR-Bold.otf");
+  font-weight: 600;
+  font-display: block;
+}
 body {
   font-family: "NotoSansKR";
   user-select: none;
@@ -311,7 +310,7 @@ body::-webkit-scrollbar-thumb {
 .seeWorld-container .see-world .seeWorld-desc {
   font-size: 15px;
   font-weight: 300;
-  font-line-height: 20px;
+  line-height: 20px;
   color: #F5F5F7;
   opacity: 0.9;
   letter-spacing: 0.4px;
@@ -1483,130 +1482,398 @@ header .header-img {
   }
 }
 
-.passenger-header .header-passenger {
-  background: url("../imgs/passanger-img.png") no-repeat;
-  background-size: cover;
-  min-height: 300px;
-}
-@media screen and (max-width: 768.98px) {
-  .passenger-header .header-passenger {
-    min-height: 180px;
-  }
+/* start animate section */
+.panel {
+  max-width: 100%;
 }
 
-.passenger-main {
-  padding: 30px 0;
-}
-.passenger-main .passenger-container {
-  background-color: #F5F5F7;
-}
-.passenger-main .passenger-container .breadcrumb .active {
-  color: #1C1B24 !important;
-}
-.passenger-main .passenger-container .pass-tires .about-heading {
-  font-size: 40px;
+.panel h1 {
   font-weight: 900;
-  line-height: 40px;
-  color: #1C1B24;
-  text-transform: uppercase;
-}
-.passenger-main .passenger-container .pass-tires .pass-car {
-  padding: 40px 0;
-}
-@media screen and (max-width: 424.98px) {
-  .passenger-main .passenger-container .pass-tires .pass-car {
-    padding: 30px 0;
-  }
-}
-.passenger-main .passenger-container .pass-tires .pass-car .pass-car-tire {
-  padding: 35px 30px 15px;
-  border-radius: 15px;
-  background-color: #FFFFFF;
-  transition: box-shadow 0.5s ease-in-out;
-}
-@media screen and (max-width: 424.98px) {
-  .passenger-main .passenger-container .pass-tires .pass-car .pass-car-tire {
-    padding: 18px 12px;
-  }
-}
-.passenger-main .passenger-container .pass-tires .pass-car .pass-car-tire .img-fluid {
-  transition: transform 0.5s ease-in-out;
-}
-.passenger-main .passenger-container .pass-tires .pass-car .pass-car-tire .bg-progress::before {
-  content: "";
-  height: 6px;
-  width: 0;
-  transition: all 0.8s ease;
-}
-.passenger-main .passenger-container .pass-tires .pass-car .pass-car-tire:hover .img-fluid {
-  transform: scale(1.04);
-}
-.passenger-main .passenger-container .pass-tires .pass-car .pass-car-tire:hover {
-  box-shadow: -1px 3px 4px 0px #00000026 !important;
-}
-.passenger-main .passenger-container .pass-tires .pass-car .pass-car-tire:hover .bg-progress::before {
-  background-color: #ED1C24 !important;
+  font-size: 10vw;
+  position: absolute;
+  color: #ed1c24;
   width: 100%;
 }
-.passenger-main .passenger-container .pass-tires .pass-car .pass-car-tire .sport-tire-content .sport-tire-heading {
-  font-size: 22px;
-  margin: 20px 0 25px;
-  color: #ED1C24;
-}
-@media screen and (max-width: 424.98px) {
-  .passenger-main .passenger-container .pass-tires .pass-car .pass-car-tire .sport-tire-content .sport-tire-heading {
-    font-size: 16px;
-  }
-}
-.passenger-main .passenger-container .pass-tires .pass-car .sport-performance {
-  display: flex;
-  justify-content: space-between;
-}
-.passenger-main .passenger-container .pass-tires .pass-car .sport-performance .sport-tire-item .sport-tire-performance {
-  font-size: 12px;
-  line-height: 17px;
-  padding: 5px 0;
-  color: #A7A9AC;
-  text-transform: capitalize;
-}
-.passenger-main .passenger-container .pass-tires .pass-car .sport-performance .progress-container {
-  margin-bottom: 15px;
-}
-.passenger-main .passenger-container .pass-tires .pass-car .sport-performance .progress-container .progress-heading {
-  color: #000000;
-}
-.passenger-main .passenger-container .pass-tires .pass-car .sport-performance .progress-container .progress-content {
-  height: 6px;
-  width: 200px;
-  border-radius: 0;
-  background-color: #E5E6E8;
-}
-@media screen and (max-width: 424.98px) {
-  .passenger-main .passenger-container .pass-tires .pass-car .sport-performance .progress-container .progress-content {
-    width: 157px;
-  }
-}
-.passenger-main .passenger-container .pass-tires .pass-car .sport-performance .progress-container .progress-content .bg-progress {
-  background-color: #A7A9AC;
-}
-@media screen and (max-width: 500px) {
-  .passenger-main .passenger-container .pass-tires .pass-car .sport-performance .sport-img {
-    max-width: 130px;
-  }
-}
-.passenger-main .passenger-container .pass-tires .pass-car .explore-more {
-  margin-top: 20px;
-}
-.passenger-main .passenger-container .pass-tires .pass-car .explore-more .btn-explore {
-  font-size: 16px;
-  font-weight: 900;
-  color: #ED1C24;
-  text-transform: uppercase;
-}
-.passenger-main .passenger-container .pass-tires .pass-car .explore-more .btn-explore:focus {
-  box-shadow: none;
+
+.animate-one {
+  width: 100vw;
+  height: 70vh;
 }
 
+.span-change-color {
+  color: #151515;
+}
+
+.passenger-svg-content {
+  padding-inline-end: 7rem;
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+}
+
+.svg-curve-line {
+  position: relative;
+  top: 42%;
+  right: 20px;
+}
+
+section {
+  position: relative;
+}
+
+.tire-image {
+  position: absolute;
+  text-align: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.tire-image img {
+  height: 500px;
+  width: 500px;
+  transform: rotate(45deg);
+  object-fit: contain;
+}
+
+.svg-line-desk {
+  position: relative;
+  top: 25%;
+  right: 1%;
+}
+
+/* //section Three Headgin  */
+section.panel:nth-child(4) > div:nth-child(1) > h1:nth-child(1) {
+  font-size: 8vw;
+}
+
+/* section two  */
+.passenger-svg-content-two {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: 50%;
+  width: 100vw;
+}
+
+.para > h1:nth-child(1) {
+  font-size: 12vw;
+  font-weight: 900;
+  color: #000000;
+}
+
+.image-two img {
+  max-width: 70%;
+  transform: rotate(45deg);
+}
+
+.passenger-svg-content-two > svg:nth-child(1) {
+  margin: 21px 25px 0px;
+}
+
+.tire-section-two {
+  line-height: 1;
+}
+
+/* Section Three */
+.tire-third-image {
+  max-width: 60vw;
+  text-align: center;
+  height: 50%;
+}
+
+.tire-third-image img {
+  position: relative;
+  max-width: 60%;
+  transform: rotate(45deg);
+  height: 100%;
+}
+
+.section-three-heading {
+  font-weight: 900;
+  font-size: 9vw;
+  color: #000000;
+  width: 100%;
+}
+
+/* responsive  */
+@media screen and (max-width: 768px) {
+  .passenger-svg-content {
+    flex-direction: column-reverse;
+    align-items: center;
+    left: 3%;
+    position: relative;
+    bottom: 25%;
+  }
+
+  .tire-section-one {
+    margin: auto;
+    text-align: center;
+  }
+
+  .tire-p {
+    font-size: 15px;
+    line-height: 15px;
+    color: black;
+  }
+}
+@media screen and (max-width: 497px) {
+  .section.panel:nth-child(2) > div:nth-child(1) > h1:nth-child(1) {
+    font-size: 8vw;
+  }
+}
+@media screen and (min-width: 425px) and (max-width: 768px) {
+  .tire-image img,
+.tire-third-image img {
+    width: 80vw;
+    left: 10%;
+    bottom: 20px;
+    height: 100%;
+  }
+}
+/* section Two  */
+@media screen and (max-width: 768px) {
+  .tire-section-two {
+    position: relative;
+    top: 80px;
+    left: 50px;
+  }
+
+  .passenger-svg-content-two > svg:nth-child(2) {
+    display: block;
+  }
+
+  .tire-section-two {
+    font-size: 16px;
+    color: #000000;
+    text-align: center;
+    line-height: 1.5;
+  }
+
+  .image-two img {
+    width: 90%;
+  }
+}
+/* Section Three  */
+@media screen and (min-width: 425px) and (max-width: 768px) {
+  div.tire-three-image:nth-child(3) > img:nth-child(1) {
+    width: 40vw;
+    left: 10%;
+    bottom: 20px;
+  }
+
+  div.passenger-svg-content:nth-child(2) > div:nth-child(3) {
+    position: relative;
+    bottom: 10px;
+  }
+}
+@media screen and (min-width: 425px) and (max-width: 768px) {
+  .tire-three-image {
+    position: relative;
+    bottom: 8%;
+  }
+}
+@media screen and (min-width: 425px) and (max-width: 768) {
+  .svg-three {
+    flex-direction: column-reverse;
+    align-items: center;
+    left: 3%;
+    position: relative;
+    bottom: 10%;
+  }
+}
+/* Third section */
+/* sections  */
+section {
+  width: 100%;
+  /* height: 100vh; */
+}
+
+/***************************************************
+ * Generated by SVG Artista on 5/28/2022, 5:55:34 PM
+ * MIT license (https://opensource.org/licenses/MIT)
+ * W. https://svgartista.net
+ **************************************************/
+@-webkit-keyframes animate-svg-stroke-1 {
+  0% {
+    stroke-dashoffset: 258.5462646484px;
+    stroke-dasharray: 258.5462646484px;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    stroke-dasharray: 258.5462646484px;
+  }
+}
+@keyframes animate-svg-stroke-1 {
+  0% {
+    stroke-dashoffset: 258.5462646484px;
+    stroke-dasharray: 258.5462646484px;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    stroke-dasharray: 258.5462646484px;
+  }
+}
+.svg-elem-1 {
+  -webkit-animation: animate-svg-stroke-1 1s cubic-bezier(0.86, 0, 0.07, 1) 0s both;
+  animation: animate-svg-stroke-1 1s cubic-bezier(0.86, 0, 0.07, 1) 0s both;
+}
+
+@-webkit-keyframes animate-svg-stroke-2 {
+  0% {
+    stroke-dashoffset: 33.4159265359px;
+    stroke-dasharray: 33.4159265359px;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    stroke-dasharray: 33.4159265359px;
+  }
+}
+@keyframes animate-svg-stroke-2 {
+  0% {
+    stroke-dashoffset: 33.4159265359px;
+    stroke-dasharray: 33.4159265359px;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    stroke-dasharray: 33.4159265359px;
+  }
+}
+.svg-elem-2 {
+  -webkit-animation: animate-svg-stroke-2 1s cubic-bezier(0.86, 0, 0.07, 1) 0.12s both;
+  animation: animate-svg-stroke-2 1s cubic-bezier(0.86, 0, 0.07, 1) 0.12s both;
+}
+
+@-webkit-keyframes animate-svg-stroke-3 {
+  0% {
+    stroke-dashoffset: 28.7035375555px;
+    stroke-dasharray: 28.7035375555px;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    stroke-dasharray: 28.7035375555px;
+  }
+}
+@keyframes animate-svg-stroke-3 {
+  0% {
+    stroke-dashoffset: 28.7035375555px;
+    stroke-dasharray: 28.7035375555px;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    stroke-dasharray: 28.7035375555px;
+  }
+}
+.svg-elem-3 {
+  -webkit-animation: animate-svg-stroke-3 1s cubic-bezier(0.86, 0, 0.07, 1) 0.24s both;
+  animation: animate-svg-stroke-3 1s cubic-bezier(0.86, 0, 0.07, 1) 0.24s both;
+}
+
+main {
+  min-height: 100vh;
+}
+
+.panel {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+.panel .scene-body {
+  width: 100vw;
+  height: 100vh;
+}
+
+.tire-section-one {
+  width: 300px;
+  height: 100px;
+}
+
+.section-typed {
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+  font-size: 18px;
+  line-height: 1.2;
+}
+
+.seeWorld-container {
+  height: 100vh;
+}
+
+@media (max-width: 575.98px) {
+  main {
+    max-height: 100vh;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+  }
+
+  main section {
+    scroll-snap-align: start;
+    height: 100vh;
+  }
+
+  .panel h1 {
+    width: 100%;
+    right: 30px;
+    position: unset;
+    flex: 1;
+    display: inline-flex;
+    justify-content: center;
+    flex-direction: column;
+    padding-top: 5rem;
+  }
+
+  .tire-image {
+    height: auto;
+    position: unset;
+    flex: 1;
+  }
+
+  .tire-image img {
+    height: 350px;
+    width: 350px;
+    margin-left: -30px;
+  }
+
+  .tire-p {
+    display: inline-block;
+    font-size: 18px;
+    line-height: 1.2;
+  }
+
+  .animate-one {
+    height: auto;
+    position: unset;
+    bottom: 10%;
+    z-index: 10;
+    flex: 1;
+    order: 2;
+    display: inline-flex;
+    padding-bottom: 5rem;
+  }
+
+  .animate-one .svg-curve-line {
+    position: absolute;
+    top: -30px;
+    left: 20px;
+  }
+
+  .passenger-svg-content {
+    padding-inline-end: 0;
+    flex-direction: column-reverse;
+    align-items: center;
+    position: unset;
+    margin: auto;
+  }
+
+  .passenger-parent-content {
+    padding-left: 10px;
+  }
+
+  .svg-curve-line {
+    display: none;
+  }
+}
 .breadcrumb .active {
   color: #1C1B24 !important;
 }
@@ -2161,567 +2428,5 @@ header .header-img {
     font-size: 10px;
   }
 }
-
-/* start animate section */
-.panel {
-    max-width: 100%;
-}
-.panel h1 {
-    font-weight: 900;
-    font-size: 10vw;
-    position: absolute;
-    color: #ed1c24;
-    width: 100%;
-}
-.animate-one {
-    width: 100vw;
-    height: 85vh;
-}
-.span-change-color {
-    color: #151515;
-}
-.passenger-svg-content {
-    padding-inline-end: 7rem;
-    display: flex;
-    justify-content: flex-end;
-    position: relative;
-}
-.svg-curve-line {
-    position: relative;
-    top: 42%;
-    left: 20px;
-}
-section {
-    position: relative;
-}
-.tire-image {
-    position: absolute;
-    text-align: center;
-    width: 100vw;
-    height: 100vh;
-}
-.tire-image img {
-    height: 500px;
-    width: 500px;
-    transform: rotate(-45deg);
-    object-fit: contain;
-}
-
-.svg-line-desk {
-    position: relative;
-    top: 25%;
-    left: 1%;
-}
-
-/* //section Three Headgin  */
-section.panel:nth-child(4) > div:nth-child(1) > h1:nth-child(1) {
-    font-size: 8vw;
-}
-
-/* section two  */
-
-.passenger-svg-content-two {
-    display: flex;
-    justify-content: center;
-    position: relative;
-    top: 50%;
-    width: 100vw;
-}
-
-.para > h1:nth-child(1) {
-    font-size: 12vw;
-    font-weight: 900;
-    color: #000000;
-}
-
-.image-two img {
-    max-width: 70%;
-    transform: rotate(-45deg);
-}
-.passenger-svg-content-two > svg:nth-child(1) {
-    margin: 21px 25px 0px;
-}
-.tire-section-two {
-    line-height: 1;
-}
-
-/* Section Three */
-.tire-third-image {
-    max-width: 60vw;
-    text-align: center;
-    height: 50%;
-}
-
-.tire-third-image img {
-    position: relative;
-    max-width: 60%;
-    transform: rotate(-45deg);
-    height: 100%;
-}
-.section-three-heading {
-    font-weight: 900;
-    font-size: 9vw;
-    color: #000000;
-    width: 100%;
-}
-
-/* responsive  */
-
-@media screen and (max-width: 768px) {
-    .passenger-svg-content {
-        flex-direction: column-reverse;
-        align-items: center;
-        right: 3%;
-        position: relative;
-        bottom: 25%;
-    }
-
-    .tire-section-one {
-        margin: auto;
-        text-align: center;
-    }
-    .tire-p {
-        font-size: 15px;
-        line-height: 15px;
-        color: black;
-    }
-}
-
-@media screen and(max-width:497px) {
-    .section.panel:nth-child(2) > div:nth-child(1) > h1:nth-child(1) {
-        font-size: 8vw;
-    }
-}
-@media screen and (min-width: 425px) and (max-width: 768px) {
-    .tire-image img,
-    .tire-third-image img {
-        width: 80vw;
-        right: 10%;
-        bottom: 20px;
-        height: 100%;
-    }
-}
-
-/* section Two  */
-@media screen and (max-width: 768px) {
-    .tire-section-two {
-        position: relative;
-        top: 80px;
-        right: 50px;
-    }
-    .passenger-svg-content-two > svg:nth-child(2) {
-        display: block;
-    }
-    .tire-section-two {
-        font-size: 16px;
-        color: #000000;
-        text-align: center;
-        line-height: 1.5;
-    }
-    .image-two img {
-        width: 90%;
-    }
-}
-
-/* Section Three  */
-@media screen and (min-width: 425px) and (max-width: 768px) {
-    div.tire-three-image:nth-child(3) > img:nth-child(1) {
-        width: 40vw;
-        right: 10%;
-        bottom: 20px;
-    }
-    div.passenger-svg-content:nth-child(2) > div:nth-child(3) {
-        position: relative;
-        bottom: 10px;
-    }
-}
-@media screen and (min-width: 425px) and (max-width: 768px) {
-    .tire-three-image {
-        position: relative;
-        bottom: 8%;
-    }
-}
-@media screen and (min-width: 425px) and (max-width: 768) {
-    .svg-three {
-        flex-direction: column-reverse;
-        align-items: center;
-        right: 3%;
-        position: relative;
-        bottom: 10%;
-    }
-}
-/* Third section */
-
-/* sections  */
-section {
-    width: 100%;
-    /* height: 100vh; */
-}
-
-/***************************************************
- * Generated by SVG Artista on 5/28/2022, 5:55:34 PM
- * MIT license (https://opensource.org/licenses/MIT)
- * W. https://svgartista.net
- **************************************************/
-
-@-webkit-keyframes animate-svg-stroke-1 {
-    0% {
-        stroke-dashoffset: 258.5462646484375px;
-        stroke-dasharray: 258.5462646484375px;
-    }
-
-    100% {
-        stroke-dashoffset: 0;
-        stroke-dasharray: 258.5462646484375px;
-    }
-}
-
-@keyframes animate-svg-stroke-1 {
-    0% {
-        stroke-dashoffset: 258.5462646484375px;
-        stroke-dasharray: 258.5462646484375px;
-    }
-
-    100% {
-        stroke-dashoffset: 0;
-        stroke-dasharray: 258.5462646484375px;
-    }
-}
-
-.svg-elem-1 {
-    -webkit-animation: animate-svg-stroke-1 1s cubic-bezier(0.86, 0, 0.07, 1) 0s
-    both;
-    animation: animate-svg-stroke-1 1s cubic-bezier(0.86, 0, 0.07, 1) 0s both;
-}
-
-@-webkit-keyframes animate-svg-stroke-2 {
-    0% {
-        stroke-dashoffset: 33.41592653589793px;
-        stroke-dasharray: 33.41592653589793px;
-    }
-
-    100% {
-        stroke-dashoffset: 0;
-        stroke-dasharray: 33.41592653589793px;
-    }
-}
-
-@keyframes animate-svg-stroke-2 {
-    0% {
-        stroke-dashoffset: 33.41592653589793px;
-        stroke-dasharray: 33.41592653589793px;
-    }
-
-    100% {
-        stroke-dashoffset: 0;
-        stroke-dasharray: 33.41592653589793px;
-    }
-}
-
-.svg-elem-2 {
-    -webkit-animation: animate-svg-stroke-2 1s cubic-bezier(0.86, 0, 0.07, 1)
-    0.12s both;
-    animation: animate-svg-stroke-2 1s cubic-bezier(0.86, 0, 0.07, 1) 0.12s both;
-}
-
-@-webkit-keyframes animate-svg-stroke-3 {
-    0% {
-        stroke-dashoffset: 28.703537555513243px;
-        stroke-dasharray: 28.703537555513243px;
-    }
-
-    100% {
-        stroke-dashoffset: 0;
-        stroke-dasharray: 28.703537555513243px;
-    }
-}
-
-@keyframes animate-svg-stroke-3 {
-    0% {
-        stroke-dashoffset: 28.703537555513243px;
-        stroke-dasharray: 28.703537555513243px;
-    }
-
-    100% {
-        stroke-dashoffset: 0;
-        stroke-dasharray: 28.703537555513243px;
-    }
-}
-
-.svg-elem-3 {
-    -webkit-animation: animate-svg-stroke-3 1s cubic-bezier(0.86, 0, 0.07, 1)
-    0.24s both;
-    animation: animate-svg-stroke-3 1s cubic-bezier(0.86, 0, 0.07, 1) 0.24s both;
-}
-
-.main-page {
-    min-height: 100vh;
-}
-
-.panel {
-    height: 100vh;
-    width: 100vw;
-    overflow: hidden;
-}
-.panel .scene-body {
-    width: 100vw;
-    height: 100vh;
-}
-.tire-section-one {
-    width: 300px;
-    height: 100px;
-}
-.section-typed {
-    width: 100%;
-    height: 100%;
-    display: inline-block;
-    font-size: 18px;
-    line-height: 1.2;
-}
-
-.seeWorld-container {
-    height: 100vh;
-}
-
-/* media queries */
-@media (min-width: 320px) and (max-width: 767.98px) {
-    .main-page {
-        max-height: 100vh;
-        overflow-y: scroll;
-
-        scroll-snap-type: y mandatory;
-    }
-    .main-page section {
-        scroll-snap-align: start;
-        height: 100vh;
-        overflow-y: auto;
-    }
-    .panel h1 {
-        width: 100%;
-        left: 30px;
-        position: unset;
-        flex: 1;
-        display: inline-flex;
-        justify-content: center;
-        flex-direction: column;
-        padding-top: 5rem;
-    }
-    .tire-image {
-        height: auto;
-        position: unset;
-        flex: 1;
-    }
-    .tire-image img {
-        height: 350px;
-        width: 350px;
-        margin-right: -30px;
-    }
-    .tire-p {
-        display: inline-block;
-        font-size: calc(0.7rem + 1vw);
-        line-height: 1.2;
-    }
-    .animate-one {
-        height: auto;
-        position: unset;
-        bottom: 10%;
-        z-index: 10;
-        flex: 1;
-        order: 2;
-        display: inline-flex;
-        padding-bottom: 5rem;
-    }
-    .animate-one .svg-curve-line {
-        position: absolute;
-        top: -30px;
-        right: 20px;
-    }
-    .passenger-svg-content {
-        padding-inline-end: 0;
-        flex-direction: column-reverse;
-        align-items: center;
-        position: unset;
-        margin: auto;
-    }
-    .passenger-parent-content {
-        padding-right: 10px;
-    }
-    .svg-curve-line {
-        display: none;
-    }
-}
-@media (min-width: 768px) and (max-width: 1299.98px) {
-    .main-page {
-        max-height: 100vh;
-        overflow-y: scroll;
-
-        scroll-snap-type: y mandatory;
-    }
-    .main-page section {
-        scroll-snap-align: start;
-        height: 100vh;
-        overflow-y: auto;
-    }
-    .panel h1 {
-        width: 100%;
-        left: 30px;
-        position: unset;
-        flex: 1;
-        display: inline-flex;
-        justify-content: center;
-        flex-direction: column;
-        padding-top: 5rem;
-    }
-    .tire-image {
-        height: auto;
-        position: unset;
-        flex: 1;
-    }
-    .tire-image img {
-        height: 500px;
-        width: 500px;
-        margin-right: -30px;
-    }
-    .tire-section-one {
-        width: 80%;
-        margin: auto;
-        text-align: center;
-        font-size: calc(1.2rem + 1vw);
-    }
-    .tire-p {
-        display: inline-block;
-        line-height: 1.2;
-    }
-    .animate-one {
-        height: auto;
-        position: unset;
-        bottom: 10%;
-        z-index: 10;
-        flex: 1;
-        order: 2;
-        display: inline-flex;
-        padding-bottom: 5rem;
-    }
-    .animate-one .svg-curve-line {
-        position: absolute;
-        top: -30px;
-        right: 20px;
-    }
-    .passenger-svg-content {
-        padding-inline-end: 0;
-        flex-direction: column-reverse;
-        align-items: center;
-        position: unset;
-        margin: auto;
-    }
-    .passenger-parent-content {
-        padding-right: 10px;
-    }
-    .svg-curve-line {
-        display: none;
-    }
-}
-
-@media screen and (max-width: 424.97px) {
-    .modal-dialog {
-        min-width: 320px;
-    }
-    .modal-footer {
-        justify-content: space-between;
-    }
-    .modal-footer button {
-        width: 100px !important;
-    }
-}
-@media screen and (min-width: 424.98px) and (max-width: 991.98px) {
-    .modal-dialog {
-        min-width: 400px;
-    }
-}
-
-@media screen and (max-width: 991.98px) {
-    .sportUltra-main .products .products-performance .products-performance-content .products-desc {
-        width: 100%;
-    }
-}
-
-@media screen and (min-width: 991.98px) and (max-width: 1199.98px) {
-    .sportUltra-main .products .products-performance .tire-features .tire-features-content {
-        gap: 10px;
-    }
-}
-@media screen and (max-width: 580px) {
-    .sportUltra-main .products .products-performance .tire-features {
-        padding-top: 15px;
-        flex-direction: column;
-        gap: 15px;
-    }
-}
-@media screen and (max-width: 767.98px) {
-    .sportUltra-main .products .products-performance .tire-features {
-        padding: 20px 0 30px;
-    }
-}
-@media screen and (min-width: 767.98px) and (max-width: 991.98px) {
-    .sportUltra-main .products .products-performance .tire-features {
-        padding-top: 15px;
-        flex-direction: column;
-        gap: 15px;
-    }
-}
-
-@media screen and (max-width: 767.98px) {
-    .sportUltra-main .products .product-display .product-display-content {
-        width: 100%;
-    }
-}
-@media screen and (max-width: 767.98px) {
-    .sportUltra-main .products .product-display #thumbnails {
-        width: 100%;
-    }
-}
-
-@media screen and (min-width: 767.98px) and (max-width: 991.98px) {
-    .sportUltra-main .products .per .per-features .per-features-contnet {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-    }
-    .sportUltra-main .products .per .per-features .per-features-contnet .per-feature-heading {
-        padding-right: 0;
-    }
-}
-@media screen and (max-width: 533px) {
-    .sportUltra-main .products .per .per-features .per-features-contnet {
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
-    }
-}
-
-.sportUltra-main .products .per-indicator .per-indicator-container .prog {
-    width: 220px;
-    margin: 0 7px;
-}
-
-@media screen and (min-width: 991.98px) and (max-width: 1400px) {
-    .sportUltra-main .products .per-indicator {
-        padding: 30px;
-    }
-}
-@media screen and (max-width: 991px) {
-    .sportUltra-main .products .per-indicator {
-        padding: 5px;
-    }
-}
-
-
-@media screen and (max-width: 767.98px) {
-    .sportUltra-main .product-sizes table tbody td {
-        padding: 10px 0;
-        font-size: 16px;
-    }
-}
-
 
 /*# sourceMappingURL=style.css.map */

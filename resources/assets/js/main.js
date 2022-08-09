@@ -9,23 +9,23 @@ let tireLineSvgTwo = document.getElementById("tire-2-line-svg");
 let tireLineSvgThree = document.getElementById("tire-3-line-svg");
 
 function typedOne() {
-  var typed = new Typed(`#typed`, {
-    stringsElement: `#typed-string`,
+  var typed = new Typed(`#typed-1`, {
+    stringsElement: `#typed-string-1`,
     typeSpeed: 1,
     showCursor: false,
   });
 }
 
 function typedTwo() {
-  var typed = new Typed("#typed-two", {
-    stringsElement: "#typed-string-two",
+  var typed = new Typed("#typed-2", {
+    stringsElement: "#typed-string-2",
     typeSpeed: 1,
     showCursor: false,
   });
 }
 function typedThree() {
-  var typed = new Typed("#typed-three", {
-    stringsElement: "#typed-string-three",
+  var typed = new Typed("#typed-3", {
+    stringsElement: "#typed-string-3",
     typeSpeed: 1,
     showCursor: false,
   });

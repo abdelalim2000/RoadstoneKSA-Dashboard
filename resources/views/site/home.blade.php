@@ -130,7 +130,7 @@
                     </h1>
                     <div class="animate-one">
                         <div class="passenger-svg-content">
-                            <svg id="tire-1-line-svg"
+                            <svg id="tire-{{$key+1}}-line-svg"
                                  class="svg-curve-line"
                                  width="225.40499877929688"
                                  height="81.73500061035156"
@@ -177,12 +177,12 @@
 
                             <div class="passenger-parent-content">
                                 <div class="tire-section-one">
-                                    <div id="typed-string">
+                                    <div id="typed-string-{{$key+1}}">
                                         <p class="tire-p d-xl-none d-inline-block">
                                             {{ $item->description }}
                                         </p>
                                     </div>
-                                    <span id="typed" class="section-typed d-none d-xl-block"></span>
+                                    <span id="typed-{{$key+1}}" class="section-typed d-none d-xl-block"></span>
                                     <a href="{{ route('tires.type', $item->slug) }}"
                                        class="show-more-section-one text-danger text-uppercase text-decoration-none fw-bold">
                                         {{ trans('website.home.see-more') }}
