@@ -32,7 +32,7 @@ function typedThree() {
 }
 
 ScrollTrigger.matchMedia({
-  "(min-width:1300px)": function () {
+  "(min-width:991px)": function () {
     // Gsap Animation
     gsap.registerPlugin(ScrollTrigger);
     const scenes = gsap.utils.toArray(".panel");
@@ -47,7 +47,7 @@ ScrollTrigger.matchMedia({
         // },
         scrub: true,
         pin: true,
-        id: `scene-${i}`,
+          id: `scene-${i}`,
         // onEnter: type,
       });
 
@@ -63,19 +63,19 @@ ScrollTrigger.matchMedia({
       const sceneBody = scene.querySelector(".scene-body");
       const sectionHeading = scene.querySelector(".section-heading");
       const sectionTireImage = scene.querySelector(".tire-image");
-      const sectionSvg = scene.querySelector(".passenger-svg-content");
+      const sectionSvg = scene.querySelector(".animate-one");
       sectionSvg.style.display = "none";
       const typedString = scene.querySelector(".typed-string");
       const sectionTyped = scene.querySelector(".section-typed");
       const tl = gsap.timeline();
 
       tl.from(sectionHeading, {
-        left: "100%",
+          left: "140%",
         scrollTrigger: {
           start: "top 20%",
           end: "bottom 0",
           trigger: sceneBody,
-          scrub: true,
+          scrub: 0.5,
           toggleActions: "restart none restart none",
           id: `sceneBody-${i}`,
         },
@@ -85,10 +85,13 @@ ScrollTrigger.matchMedia({
           tl.to(sectionTireImage, {
             left: "-100%",
             top: "-100%",
+            rotation: -150,
+            duration: 1,
+            ease: 'none',
             scrollTrigger: {
-              scrub: true,
+              scrub: 0.5,
               start: "top 0",
-              end: "bottom 0",
+            end: "bottom 0",
               trigger: sceneBody,
               toggleActions: "restart none restart none",
               id: `tire-image-${i}`,
@@ -99,8 +102,11 @@ ScrollTrigger.matchMedia({
       tl.from(sectionTireImage, {
         left: "-100%",
         top: "100%",
+        rotation: 90,
+        duration: 3,
+        ease: 'none',
         scrollTrigger: {
-          scrub: true,
+          scrub: 0.5,
           start: "top 0",
           end: "bottom 0",
           trigger: sceneBody,
@@ -110,7 +116,7 @@ ScrollTrigger.matchMedia({
       });
     });
   },
-  "(max-width: 1200px)": function () {
+  "(max-width: 991px)": function () {
     sectionSvg.style.display = "block";
   },
 });

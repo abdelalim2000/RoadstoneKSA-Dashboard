@@ -119,21 +119,21 @@
 
         @forelse($types as $key=>$item)
             <section id="section-{{$key+1}}" class="panel">
-                <div class="scene-body d-flex flex-column justify-content-center">
-                    <h1 class="section-heading text-uppercase text-center">
+                <h1 class="section-heading text-uppercase text-center">
                         @php
                             $str = explode(' ',$item->name);
                             $word = explode(' ',$item->name);
                             array_splice($word, -1);
                         @endphp
-                        {{ implode($word) }} {!! count(explode(' ', $item->name)) > 2 ? '<br/>' : null !!}<span class="span-change-color">{{ end($str) }}</span>
+                        {{ implode($word) }} {!! count(explode(' ', $item->name)) > 2 ? '' : null !!}<span class="span-change-color">{{ end($str) }}</span>
                     </h1>
+                <div class="scene-body">
                     <div class="animate-one">
                         <div class="passenger-svg-content">
                             <svg id="tire-{{$key+1}}-line-svg"
                                  class="svg-curve-line"
-                                 width="225.40499877929688"
-                                 height="81.73500061035156"
+                                 width="200"
+                                 height="75"
                                  viewBox="0 0 225.405 81.735">
                                 <g
                                     id="Group_176"
@@ -174,30 +174,29 @@
                                     </g>
                                 </g>
                             </svg>
-
-                            <div class="passenger-parent-content">
-                                <div class="tire-section-one">
-                                    <div id="typed-string-{{$key+1}}">
-                                        <p class="tire-p d-xl-none d-inline-block">
-                                            {{ $item->description }}
-                                        </p>
-                                    </div>
-                                    <span id="typed-{{$key+1}}" class="section-typed d-none d-xl-block"></span>
-                                    <a href="{{ route('tires.type', $item->slug) }}"
-                                       class="show-more-section-one text-danger text-uppercase text-decoration-none fw-bold">
-                                        {{ trans('website.home.see-more') }}
-                                        <img
-                                            src="{{ mix('assets/imgs/seeMorePassenger.png') }}"
-                                            class="left-arrow-one"
-                                            alt="left arrow"
-                                        />
-                                    </a>
+                        </div>
+                        <div class="passenger-parent-content">
+                            <div class="tire-section-one">
+                                <div id="typed-string-{{$key+1}}">
+                                    <p class="tire-p d-md-none d-inline-block">
+                                        {{ $item->description }}
+                                    </p>
                                 </div>
+                                <span id="typed-{{$key+1}}" class="section-typed d-none d-md-block"></span>
+                                <a href="{{ route('tires.type', $item->slug) }}"
+                                class="show-more-section-one text-danger text-uppercase text-decoration-none fw-bold">
+                                    {{ trans('website.home.see-more') }}
+                                    <img
+                                        src="{{ mix('assets/imgs/seeMorePassenger.png') }}"
+                                        class="left-arrow-one"
+                                        alt="left arrow"
+                                    />
+                                </a>
                             </div>
                         </div>
                         <!-- //image tire 1  -->
                     </div>
-                    <div class="align-items-center d-flex imagee justify-content-center tire-image">
+                    <div class="imagee justify-content-center tire-image">
                         {{ $item->image ? $item->image : null }}
                     </div>
                 </div>

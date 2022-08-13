@@ -1,6 +1,6 @@
 $(function () {
     $('.retailersCity').owlCarousel({
-       loop: true,
+    //    loop: true,
        lazyLoad: true,
        smartSpeed: 800,
        slideTransition: 'linear',
@@ -25,7 +25,7 @@ $(function () {
              items: 7
           },
           1200: {
-             items: 9,
+             items: 6,
              dots: false,
             //  margin: 30
           }

@@ -85,7 +85,7 @@
                                                 $str = explode(' ',$item->name);
                                             @endphp
                                             <h4 class="tire-feature-heading">{{ $str[0] }}
-                                                <br> {{ substr(strstr($item->name," "), 1) }}</h4>
+                                                {{ substr(strstr($item->name," "), 1) }}</h4>
                                         </div>
                                     @empty
                                     @endforelse

@@ -87,6 +87,21 @@
   font-size: 12px;
   font-weight: 300;
   text-transform: capitalize;
+  transition: color .4s;
+}
+
+.head-office,
+.email-address,
+.mobile-number {
+    margin-bottom: 15px;
+}
+
+.head-office:hover,
+.head-office-desc:hover,
+.mobile-number-content:hover,
+.email-address-content:hover {
+    color: #FFF !important;
+    opacity: 1;
 }
 
 .sportUltra-main .products .products-performance .products-performance-content .products-heading {
@@ -95,7 +110,7 @@
 }
 
 .sportUltra-main .products .per-indicator .per-indicator-container .per-indecator-heading, .sportUltra-main .products .products-performance .tire-features .tire-features-content .tire-feature-heading {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
   text-transform: capitalize;
 }
@@ -105,6 +120,7 @@
   font-weight: 900;
   line-height: 38px;
   color: #FFFFFF;
+  min-height: 70px;
 }
 
 .guide-main .our-recent-news .tire-size-blogs .tire-size-container .tire-size-details .tire-size-desc, .tire-size .tire-bg .tireSize-content .tireSize-desc {
@@ -320,6 +336,14 @@ body::-webkit-scrollbar-thumb {
     font-size: 12px;
     line-height: 7px;
     display: inline;
+  }
+  .tire-image img {
+    height: 290px;
+    width: 290px;
+  }
+
+  .panel .scene-body {
+    padding: 40px 11%;
   }
 }
 
@@ -943,6 +967,7 @@ body::-webkit-scrollbar-thumb {
   .newLetter-Sign .newLetter-container .me-9 {
     margin-right: 0;
     margin: auto;
+    gap: 20px;
   }
 }
 
@@ -1463,6 +1488,7 @@ header .header-img {
   line-height: 40px;
   color: #FFFFFF;
   text-transform: uppercase;
+
 }
 @media screen and (max-width: 424.98px) {
   .about-main .about-container .roadstone-about .about-heading-roadstone {
@@ -1488,33 +1514,35 @@ header .header-img {
 }
 
 .panel h1 {
-  font-weight: 900;
-  font-size: 10vw;
-  position: absolute;
-  color: #ed1c24;
-  width: 100%;
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    width: 100%;
+    transform: translate(-50%, 100%);
+    font-weight: 900;
+    font-size: 8vw;
+    color: #ed1c24;
 }
 
-.animate-one {
+/* .animate-one {
   width: 100vw;
   height: 70vh;
-}
+} */
 
 .span-change-color {
   color: #151515;
 }
 
 .passenger-svg-content {
-  padding-inline-end: 7rem;
-  display: flex;
+  padding-inline-end: 2rem;
+   display: flex;
   justify-content: flex-end;
   position: relative;
 }
 
 .svg-curve-line {
   position: relative;
-  top: 42%;
-  right: 20px;
+  right: 10px;
 }
 
 section {
@@ -1522,17 +1550,22 @@ section {
 }
 
 .tire-image {
+  /* position: absolute;
+  text-align: center; */
+  /* right: 10%; */
+  /* width: 100vw;
+  height: 100vh; */
+  align-self: flex-start;
   position: absolute;
-  text-align: center;
-  width: 100vw;
-  height: 100vh;
+  bottom: 25%;
 }
 
 .tire-image img {
-  height: 500px;
-  width: 500px;
-  transform: rotate(45deg);
+  height: 320px;
+  width: 320px;
   object-fit: contain;
+  /* margin-top: 60px;
+  margin-right: 8%; */
 }
 
 .svg-line-desk {
@@ -1609,25 +1642,10 @@ section.panel:nth-child(4) > div:nth-child(1) > h1:nth-child(1) {
     margin: auto;
     text-align: center;
   }
-
-  .tire-p {
-    font-size: 15px;
-    line-height: 15px;
-    color: black;
-  }
 }
 @media screen and (max-width: 497px) {
   .section.panel:nth-child(2) > div:nth-child(1) > h1:nth-child(1) {
     font-size: 8vw;
-  }
-}
-@media screen and (min-width: 425px) and (max-width: 768px) {
-  .tire-image img,
-.tire-third-image img {
-    width: 80vw;
-    left: 10%;
-    bottom: 20px;
-    height: 100%;
   }
 }
 /* section Two  */
@@ -1779,13 +1797,25 @@ main {
 }
 
 .panel .scene-body {
-  width: 100vw;
-  height: 100vh;
+    position: relative;
+    width: 80vw;
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: auto;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .tire-section-one {
-  width: 300px;
-  height: 100px;
+    width: 400px;
+    height: 140px;
+    margin-top: -10px;
+    text-align: justify;
+    padding-right: 30px;
 }
 
 .section-typed {
@@ -1793,7 +1823,7 @@ main {
   height: 100%;
   display: inline-block;
   font-size: 18px;
-  line-height: 1.2;
+  line-height: 1.4;
 }
 
 .seeWorld-container {
@@ -1809,69 +1839,10 @@ main {
 
   main section {
     scroll-snap-align: start;
-    height: 100vh;
+    min-height: 100vh;
   }
-
-  .panel h1 {
-    width: 100%;
-    right: 30px;
-    position: unset;
-    flex: 1;
-    display: inline-flex;
-    justify-content: center;
-    flex-direction: column;
-    padding-top: 5rem;
-  }
-
-  .tire-image {
-    height: auto;
-    position: unset;
-    flex: 1;
-  }
-
-  .tire-image img {
-    height: 350px;
-    width: 350px;
-    margin-left: -30px;
-  }
-
-  .tire-p {
-    display: inline-block;
-    font-size: 18px;
-    line-height: 1.2;
-  }
-
-  .animate-one {
-    height: auto;
-    position: unset;
-    bottom: 10%;
-    z-index: 10;
-    flex: 1;
-    order: 2;
-    display: inline-flex;
-    padding-bottom: 5rem;
-  }
-
-  .animate-one .svg-curve-line {
-    position: absolute;
-    top: -30px;
-    left: 20px;
-  }
-
-  .passenger-svg-content {
-    padding-inline-end: 0;
-    flex-direction: column-reverse;
-    align-items: center;
-    position: unset;
-    margin: auto;
-  }
-
-  .passenger-parent-content {
-    padding-left: 10px;
-  }
-
-  .svg-curve-line {
-    display: none;
+  .sportUltra-main .products .product-display #thumbnails img {
+    margin: 6px 8px !important;
   }
 }
 .breadcrumb .active {
@@ -1897,19 +1868,20 @@ main {
   padding-top: 15px;
   width: 491px;
 }
-@media screen and (max-width: 991.98px) {
-  .sportUltra-main .products .products-performance .products-performance-content .products-desc {
-    width: 100%;
-  }
-}
+
 .sportUltra-main .products .products-performance .tire-features {
   padding-top: 92px;
 }
 .sportUltra-main .products .products-performance .tire-features .tire-features-content {
-  width: 160px;
+  /* width: 160px; */
+  gap: 7px
+}
+.sportUltra-main .products .products-performance .tire-features .tire-features-content img {
+    width: 55px;
+    object-fit: contain;
 }
 .sportUltra-main .products .products-performance .tire-features .tire-features-content:last-child {
-  width: 167px;
+  /* width: 195px; */
 }
 .sportUltra-main .products .products-performance .tire-features .tire-features-content .tire-feature-heading {
   line-height: 17px;
@@ -1971,7 +1943,7 @@ main {
   cursor: pointer;
 }
 .sportUltra-main .products .product-display #thumbnails img:hover {
-  transform: scale(1.08);
+  transform: scale(1.4);
 }
 .sportUltra-main .products .per {
   padding: 100px 0;
@@ -2325,9 +2297,16 @@ main {
   padding-right: var(--bs-gutter-x, 8rem);
   padding-left: var(--bs-gutter-x, 3.75rem);
 }
+
+.about-roadstone,
+.artical-item p  {
+    color: #FFF !important;
+}
+
+
 @media screen and (max-width: 991.98px) {
   .main-footer .container-fluid-edit {
-    padding: 0;
+    padding: 0 15px;
   }
 }
 @media screen and (max-width: 374px) {
@@ -2429,4 +2408,69 @@ main {
   }
 }
 
+ @media screen and (min-width: 991.98px) and (max-width: 1199px) {
+    .panel .scene-body {
+        width: 80vw;
+        min-height: 80vh;
+        top: 56%;
+        left: 48%;
+        transform: translate(-50%, -50%);
+    }
+
+    .tire-section-one {
+        width: 285px;
+        height: 165px;
+        padding-right: 30px;
+    }
+    .section-typed {
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .panel h1 {
+        top: 0;
+    }
+    .passenger-svg-content,
+    .section-typed {
+        display: none;
+    }
+    .tire-p {
+        display: inline-block !important;
+        font-size: 18px;
+        text-align: center;
+        margin: 25px 0;
+    }
+    .tire-section-one {
+        all: initial;
+    }
+
+    .tire-image {
+        all: initial;
+    }
+
+    .panel .scene-body {
+        width: 100%;
+        min-height: 100%;
+        flex-direction: column-reverse;
+        left: 50%;
+        transform: translate(-50%, -46%);
+        text-align: center;
+        padding: 40px 18%;
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 991.98px) {
+    .sportUltra-main .products .products-performance .products-performance-content .products-desc {
+      width: 100%;
+    }
+    .sportUltra-main .products .products-performance .tire-features .tire-features-content {
+      justify-content: flex-start !important;
+    }
+    .sportUltra-main .products .products-performance .products-performance-content .products-heading {
+      font-size: 27px;
+        line-height: 40px;
+  }
+}
 /*# sourceMappingURL=style.css.map */
