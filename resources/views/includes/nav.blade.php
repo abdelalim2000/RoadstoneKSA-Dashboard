@@ -189,7 +189,7 @@
             </li>
             <hr class="hr-line">
             <li class="side-nav-item nav-item">
-                <a class="side-nav-link nav-link" href="#">
+                <a class="side-nav-link nav-link" href="{{ route('retailer') }}">
                     <span class="side-nav-link-title">Find Nearest Retailers</span>
                     <img src="{{ mix('assets/imgs/svgexport-6 (80).png') }}" class="nearset-icon pb-2"
                          alt="find nearset retailers icon">
