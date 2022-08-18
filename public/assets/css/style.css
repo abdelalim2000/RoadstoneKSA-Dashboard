@@ -1365,20 +1365,17 @@ form .wrong-text {
     }
 }
 
-.passenger-main {
-   padding: 30px 0;
-}
 .passenger-main .passenger-container {
       background-color: #F5F5F7;
+      padding: 30px 0;
 }
- .passenger-container .breadcrumb  .active {
-    color: #FFFDFD !important
-}
+ /* .passenger-container .breadcrumb  .active {
+    color: #FFFDFD !important 
+}*/
 .pass-tires .about-heading{
     font-size: 40px;
     font-weight: 900;
     line-height: 40px;
-    color: #FFFDFD;
     text-transform: uppercase;
 }
 
