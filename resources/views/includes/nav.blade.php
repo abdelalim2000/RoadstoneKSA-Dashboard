@@ -1,6 +1,8 @@
 @php
+    use App\Models\Maker;
     use Carbon\Carbon;
 
+    $makers = Maker::query()->with('media')->orderBy('name','asc')->get();
 @endphp
 <nav class="nav-container">
     <div class="menu-toggle">
@@ -189,7 +191,7 @@
             </li>
             <hr class="hr-line">
             <li class="side-nav-item nav-item">
-                <a class="side-nav-link nav-link" href="#">
+                <a class="side-nav-link nav-link" href="{{ route('retailer') }}">
                     <span class="side-nav-link-title">Find Nearest Retailers</span>
                     <img src="{{ mix('assets/imgs/svgexport-6 (80).png') }}" class="nearset-icon pb-2"
                          alt="find nearset retailers icon">
@@ -202,7 +204,8 @@
             </a>
         </div>
     </div>
-    <!-- Find Tiers Modal -->
+
+
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
          data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="container-fluid">
@@ -233,79 +236,37 @@
                             <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
                                  aria-labelledby="nav-home-tab">
                                 <div class="search-marker">
-                                    <form action="">
+                                    <form method="post" action="">
+                                        @csrf
                                         <div class="row">
                                             <div class="col-md-5">
                                                 <div class="select-marker my-4" id="myModal">
                                                     <select id="marker" class="cars-marker form-control">
-                                                        <option value="" selected disabled>Marker</option>
-                                                        <option value="1">BMW</option>
-                                                        <option value="2">Jeep</option>
-                                                        <option value="3">KIA</option>
-                                                        <option value="4">HYUNDAI</option>
-                                                        <option value="5">CHEVROLET</option>
-                                                        <option value="6">LAND ROVER</option>
+                                                        <option value="{{ null }}" selected disabled>Choose a maker
+                                                        </option>
+                                                        @forelse($makers as $item)
+                                                            <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                        @empty
+                                                        @endforelse
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="col-12">
                                                 <div class="owl-carousel owl-theme marker-logo" id="mar">
-                                                    <div class="marker-logo-selector">
-                                                        <label for="bmw" class="form-check-label link-active">
-                                                            <img src="./dist/imgs/BMW.png" alt="BMW">
-                                                        </label>
-                                                        <input id="bmw" class="form-check-car" name="checkCar"
-                                                               type="radio">
-                                                    </div>
-                                                    <div class="marker-logo-selector">
-                                                        <label for="jeep" class="form-check-label link-active">
-                                                            <img src="./dist/imgs/Jeep.png" alt="Jeep">
-                                                        </label>
-                                                        <input id="jeep" class="form-check-car" name="checkCar"
-                                                               type="radio">
-                                                    </div>
-                                                    <div class="marker-logo-selector">
-                                                        <label for="kia" class="form-check-label link-active">
-                                                            <img src="./dist/imgs/KIA.png" alt="KIA">
-                                                        </label>
-                                                        <input id="kia" class="form-check-car" name="checkCar"
-                                                               type="radio">
-                                                    </div>
-                                                    <div class="marker-logo-selector">
-                                                        <label for="hyunai" class="form-check-label link-active">
-                                                            <img src="./dist/imgs/Hynd.png" alt="HYUNAI">
-                                                        </label>
-                                                        <input id="hyunai" class="form-check-car" name="checkCar"
-                                                               type="radio">
-                                                    </div>
-                                                    <div class="marker-logo-selector">
-                                                        <label for="chevrolet" class="form-check-label link-active">
-                                                            <img src="./dist/imgs/Chev.png" alt="CHEVROLET">
-                                                        </label>
-                                                        <input id="chevrolet" class="form-check-car" name="checkCar"
-                                                               type="radio">
-                                                    </div>
-                                                    <div class="marker-logo-selector">
-                                                        <label for="landRover" class="form-check-label link-active">
-                                                            <img src="./dist/imgs/LR.png" alt="LAND-ROVER">
-                                                        </label>
-                                                        <input id="landRover" class="form-check-car" name="checkCar"
-                                                               type="radio">
-                                                    </div>
-                                                    <div class="marker-logo-selector">
-                                                        <label for="min" class="form-check-label link-active">
-                                                            <img src="./dist/imgs/MIN.png" alt="MIN">
-                                                        </label>
-                                                        <input id="min" class="form-check-car" name="checkCar"
-                                                               type="radio">
-                                                    </div>
-                                                    <div class="marker-logo-selector">
-                                                        <label for="seat" class="form-check-label link-active">
-                                                            <img src="./dist/imgs/SEAT.png" alt="SEAT">
-                                                        </label>
-                                                        <input id="seat" class="form-check-car" name="checkCar"
-                                                               type="radio">
-                                                    </div>
+                                                    @forelse($makers as $item)
+                                                        @if($item->image)
+                                                            <div class="marker-logo-selector">
+                                                                <label for="{{ $item->name }}"
+                                                                       class="form-check-label {{ $loop->first ? 'link-active' : '' }}">
+                                                                    {{ $item->image->img()->attributes(['alt' => $item->name]) }}
+                                                                </label>
+                                                                <input id="{{ $item->name }}" class="form-check-car"
+                                                                       name="checkCar"
+                                                                       type="radio">
+                                                            </div>
+                                                        @endif
+                                                    @empty
+                                                    @endforelse
                                                 </div>
                                             </div>
                                             <div class="col-md-5">
@@ -379,4 +340,4 @@
         </div>
     </div>
 </nav>
-<!-- end rightSide nav -->
+
