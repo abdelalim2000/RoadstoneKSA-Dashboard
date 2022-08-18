@@ -341,9 +341,32 @@ body::-webkit-scrollbar-thumb {
     height: 290px;
     width: 290px;
   }
-
+  .modal-body {
+    padding: .6rem;
+  }
+  .modal-body .nav-tabs button {
+    font-size: 12px !important;
+  }
+  .modal-footer button {
+    width: 112px !important;
+  }
+  .nav-container .side-nav {
+    width: 40px !important;
+  }
   .panel .scene-body {
     padding: 40px 11%;
+  }
+  .modal-content {
+    padding: 5px 0  !important;
+  }
+  .modal.show .modal-header .modal-title {
+    font-size: 22px !important ;
+  }
+  .nav-container .side-nav .contact {
+    right: 8px !important;
+  }
+  .modal.show .text-note {
+    font-size: 12px;
   }
 }
 
@@ -840,7 +863,7 @@ body::-webkit-scrollbar-thumb {
   0% {
     opacity: 0;
   }
-  70% {
+  50% {
     opacity: 1;
   }
   100% {
@@ -858,13 +881,13 @@ body::-webkit-scrollbar-thumb {
 }
 
 .arrow path.a3 {
-  animation-delay: 1.5s;
+  animation-delay: 1.8s;
   -webkit-animation-delay: 1.5s;
 }
 
 .arrows-back path {
-  animation: arrowsback 2.5s infinite;
-  -webkit-animation: arrowsback 2.5s infinite;
+  animation: arrowsback 2s infinite;
+  -webkit-animation: arrowsback 2s infinite;
 }
 
 @keyframes arrowsback {
@@ -872,7 +895,7 @@ body::-webkit-scrollbar-thumb {
     opacity: 1;
   }
   70% {
-    opacity: 0.1;
+    opacity: 0;
   }
   100% {
     opacity: 1;
@@ -921,6 +944,36 @@ body::-webkit-scrollbar-thumb {
     opacity: 1;
   }
 }
+
+
+.explore-more a:hover .arrows-right path {
+    animation: arrowsright 1.8s infinite;
+    -webkit-animation: arrowsright 1.8s infinite;
+  }
+  .explore-more a:hover .arrows-right path.path1 {
+    animation-delay: 1s;
+    -webkit-animation-delay: 1s;
+  }
+  .explore-more a:hover .arrows-right path.path2 {
+    animation-delay: 0.5s;
+    -webkit-animation-delay: 0.5s;
+  }
+  .explore-more a:hover .arrows-right path.path3 {
+    animation-delay: 0s;
+    -webkit-animation-delay: 0s;
+  }
+
+  @keyframes arrowsright {
+    0% {
+      opacity: 1;
+    }
+    70% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
 .owl-theme .owl-nav.disabled + .owl-dots {
   position: absolute;
   bottom: -115px;
@@ -1046,7 +1099,7 @@ form .wrong-text {
 }
 
 .modal-dialog {
-  min-width: 844px;
+  min-width: 65%;
 }
 .modal-dialog .modal-content {
   min-height: 70vh;
@@ -1313,6 +1366,147 @@ form .wrong-text {
   display: flex;
   justify-content: center;
 }
+/* NEW DESIGN */
+.passenger-header .header-passenger {
+     background: url("../imgs/passanger-img.png") no-repeat;
+      background-size: cover;
+      min-height: 300px;
+}
+
+@media screen and (max-width: 768.98px) {
+    .passenger-header .header-passenger {
+         min-height: 180px;
+    }
+}
+
+.passenger-main {
+   padding: 30px 0;
+}
+.passenger-main .passenger-container {
+      background-color: #F5F5F7;
+}
+ .passenger-container .breadcrumb  .active {
+    color: #FFFDFD !important
+}
+.pass-tires .about-heading{
+    font-size: 40px;
+    font-weight: 900;
+    line-height: 40px;
+    color: #FFFDFD;
+    text-transform: uppercase;
+}
+
+ .pass-tires .pass-car {
+    padding: 40px 0;
+}
+@media screen and (max-width: 424.98px) {
+    .passenger-main .passenger-container .pass-tires .pass-car {
+        padding: 30px 0;
+    }
+}
+.pass-tires .pass-car .pass-car-tire {
+    padding: 35px 30px 15px;
+    border-radius: 15px;
+    background-color: #FFFFFF;
+    transition: box-shadow .5s ease-in-out;
+}
+ @media screen and (max-width: 424.98px) {
+.pass-tires .pass-car .pass-car-tire {
+        padding: 18px 12px;
+    }
+}
+ .pass-tires .pass-car .pass-car-tire .img-fluid  {
+    transition: transform .5s ease-in-out;
+}
+.pass-tires .pass-car .pass-car-tire .bg-progress::before {
+    content: "";
+    height: 6px;
+    width: 0;
+    transition: all .8s ease;
+}
+.pass-tires .pass-car .pass-car-tire:hover {
+    box-shadow:-1px 3px 4px 0px #00000026 !important;
+ }
+ .passenger-main .passenger-container .pass-tires .pass-car .pass-car-tire img {
+    transition: transform 0.5s ease-in-out;
+}
+.pass-car-tire:hover .sport-img img {
+    transform: scale(1.06);
+
+}
+.pass-car .pass-car-tire:hover .bg-progress::before {
+    background-color: #ED1C24 !important;
+    width: 100%;
+}
+ .sport-tire-heading {
+    font-size: 22px;
+    margin: 20px 0 25px;
+    color: #ED1C24;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+@media screen and (max-width: 424.98px) {
+.pass-car .pass-car-tire.sport-tire-content .sport-tire-heading {
+    font-size: 16px;
+    }
+}
+
+.sport-performance {
+    display: flex;
+    justify-content: space-between;
+}
+.sport-tire-item .sport-tire-performance {
+    font-size: 12px;
+    line-height: 17px;
+    padding: 5px 0;
+    color: #A7A9AC;
+    text-transform: capitalize;
+}
+.progress-container {
+    margin-bottom: 15px;
+}
+.progress-heading {
+    color: #000000;
+    font-size: 12PX;
+    font-weight: 900;
+    text-transform: capitalize;
+}
+.progress-content {
+    height: 6px;
+    width: 200px;
+    border-radius: 0;
+    background-color: #E5E6E8;
+}
+@media screen and (max-width: 424.98px) {
+    .progress-content {
+        width: 157px;
+    }
+}
+.bg-progress {
+    background-color: #A7A9AC;
+}
+@media screen and (max-width: 500px) {
+    .sport-img {
+        max-width: 130px;
+    }
+}
+.explore-more {
+     margin-top: 20px;
+}
+.explore-more a {
+    text-decoration: none;
+}
+.btn-explore {
+    font-size: 16px;
+    font-weight: 900;
+    color: #ED1C24;
+    text-transform: uppercase;
+}
+
+.btn-explore:focus {
+      box-shadow: none;
+}
+
 .retailers .retailersCity .city {
   margin: 0 auto;
   -webkit-transition: 0.5s background-image;
@@ -2302,6 +2496,7 @@ main {
 .artical-item p  {
     color: #FFF !important;
 }
+
 
 
 @media screen and (max-width: 991.98px) {

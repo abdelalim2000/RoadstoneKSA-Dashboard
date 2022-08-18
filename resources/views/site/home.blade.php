@@ -87,7 +87,7 @@
                         transform="translate(0 12.226)"
                     >
                         <path
-                            class="a1"
+                            class="a3"
                             id="Path_422"
                             data-name="Path 422"
                             d="M13.559,195.295l-9.834-9.834L0,189.186l13.559,13.559,13.559-13.559-3.725-3.725Zm0,0"
@@ -104,7 +104,7 @@
                             fill="url(#linear-gradient)"
                         />
                         <path
-                            class="a3"
+                            class="a1"
                             id="Path_444"
                             data-name="Path 444"
                             d="M27.117,4.225,23.392.5l-9.834,9.834L3.725.5,0,4.225,13.559,17.784Zm0,0"
