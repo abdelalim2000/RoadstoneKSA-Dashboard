@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Http\Resources\Search\MakerResource;
+use App\Http\Resources\Search\ModelResource;
 use App\Models\CarType;
 use App\Models\City;
 use Illuminate\Pagination\Paginator;
@@ -29,7 +31,11 @@ class AppServiceProvider extends ServiceProvider
     {
         Paginator::useBootstrapFive();
 
-        View::share('types', CarType::query()->where('active', true)->with('media')->get());
-        View::share('cities', City::query()->where('active', true)->with('media')->get());
+        if (!app()->runningInConsole()) {
+            View::share('types', CarType::query()->where('active', true)->with('media')->get());
+            View::share('cities', City::query()->where('active', true)->with('media')->get());
+            MakerResource::withoutWrapping();
+            ModelResource::withoutWrapping();
+        }
     }
 }

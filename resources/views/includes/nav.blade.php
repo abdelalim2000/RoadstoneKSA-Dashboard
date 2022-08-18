@@ -212,23 +212,25 @@
             <div class="modal-dialog">
                 <div class="modal-content px-4">
                     <div class="modal-header border-0 pb-0">
-                        <h2 class="modal-title " id="staticBackdropLabel">Find Tire</h2>
+                        <h2 class="modal-title " id="staticBackdropLabel">{{ trans('website.search.title') }}</h2>
                         <button type="button" class="btn-modal-close border-0" data-bs-dismiss="modal"
                                 aria-label="Close"></button>
                     </div>
                     <div class="ps-3 py-0">
-                        <small class="text-note">please select your car information to find your tire</small>
+                        <small class="text-note">{{ trans('website.search.description') }}</small>
                     </div>
                     <div class="modal-body">
                         <nav>
                             <div class="nav nav-tabs" id="nav-tab" role="tablist">
                                 <button class="nav-search btn active ps-0" id="nav-home-tab" data-bs-toggle="tab"
                                         data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home"
-                                        aria-selected="true">search by marker
+                                        aria-selected="true">
+                                    {{ trans('website.search.search-maker') }}
                                 </button>
                                 <button class="nav-search btn" id="nav-profile-tab" data-bs-toggle="tab"
                                         data-bs-target="#nav-profile" type="button" role="tab"
-                                        aria-controls="nav-profile" aria-selected="false">search by size
+                                        aria-controls="nav-profile" aria-selected="false">
+                                    {{ trans('website.search.search-size') }}
                                 </button>
                             </div>
                         </nav>
@@ -241,13 +243,14 @@
                                         <div class="row">
                                             <div class="col-md-5">
                                                 <div class="select-marker my-4" id="myModal">
-                                                    <select id="marker" class="cars-marker form-control">
-                                                        <option value="{{ null }}" selected disabled>Choose a maker
-                                                        </option>
-                                                        @forelse($makers as $item)
-                                                            <option value="{{ $item->id }}">{{ $item->name }}</option>
-                                                        @empty
-                                                        @endforelse
+                                                    <select id="maker" class="cars-marker form-control">
+{{--                                                        <option value="{{ null }}" selected disabled>--}}
+                                                        {{--                                                            Choose a maker--}}
+                                                        {{--                                                        </option>--}}
+                                                        {{--                                                        @forelse($makers as $item)--}}
+                                                        {{--                                                            <option value="{{ $item->id }}">{{ $item->name }}</option>--}}
+                                                        {{--                                                        @empty--}}
+                                                        {{--                                                        @endforelse--}}
                                                     </select>
                                                 </div>
                                             </div>
@@ -272,10 +275,10 @@
                                             <div class="col-md-5">
                                                 <div class="select-model my-4">
                                                     <select id="model" class="marker-mode form-control">
-                                                        <option value="" selected disabled>Model</option>
-                                                        <option value="1">x1</option>
-                                                        <option value="2">y</option>
-                                                        <option value="3">z</option>
+{{--                                                        <option value="" selected disabled>Model</option>--}}
+{{--                                                        <option value="1">x1</option>--}}
+{{--                                                        <option value="2">y</option>--}}
+{{--                                                        <option value="3">z</option>--}}
                                                     </select>
                                                 </div>
                                             </div>

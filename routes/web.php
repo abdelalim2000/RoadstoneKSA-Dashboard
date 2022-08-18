@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\TireSearchApiController;
 use App\Http\Controllers\Pages\AboutPageController;
 use App\Http\Controllers\Pages\BlogPageController;
 use App\Http\Controllers\Pages\ContactPageController;

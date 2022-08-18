@@ -100,6 +100,65 @@
     })(jQuery);
 
 </script>
+<script>
+    $(document).ready(function () {
+        $("#maker").select2({
+            dropdownParent: $("#myModal"),
+            placeholder: "Select Maker",
+            ajax: {
+                url: "{{ route('api.get-maker') }}",
+                method: 'post',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        _token: "{{ csrf_token() }}",
+                        search: params.term
+                    }
+                },
+                processResults: function (response) {
+                    return {
+                        results: response
+                    }
+                }
+            }
+        });
+        $("#model").select2({
+            dropdownParent: $("#myModal"), placeholder: "Select Model",
+        });
+        $('#maker').on('change', function () {
+            let modelId = $(this).val()
+            $("#model").select2({
+                dropdownParent: $("#myModal"), placeholder: "Select Model",
+                ajax: {
+                    url: "{{ route('api.get-model') }}",
+                    method: 'post',
+                    delay: 250,
+                    data: function (params) {
+                        return {
+                            _token: "{{ csrf_token() }}",
+                            search: params.term,
+                            model: modelId
+                        }
+                    },
+                    processResults: function (response) {
+                        return {
+                            results: response
+                        }
+                    }
+                }
+            });
+        })
+        $("#width-tire").select2({
+            dropdownParent: $("#model-size"), placeholder: "Section Width",
+        });
+        $("#tire-aspect").select2({
+            dropdownParent: $("#model-size"), placeholder: "Aspect Ratio",
+        });
+        $("#tire-rime").select2({
+            dropdownParent: $("#model-size"), placeholder: "Rim Dimeter",
+        });
+    });
+</script>
 {!! settingText('scripts-head', 'short_description') !!}
 </body>
 </html>

@@ -67,6 +67,13 @@ return array (
     'find' => 'find store',
   ),
   'rim-diameter' => 'Rim Diameter',
+  'search' => 
+  array (
+    'description' => 'please select your car information to find your tire',
+    'search-maker' => 'search by maker',
+    'search-size' => 'search by size',
+    'title' => 'Find Tire',
+  ),
   'seo' => 
   array (
     'about-seo-description' => 'about',

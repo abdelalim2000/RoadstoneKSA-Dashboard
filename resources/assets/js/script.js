@@ -45,40 +45,18 @@
 let scrollTop = document.querySelector(".btn-back-up");
 //Function that scroll Top
 const btnScrollTop = () => {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth",
-  });
+    window.scrollTo({
+        top: 0, behavior: "smooth",
+    });
 };
 scrollTop.addEventListener("click", btnScrollTop);
 
 //*active item
 var itemIsActive = ".link-active";
 $(itemIsActive).on("click", function () {
-  $(itemIsActive).removeClass("active");
-  $(this).addClass("active");
+    $(itemIsActive).removeClass("active");
+    $(this).addClass("active");
 });
 
 //*select2 drowpdown function
-$(document).ready(function () {
-  $("#marker").select2({
-    dropdownParent: $("#myModal"),
-    placeholder: "Marker",
-  });
-  $("#model").select2({
-    dropdownParent: $("#myModal"),
-    placeholder: "Mode",
-  });
-  $("#width-tire").select2({
-    dropdownParent: $("#model-size"),
-    placeholder: "Section Width",
-  });
-  $("#tire-aspect").select2({
-    dropdownParent: $("#model-size"),
-    placeholder: "Aspect Ratio",
-  });
-  $("#tire-rime").select2({
-    dropdownParent: $("#model-size"),
-    placeholder: "Rim Dimeter",
-  });
-});
+
