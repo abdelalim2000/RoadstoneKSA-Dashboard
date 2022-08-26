@@ -1,12 +1,12 @@
 <?php
 
-use App\Http\Controllers\Api\TireSearchApiController;
 use App\Http\Controllers\Pages\AboutPageController;
 use App\Http\Controllers\Pages\BlogPageController;
 use App\Http\Controllers\Pages\ContactPageController;
 use App\Http\Controllers\Pages\HomePageController;
 use App\Http\Controllers\Pages\NewsStoreController;
 use App\Http\Controllers\Pages\RetailerPageController;
+use App\Http\Controllers\Pages\SearchTires;
 use App\Http\Controllers\Pages\TirePageController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -39,6 +39,10 @@ Route::group(
 
     // Retialers Route
     Route::get('retailers', [RetailerPageController::class, 'index'])->name('retailer');
+
+    // Search Routes
+    Route::get('search/tires/maker', [SearchTires::class, 'searchByMaker'])->name('search.maker');
+    Route::get('search/tires/size', [SearchTires::class, 'searchBysize'])->name('search.size');
 
     // Terms and privacy routes
     Route::get('terms-condition', function () {

@@ -50,6 +50,8 @@ return array (
     'mobile' => 'Mobile Number',
     'privacy' => 'Privacy Policy',
     'retailers' => 'Retailers',
+    'search-maker-tires' => 'Search Tires Maker',
+    'search-size-tires' => 'Search Tires Size',
     'terms' => 'Terms and Conditions',
     'tires' => 'Tires',
   ),
@@ -72,6 +74,7 @@ return array (
     'description' => 'please select your car information to find your tire',
     'search-maker' => 'search by maker',
     'search-size' => 'search by size',
+    'size-description' => 'select the tire size for your vehicle',
     'title' => 'Find Tire',
   ),
   'seo' => 

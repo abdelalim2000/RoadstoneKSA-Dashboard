@@ -149,13 +149,64 @@
             });
         })
         $("#width-tire").select2({
-            dropdownParent: $("#model-size"), placeholder: "Section Width",
+            dropdownParent: $("#model-size"),
+            placeholder: "Tires Width",
+            ajax: {
+                url: "{{ route('api.get-width') }}",
+                method: 'post',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        _token: "{{ csrf_token() }}",
+                        search: params.term
+                    }
+                },
+                processResults: function (response) {
+                    return {
+                        results: response
+                    }
+                }
+            }
         });
         $("#tire-aspect").select2({
-            dropdownParent: $("#model-size"), placeholder: "Aspect Ratio",
+            dropdownParent: $("#model-size"),
+            placeholder: "Aspect Ratio",
+            ajax: {
+                url: "{{ route('api.get-aspect-ratio') }}",
+                method: 'post',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        _token: "{{ csrf_token() }}",
+                        search: params.term
+                    }
+                },
+                processResults: function (response) {
+                    return {
+                        results: response
+                    }
+                }
+            }
         });
         $("#tire-rime").select2({
-            dropdownParent: $("#model-size"), placeholder: "Rim Dimeter",
+            dropdownParent: $("#model-size"),
+            placeholder: "Rim Dimeter",
+            ajax: {
+                url: "{{ route('api.get-rim-diameter') }}",
+                method: 'post',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        _token: "{{ csrf_token() }}",
+                        search: params.term
+                    }
+                },
+                processResults: function (response) {
+                    return {
+                        results: response
+                    }
+                }
+            }
         });
     });
 </script>

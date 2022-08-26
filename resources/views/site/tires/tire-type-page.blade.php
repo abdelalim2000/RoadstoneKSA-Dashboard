@@ -60,7 +60,7 @@
                     <div class="row pass-car">
                         @forelse($tires as $item)
                             <div class="col-md-6 pe-3 pb-4">
-                                <div class="pass-car-tire shadow-sm ">
+                                <div class="pass-car-tire shadow-sm " style="min-height: 645px">
                                     <div class="sport-tire-content">
                                         {{ $item->tire_logo ? $item->tire_logo->img()->attributes(['class' => 'w-50', 'alt' => $item->title]) : '' }}
                                         <h2 class="sport-tire-heading">
@@ -234,7 +234,7 @@
                                         </div>
                                         <div class="sport-img">
                                             <a href="{{ route('tires.show', $item->slug) }}">
-                                                {{ $item->thumb ? $item->thumb->img()->attributes(['class' => 'w-100', 'alt' => $item->title]) : '' }}
+                                                {{ $item->thumb ? $item->thumb->img()->attributes(['class' => 'w-100','height' => '415', 'alt' => $item->title]) : '' }}
                                             </a>
                                         </div>
                                     </div>
@@ -243,17 +243,30 @@
                                             <button type="button"
                                                     class="btn btn-explore ps-0">{{ trans('website.global.read-more') }}</button>
                                             {{--<img src="{{ mix('assets/imgs/svgexport.png') }}" alt="">--}}
-                                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="22.883" height="17.02" viewBox="0 0 22.883 17.02" class="arrow-right">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="22.883" height="17.02"
+                                                 viewBox="0 0 22.883 17.02" class="arrow-right">
                                                 <defs>
-                                                    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
-                                                    <stop offset="0" stop-color="#ed1c24" stop-opacity="0"/>
-                                                    <stop offset="1" stop-color="#ed1c24"/>
+                                                    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1"
+                                                                    gradientUnits="objectBoundingBox">
+                                                        <stop offset="0" stop-color="#ed1c24" stop-opacity="0"/>
+                                                        <stop offset="1" stop-color="#ed1c24"/>
                                                     </linearGradient>
                                                 </defs>
-                                                <g class="arrows-right" id="svgexport-6_74_" data-name="svgexport-6 (74)" transform="translate(12.226 17.02) rotate(-90)">
-                                                    <path class="path1" id="Path_422" data-name="Path 422" d="M8.51,191.633l-6.172-6.172L0,187.8l8.51,8.51,8.51-8.51-2.338-2.338Zm0,0" transform="translate(0 -185.652)" fill="url(#linear-gradient)"/>
-                                                    <path class="path2" id="Path_423" data-name="Path 423" d="M17.02,2.838,14.682.5,8.51,6.672,2.338.5,0,2.838l8.51,8.51Zm0,0" transform="translate(0 -6.839)" opacity="0.6" fill="url(#linear-gradient)"/>
-                                                    <path class="path3" id="Path_444" data-name="Path 444" d="M17.02,2.838,14.682.5,8.51,6.672,2.338.5,0,2.838l8.51,8.51Zm0,0" transform="translate(0 -12.726)" opacity="0.2" fill="url(#linear-gradient)"/>
+                                                <g class="arrows-right" id="svgexport-6_74_"
+                                                   data-name="svgexport-6 (74)"
+                                                   transform="translate(12.226 17.02) rotate(-90)">
+                                                    <path class="path1" id="Path_422" data-name="Path 422"
+                                                          d="M8.51,191.633l-6.172-6.172L0,187.8l8.51,8.51,8.51-8.51-2.338-2.338Zm0,0"
+                                                          transform="translate(0 -185.652)"
+                                                          fill="url(#linear-gradient)"/>
+                                                    <path class="path2" id="Path_423" data-name="Path 423"
+                                                          d="M17.02,2.838,14.682.5,8.51,6.672,2.338.5,0,2.838l8.51,8.51Zm0,0"
+                                                          transform="translate(0 -6.839)" opacity="0.6"
+                                                          fill="url(#linear-gradient)"/>
+                                                    <path class="path3" id="Path_444" data-name="Path 444"
+                                                          d="M17.02,2.838,14.682.5,8.51,6.672,2.338.5,0,2.838l8.51,8.51Zm0,0"
+                                                          transform="translate(0 -12.726)" opacity="0.2"
+                                                          fill="url(#linear-gradient)"/>
                                                 </g>
                                             </svg>
                                         </a>

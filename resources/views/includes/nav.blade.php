@@ -238,13 +238,13 @@
                             <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
                                  aria-labelledby="nav-home-tab">
                                 <div class="search-marker">
-                                    <form method="post" action="">
+                                    <form method="get" action="{{ route('search.maker') }}">
                                         @csrf
                                         <div class="row">
                                             <div class="col-md-5">
                                                 <div class="select-marker my-4" id="myModal">
-                                                    <select id="maker" class="cars-marker form-control">
-{{--                                                        <option value="{{ null }}" selected disabled>--}}
+                                                    <select id="maker" name="maker" class="cars-marker form-control">
+                                                        {{--                                                        <option value="{{ null }}" selected disabled>--}}
                                                         {{--                                                            Choose a maker--}}
                                                         {{--                                                        </option>--}}
                                                         {{--                                                        @forelse($makers as $item)--}}
@@ -274,11 +274,11 @@
                                             </div>
                                             <div class="col-md-5">
                                                 <div class="select-model my-4">
-                                                    <select id="model" class="marker-mode form-control">
-{{--                                                        <option value="" selected disabled>Model</option>--}}
-{{--                                                        <option value="1">x1</option>--}}
-{{--                                                        <option value="2">y</option>--}}
-{{--                                                        <option value="3">z</option>--}}
+                                                    <select id="model" name="model" class="marker-mode form-control">
+                                                        {{--                                                        <option value="" selected disabled>Model</option>--}}
+                                                        {{--                                                        <option value="1">x1</option>--}}
+                                                        {{--                                                        <option value="2">y</option>--}}
+                                                        {{--                                                        <option value="3">z</option>--}}
                                                     </select>
                                                 </div>
                                             </div>
@@ -295,34 +295,38 @@
                             <div class="tab-pane fade" id="nav-profile" role="tabpanel"
                                  aria-labelledby="nav-profile-tab">
                                 <div class="search-size">
-                                    <small class="text-note">select the tire size for your vehicle</small>
-                                    <form action="">
+                                    <small class="text-note">{{ trans('website.search.size-description') }}</small>
+                                    <form action="{{ route('search.size') }}" method="get">
+                                        @csrf
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="select-marker my-4" id="model-size">
-                                                    <select id="width-tire" class="width-size-search form-control">
-                                                        <option value="" selected disabled>Section Width</option>
-                                                        <option value="1">205 or 215 mm</option>
-                                                        <option value="2">205 or 215 mm</option>
-                                                        <option value="3">215 or 225 mm</option>
+                                                    <select id="width-tire" name="width"
+                                                            class="width-size-search form-control">
+                                                        {{--                                                        <option value="" selected disabled>Section Width</option>--}}
+                                                        {{--                                                        <option value="1">205 or 215 mm</option>--}}
+                                                        {{--                                                        <option value="2">205 or 215 mm</option>--}}
+                                                        {{--                                                        <option value="3">215 or 225 mm</option>--}}
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="select-model my-4" id="model-size">
-                                                    <select id="tire-aspect" class="tire-aspect-ratio form-control">
-                                                        <option value="" selected disabled>Aspect Ratio</option>
-                                                        <option value="1">P225/70R16 91S</option>
-                                                        <option value="2">P225/70R16 91S</option>
+                                                    <select id="tire-aspect" name="ratio"
+                                                            class="tire-aspect-ratio form-control">
+                                                        {{--                                                        <option value="" selected disabled>Aspect Ratio</option>--}}
+                                                        {{--                                                        <option value="1">P225/70R16 91S</option>--}}
+                                                        {{--                                                        <option value="2">P225/70R16 91S</option>--}}
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="select-model" id="model-size">
-                                                    <select id="tire-rime" class="tire-rime-dimeter form-control">
-                                                        <option value="" selected disabled>Rim Diameter</option>
-                                                        <option value="1">195/65 R15</option>
-                                                        <option value="2">195/65 R15</option>
+                                                    <select id="tire-rime" name="rim"
+                                                            class="tire-rime-dimeter form-control">
+                                                        {{--                                                        <option value="" selected disabled>Rim Diameter</option>--}}
+                                                        {{--                                                        <option value="1">195/65 R15</option>--}}
+                                                        {{--                                                        <option value="2">195/65 R15</option>--}}
                                                     </select>
                                                 </div>
                                             </div>
@@ -330,7 +334,7 @@
                                                 <button type="button" class="btn btn-cancel me-3"
                                                         data-bs-dismiss="modal">cancel
                                                 </button>
-                                                <button type="search" class="btn btn-search">search</button>
+                                                <button type="submit" class="btn btn-search">search</button>
                                             </div>
                                         </div>
                                     </form>
