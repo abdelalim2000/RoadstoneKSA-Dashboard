@@ -20,7 +20,7 @@ class TireTranslationResource extends JsonResource
             "seo_keywords" => $this->seo_keywords,
             "seo_description" => $this->seo_description,
             "description" => $this->description,
-            "tire_id" => $this->tire_id4
+            "tire_id" => $this->tire_id
         ];
     }
 }

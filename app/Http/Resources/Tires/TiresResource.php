@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Tires;
 
+use App\Http\Resources\Image\ImageResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class TiresResource extends JsonResource
@@ -34,10 +35,10 @@ class TiresResource extends JsonResource
             // "updated_at" => $this->updated_at,
             // "car_type_id" => $this->car_type_id,
             // "breadcrumb" => $this->breadcrumb,
-            "thumb" => TireImagesResource::make($this->thumb),
-            "tire_logo" => TireImagesResource::make($this->tire_logo),
-            // "images" => TireImagesResource::collection($this->images),
-            // "media" => TireImagesResource::collection($this->media),
+            "thumb" => ImageResource::make($this->thumb),
+            "tire_logo" => ImageResource::make($this->tire_logo),
+            // "images" => ImageResource::collection($this->images),
+            // "media" => ImageResource::collection($this->media),
             "tire_features" => TireFeaturesResource::collection($this->tire_features),
             "translations" => TireTranslationResource::collection($this->translations)
         ];
