@@ -40,8 +40,8 @@ Route::controller(NewsApiController::class)
     });
 
 
-Route::controller(TiresApiController::class)->group(function () {
-    Route::get('tires', 'index')->name('api.get-tires');
-    Route::get('tires/{carType:slug}/type', 'typePage')->name('api.get-tires.type');
-    Route::get('tires/{tire:slug}/details', 'show')->name('api.tires.show');
+Route::controller(TiresApiController::class)->prefix('tires')->group(function () {
+    Route::get('/', 'index')->name('api.get-tires');
+    Route::get('/{carType:slug}/type', 'typePage')->name('api.get-tires.type');
+    Route::get('/{tire:slug}/details', 'show')->name('api.tires.show');
 });

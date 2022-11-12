@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\TiresModuleApi;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Tires\CarTypeTiresResource;
 use App\Http\Resources\Tires\TiresResource;
 use App\Models\CarType;
 use App\Models\Tire;
@@ -12,26 +13,21 @@ use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class TiresApiController extends Controller
 {
-    public function index()//: AnonymousResourceCollection
+    public function index(): AnonymousResourceCollection
     {
         $tires = Tire::query()->with(['media', 'tire_features'])->get();
         return TiresResource::collection($tires)->additional(['status' => 'OK', 'message' => 'Tires Data Retrieved Successfully']);
     }
 
-    // public function typePage(CarType $carType): AnonymousResourceCollection
-    // {
-    //     $tires = Tire::query()->where('car_type_id', $carType->id)->with(['media', 'tire_features'])->get();
+    public function typePage(CarType $carType): AnonymousResourceCollection
+    {
+        $tires = Tire::query()->where('car_type_id', $carType->id)->with(['media', 'tire_features'])->get();
 
-    //     if ($tires->count() == 0) {
-    //         Alert::info(trans('website.message.info'), trans('website.message.info-tire-not-found'));
-    //         return back();
-    //     }
-
-    //     return view('site.tires.tire-type-page', compact([
-    //         'tires',
-    //         'carType',
-    //     ]));
-    // }
+        if ($tires->count() == 0) {
+            return TiresResource::collection(collect([]))->additional(['status' => 'ERROR', 'message' => 'No Tires Found.'], 404);
+        }
+        return TiresResource::collection($tires)->additional(compact('carType'));
+    }
 
     // public function show(Tire $tire): AnonymousResourceCollection
     // {
