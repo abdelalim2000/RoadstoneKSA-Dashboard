@@ -28,7 +28,7 @@ class TiresApiController extends Controller
             ->with(['media', 'tire_features'])
             ->translatedIn(request()->get('locale') ?? 'en')
             ->get();
-        
+
         return TireCardResource::collection($tires)
             ->additional(['status' => 'OK', 'message' => 'Tires Data By Car Type Retrieved Successfully']);
     }
