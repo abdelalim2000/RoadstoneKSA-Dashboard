@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\ArticleModuleApi\ArticleApiController;
 use App\Http\Controllers\Api\CarsModuleApi\CarApiController;
 use App\Http\Controllers\Api\ContactModuleApi\ContactApiController;
 use App\Http\Controllers\Api\NewsModuleApi\NewsApiController;
+use App\Http\Controllers\Api\TiresModuleApi\TiresApiController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -37,3 +38,10 @@ Route::controller(NewsApiController::class)
         Route::post('news-letter', 'store')->name('api.store-new-contact');
 
     });
+
+
+Route::controller(TiresApiController::class)->group(function () {
+    Route::get('tires', 'index')->name('api.get-tires');
+    Route::get('tires/{carType:slug}/type', 'typePage')->name('api.get-tires.type');
+    Route::get('tires/{tire:slug}/details', 'show')->name('api.tires.show');
+});
