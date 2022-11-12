@@ -26,12 +26,12 @@ class TiresApiController extends Controller
         if ($tires->count() == 0) {
             return TiresResource::collection(collect([]))->additional(['status' => 'ERROR', 'message' => 'No Tires Found.'], 404);
         }
-        return TiresResource::collection($tires)->additional(compact('carType'));
+        return TiresResource::collection($tires)->additional(['carType' => $carType, 'status' => 'OK', 'message' => 'Tires Data Retrieved Successfully']);
     }
 
-    public function show(Tire $tire)//: AnonymousResourceCollection
+    public function show(Tire $tire): AnonymousResourceCollection
     {
         $tire->load('tire_features', 'media', 'tire_designs', 'car_type', 'tire_sizes');
-        return TireDetailsResource::make($tire);
+        return TireDetailsResource::make($tire)->additional(['status' => 'OK', 'message' => 'Tires Data Retrieved Successfully']);
     }
 }
