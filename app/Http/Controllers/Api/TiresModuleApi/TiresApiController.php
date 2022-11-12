@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api\TiresModuleApi;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\Tires\CarTypeTiresResource;
+use App\Http\Resources\Tires\TireDetailsResource;
 use App\Http\Resources\Tires\TiresResource;
 use App\Models\CarType;
 use App\Models\Tire;
@@ -29,12 +29,9 @@ class TiresApiController extends Controller
         return TiresResource::collection($tires)->additional(compact('carType'));
     }
 
-    // public function show(Tire $tire): AnonymousResourceCollection
-    // {
-    //     $tire->load('tire_features', 'media', 'tire_designs', 'car_type', 'tire_sizes');
-
-    //     return view('site.tires.tire-detail', compact([
-    //         'tire',
-    //     ]));
-    // }
+    public function show(Tire $tire)//: AnonymousResourceCollection
+    {
+        $tire->load('tire_features', 'media', 'tire_designs', 'car_type', 'tire_sizes');
+        return TireDetailsResource::make($tire);
+    }
 }
