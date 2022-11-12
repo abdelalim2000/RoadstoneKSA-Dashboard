@@ -19,10 +19,10 @@ class ArticleResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'title' => $this->translate($request->locale)->title,
+            'title' => $this->translate(request()->get('locale') ?? 'en')->title,
             'slug' => $this->slug,
             'image' => ImageResource::make($this->image),
-            'description' => $this->translate($request->locale)->description,
+            'description' => $this->translate(request()->get('locale') ?? 'en')->description,
             'article' => $this->article,
             'seo_keywords' => $this->seo_keywords,
             'seo_description' => $this->seo_description,

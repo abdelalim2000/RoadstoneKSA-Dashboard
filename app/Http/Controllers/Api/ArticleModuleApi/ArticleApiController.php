@@ -13,7 +13,7 @@ class ArticleApiController extends Controller
     {
         $articles = Article::query()
             ->with('media', 'translations')
-            ->translatedIn(request()->get('locale'))
+            ->translatedIn(request()->get('locale') ?? 'en')
             ->where('publish', true)
             ->get();
         return ArticleResource::collection($articles)
