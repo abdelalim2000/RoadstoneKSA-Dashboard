@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Search;
 
+use App\Http\Resources\Image\ImageResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class MakerResource extends JsonResource
@@ -11,7 +12,9 @@ class MakerResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'text' => $this->name,
+            'name' => $this->name,
+            'image' => ImageResource::make($this->image),
+            'models' => ModelResource::collection($this->whenLoaded('models')),
         ];
     }
 }

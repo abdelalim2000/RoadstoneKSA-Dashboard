@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Resources\Search;
+namespace App\Http\Resources\Image;
 
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use JsonSerializable;
 
-class ModelResource extends JsonResource
+class ImageResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -18,8 +18,11 @@ class ModelResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id' => $this->id,
-            'name' => $this->name,
+            "url" => $this->url,
+            "thumbnail" => $this->thumbnail ?? '',
+            "preview" => $this->preview ?? '',
+            "original_url" => $this->original_url ?? '',
+            "preview_url" => $this->preview_url ?? ''
         ];
     }
 }
