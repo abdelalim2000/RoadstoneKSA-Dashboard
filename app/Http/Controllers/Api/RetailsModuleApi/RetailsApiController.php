@@ -6,10 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\Retails\RetailsResource;
 use App\Models\City;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class RetailsApiController extends Controller
 {
-    public function index()//: View|Factory|RedirectResponse|Application
+    public function index(): AnonymousResourceCollection
     {
         $cities = City::query()
             ->where('active', true)
@@ -18,12 +19,7 @@ class RetailsApiController extends Controller
                 $query->where('active', true);
             })
             ->get();
-        // return $cities;
-        // if ($cities->count() == 0) {
-        //     Alert::info(trans('website.message.info'), trans('website.message.info-retailer-not-found'));
-        //     return back();
-        // }
 
-        return RetailsResource::collection($cities);
+        return RetailsResource::collection($cities)->additional(['status' => 'OK', 'message' => 'Retails Data Retrieved Successfully']);
     }
 }
