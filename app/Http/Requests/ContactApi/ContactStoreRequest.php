@@ -32,7 +32,7 @@ class ContactStoreRequest extends FormRequest
             ],
             'email' => [
                 'required',
-                'string',
+                'email:rfc,dns',
                 'max:200'
             ],
             'phone' => [
