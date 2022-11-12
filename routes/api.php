@@ -1,8 +1,8 @@
 <?php
 
+use App\Http\Controllers\Api\ArticleModuleApi\ArticleApiController;
 use App\Http\Controllers\Api\CarsModuleApi\CarApiController;
 use Illuminate\Support\Facades\Route;
-use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 
 Route::controller(CarApiController::class)
@@ -13,11 +13,10 @@ Route::controller(CarApiController::class)
 
     });
 
-Route::group(
-    [
-        'prefix' => LaravelLocalization::setLocale(),
-        'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
-    ], function () {
+Route::controller(ArticleApiController::class)
+    ->group(function () {
 
+        Route::get('articles', 'index')->name('api.get-article');
+        Route::get('articles/{article:slug}/detail', 'show')->name('api.get-show');
 
-});
+    });
