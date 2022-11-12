@@ -28,15 +28,16 @@ class TiresApiController extends Controller
             ->with(['media', 'tire_features'])
             ->translatedIn(request()->get('locale') ?? 'en')
             ->get();
-
+        
         return TireCardResource::collection($tires)
             ->additional(['status' => 'OK', 'message' => 'Tires Data By Car Type Retrieved Successfully']);
     }
 
-    public function show(Tire $tire)//: AnonymousResourceCollection
+    public function show(Tire $tire): TireDetailsResource
     {
         $tire->load('tire_features', 'media', 'tire_designs', 'tire_sizes');
         return TireDetailsResource::make($tire)
             ->additional(['status' => 'OK', 'message' => 'Tire Data Retrieved Successfully']);
+
     }
 }
