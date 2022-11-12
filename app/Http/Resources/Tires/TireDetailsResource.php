@@ -2,24 +2,32 @@
 
 namespace App\Http\Resources\Tires;
 
-use App\Http\Resources\Tires\TireFeaturesResource;
-use App\Http\Resources\Tires\TireImagesResource;
-use App\Http\Resources\Tires\TireTranslationResource;
+use App\Http\Resources\Image\ImageResource;
+use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use JsonSerializable;
 
 class TireDetailsResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
+     * @param Request $request
+     * @return array|Arrayable|JsonSerializable
      */
     public function toArray($request)
     {
         return [
-            "id" => $this->id,
+            "title" => $this->translate(request()->get('locale') ?? 'en')->title,
             "slug" => $this->slug,
+            "breadcrumb" => $this->breadcrumb,
+            "thumb" => ImageResource::make($this->thumb),
+            "tire_logo" => ImageResource::make($this->tire_logo),
+            "images" => ImageResource::collection($this->images),
+            "seo_keywords" => $this->translate(request()->get('locale') ?? 'en')->seo_keywords,
+            "seo_description" => $this->translate(request()->get('locale') ?? 'en')->seo_description,
+            "description" => $this->translate(request()->get('locale') ?? 'en')->description,
             "video_link" => $this->video_link,
             "dry_performance" => $this->dry_performance,
             "wet_performance" => $this->wet_performance,
@@ -33,15 +41,9 @@ class TireDetailsResource extends JsonResource
             "wet_grip" => $this->wet_grip,
             "aquaplaning" => $this->aquaplaning,
             "ice" => $this->ice,
-            "created_at" => $this->created_at,
-            "car_type_id" => $this->car_type_id,
-            "breadcrumb" => $this->breadcrumb,
-            "thumb" => TireImagesResource::make($this->thumb),
-            "tire_logo" => TireImagesResource::make($this->tire_logo),
-            "images" => TireImagesResource::collection($this->images),
-            "media" => TireImagesResource::collection($this->media),
-            "tire_features" => TireFeaturesResource ::collection($this->tire_features),
-            "translations" => TireTranslationResource::collection($this->translations)
+            "USB" => TireFeaturesResource::collection($this->whenLoaded('tire_features')),
+            "designs" => TireDesignResource::collection($this->whenLoaded('tire_designs')),
+            "sizes" => TireSizeResource::collection($this->whenLoaded('tire_sizes'))
         ];
     }
 }

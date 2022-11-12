@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use JsonSerializable;
 
-class TireFeaturesResource extends JsonResource
+class TireDesignResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -19,8 +19,8 @@ class TireFeaturesResource extends JsonResource
     public function toArray($request)
     {
         return [
-            "name" => $this->translate(request()->get('locale') ?? 'en')->name,
-            "icon" => ImageResource::make($this->icon),
+            'name' => $this->translate(request()->get('locale') ?? 'en')->name,
+            'image' => ImageResource::make($this->image),
         ];
     }
 }

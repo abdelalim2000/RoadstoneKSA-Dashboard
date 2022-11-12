@@ -2,13 +2,12 @@
 
 namespace App\Http\Resources\Tires;
 
-use App\Http\Resources\Image\ImageResource;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use JsonSerializable;
 
-class TireFeaturesResource extends JsonResource
+class TireSizeResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -19,8 +18,11 @@ class TireFeaturesResource extends JsonResource
     public function toArray($request)
     {
         return [
-            "name" => $this->translate(request()->get('locale') ?? 'en')->name,
-            "icon" => ImageResource::make($this->icon),
+            'width' => $this->width,
+            'ratio' => $this->ratio,
+            'rim_diameter' => $this->rim_diameter,
+            'load_index' => $this->load_index,
+            'speed_rating' => $this->speed_rating,
         ];
     }
 }
