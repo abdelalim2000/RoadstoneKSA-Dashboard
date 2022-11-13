@@ -38,6 +38,20 @@ class TiresApiController extends Controller
         $tire->load('tire_features', 'media', 'tire_designs', 'tire_sizes');
         return TireDetailsResource::make($tire)
             ->additional(['status' => 'OK', 'message' => 'Tire Data Retrieved Successfully']);
+    }
 
+    public function search(CarType $carType, $carModel = null): AnonymousResourceCollection
+    {
+        $tires = Tire::query()
+            ->where('car_type_id', $carType->id)
+            ->when($carModel == null, function ($q) use ($carModel) {
+                $q->whereHas('car_models', function ($stmt) use ($carModel) {
+                    $stmt->where('name', '=', $carModel);
+                });
+            })
+            ->get();
+
+        return TireCardResource::collection($tires)
+            ->additional(['status' => 'OK', 'message' => 'Tires Data By Car Type Retrieved Successfully']);
     }
 }
