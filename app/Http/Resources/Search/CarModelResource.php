@@ -19,7 +19,7 @@ class CarModelResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'image' => ImageResource::make($this->image),
-            'models' => ModelResource::collection($this->models()->get()),
+            'models' => ModelResource::collection($this->whenLoaded('models')),
         ];
     }
 }

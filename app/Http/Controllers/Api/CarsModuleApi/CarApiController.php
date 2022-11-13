@@ -29,6 +29,7 @@ class CarApiController extends Controller
 
     public function carModel(Maker $maker)
     {
+        $maker->load('models');
         return new CarModelResource($maker);
     }
 }
