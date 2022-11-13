@@ -14,7 +14,6 @@ class MakerResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'image' => ImageResource::make($this->image),
-            'models' => ModelResource::collection($this->whenLoaded('models')),
         ];
     }
 }
