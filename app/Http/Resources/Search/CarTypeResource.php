@@ -5,7 +5,7 @@ namespace App\Http\Resources\Search;
 use App\Http\Resources\Image\ImageResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class CarModelResource extends JsonResource
+class CarTypeResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -18,8 +18,8 @@ class CarModelResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'slug' => $this->slug,
             'image' => ImageResource::make($this->image),
-            'models' => ModelResource::collection($this->whenLoaded('models')),
         ];
     }
 }

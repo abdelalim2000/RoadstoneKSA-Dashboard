@@ -3,15 +3,18 @@
 namespace App\Http\Resources\Retails;
 
 use App\Http\Resources\Image\ImageResource;
+use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use JsonSerializable;
 
 class RetailsResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
+     * @param Request $request
+     * @return array|Arrayable|JsonSerializable
      */
     public function toArray($request)
     {
@@ -20,15 +23,11 @@ class RetailsResource extends JsonResource
             "slug" => $this->slug,
             "map" => $this->map,
             "active" => $this->active,
-            "created_at" => $this->created_at,
-            "updated_at" => $this->updated_at,
-            "name" => $this->name,
-            "seo_keywords" => $this->seo_keywords,
-            "seo_description" => $this->seo_description,
+            "name" => $this->translate(request()->get('locale') ?? 'en')->name,
+            "seo_keywords" => $this->translate(request()->get('locale') ?? 'en')->seo_keywords,
+            "seo_description" => $this->translate(request()->get('locale') ?? 'en')->seo_description,
             "image" => ImageResource::make($this->image),
-            "media" => ImageResource::collection($this->media),
             "locations" => RetailsLocationResource::collection($this->locations),
-            "translations" => RetailsTranslationResource::collection($this->translations)
         ];
     }
 }

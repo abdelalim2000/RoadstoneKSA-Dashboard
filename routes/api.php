@@ -12,9 +12,10 @@ use Illuminate\Support\Facades\Route;
 Route::controller(CarApiController::class)
     ->prefix('cars')
     ->group(function () {
-        Route::get('/{maker:name}/models', 'carModel')->name('api.get-maker');
 
+        Route::get('types', 'types')->name('api.get-types');
         Route::get('makers', 'maker')->name('api.get-maker');
+        Route::get('/{maker}/models', 'carModel')->name('api.get-maker');
 
     });
 
@@ -46,8 +47,19 @@ Route::controller(TiresApiController::class)->prefix('tires')->group(function ()
     Route::get('/', 'index')->name('api.get-tires');
     Route::get('/{carType:slug}/type', 'typePage')->name('api.get-tires.type');
     Route::get('/{tire:slug}/details', 'show')->name('api.tires.show');
-    Route::get('/search/{carType:slug}/{carModel?}', 'search');
+    Route::get('/type-model/search', 'searchTypeModel');
+    Route::get('/size/search', 'searchSize');
 });
+
+Route::controller(\App\Http\Controllers\Api\SizeModuleApi\SizeApiController::class)
+    ->prefix('sizes')
+    ->group(function (){
+
+        Route::get('width', 'width');
+        Route::get('rim-diameter', 'rimDiameter');
+        Route::get('aspect-ratio', 'aspectRatio');
+
+    });
 
 Route::controller(RetailsApiController::class)->prefix('retails')->group(function () {
     Route::get('/', [RetailsApiController::class, 'index'])->name('retailer');

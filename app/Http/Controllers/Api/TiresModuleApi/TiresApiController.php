@@ -7,6 +7,7 @@ use App\Http\Resources\Tires\TireCardResource;
 use App\Http\Resources\Tires\TireDetailsResource;
 use App\Models\CarType;
 use App\Models\Tire;
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class TiresApiController extends Controller
@@ -17,6 +18,7 @@ class TiresApiController extends Controller
             ->with(['media', 'translations', 'tire_features.translations'])
             ->translatedIn(request()->get('locale') ?? 'en')
             ->get();
+
         return TireCardResource::collection($tires)
             ->additional(['status' => 'OK', 'message' => 'Tires Data Retrieved Successfully']);
     }
@@ -40,18 +42,44 @@ class TiresApiController extends Controller
             ->additional(['status' => 'OK', 'message' => 'Tire Data Retrieved Successfully']);
     }
 
-    public function search(CarType $carType, $carModel = null): AnonymousResourceCollection
+    public function searchTypeModel(Request $request): AnonymousResourceCollection
     {
         $tires = Tire::query()
-            ->where('car_type_id', $carType->id)
-            ->when($carModel == null, function ($q) use ($carModel) {
-                $q->whereHas('car_models', function ($stmt) use ($carModel) {
-                    $stmt->where('name', '=', $carModel);
+            ->when($request->car_type_id, function ($query) use ($request) {
+                return $query->where('car_type_id', $request->car_type_id);
+            })
+            ->when($request->car_model_id, function ($query) use ($request) {
+                return $query->whereHas("car_models", function ($builder) use ($request) {
+                    $builder->where('car_model_id', $request->car_model_id);
                 });
             })
             ->get();
 
         return TireCardResource::collection($tires)
-            ->additional(['status' => 'OK', 'message' => 'Tires Data By Car Type Retrieved Successfully']);
+            ->additional(['status' => 'OK', 'message' => 'Tires Data By Car Type and Model Retrieved Successfully']);
+    }
+
+    public function searchSize(Request $request): AnonymousResourceCollection
+    {
+        $tires = Tire::query()
+            ->when($request->width, function ($query) use ($request) {
+                return $query->whereHas('tire_sizes', function ($builder) use ($request) {
+                    $builder->where('width', $request->width);
+                });
+            })
+            ->when($request->rim_diameter, function ($query) use ($request) {
+                return $query->whereHas('tire_sizes', function ($builder) use ($request) {
+                    $builder->where('rim_diameter', $request->rim_diameter);
+                });
+            })
+            ->when($request->ratio, function ($query) use ($request) {
+                return $query->whereHas('tire_sizes', function ($builder) use ($request) {
+                    $builder->where('ratio', $request->ratio);
+                });
+            })
+            ->get();
+
+        return TireCardResource::collection($tires)
+            ->additional(['status' => 'OK', 'message' => 'Tires Data BySize Retrieved Successfully']);
     }
 }

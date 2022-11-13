@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Resources\Search;
+namespace App\Http\Resources\Size;
 
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use JsonSerializable;
 
-class AspectRatioResource extends JsonResource
+class WidthResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -18,8 +18,7 @@ class AspectRatioResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id' => $this->ratio,
-            'text' => $this->ratio,
+            'width' => $this->width,
         ];
     }
 }

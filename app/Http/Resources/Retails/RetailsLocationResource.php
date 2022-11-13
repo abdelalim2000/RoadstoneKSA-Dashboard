@@ -15,14 +15,11 @@ class RetailsLocationResource extends JsonResource
     public function toArray($request)
     {
         return [
-            "id" => $this->id,
             "phone" => $this->phone,
             "map" => $this->map,
-            "active" => $this->active,
-            "created_at" => $this->created_at,
             "city_id" => $this->city_id,
-            "name" => $this->name,
-            "address" => $this->address,
+            "name" => $this->translate(request()->get('locale') ?? 'en')->name,
+            "address" => $this->translate(request()->get('locale') ?? 'en')->address,
             "working_hour" => $this->working_hour,
         ];
     }

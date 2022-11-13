@@ -20,6 +20,7 @@ class RetailsApiController extends Controller
             })
             ->get();
 
-        return RetailsResource::collection($cities)->additional(['status' => 'OK', 'message' => 'Retails Data Retrieved Successfully']);
+        return RetailsResource::collection($cities)
+            ->additional(['status' => 'OK', 'message' => 'Retails Data Retrieved Successfully']);
     }
 }

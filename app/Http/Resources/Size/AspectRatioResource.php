@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Resources\Search;
+namespace App\Http\Resources\Size;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class RimDiameterResource extends JsonResource
+class AspectRatioResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -14,9 +14,6 @@ class RimDiameterResource extends JsonResource
      */
     public function toArray($request)
     {
-        return [
-            'id' => $this->rim_diameter,
-            'text' => $this->rim_diameter,
-        ];
+        return parent::toArray($request);
     }
 }
