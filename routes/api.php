@@ -46,6 +46,7 @@ Route::controller(TiresApiController::class)->prefix('tires')->group(function ()
     Route::get('/', 'index')->name('api.get-tires');
     Route::get('/{carType:slug}/type', 'typePage')->name('api.get-tires.type');
     Route::get('/{tire:slug}/details', 'show')->name('api.tires.show');
+    Route::get('/search/{carType:slug}/{carModel?}', 'search');
 });
 
 Route::controller(RetailsApiController::class)->prefix('retails')->group(function () {
