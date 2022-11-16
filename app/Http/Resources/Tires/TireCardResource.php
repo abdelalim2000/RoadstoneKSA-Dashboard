@@ -22,6 +22,7 @@ class TireCardResource extends JsonResource
             "title" => $this->translate(request()->get('locale') ?? 'en')->title,
             "slug" => $this->slug,
             "thumb" => ImageResource::make($this->thumb),
+            "tire_logo" => ImageResource::make($this->tire_logo),
             "USB" => TireFeaturesResource::collection($this->tire_features),
         ];
     }
