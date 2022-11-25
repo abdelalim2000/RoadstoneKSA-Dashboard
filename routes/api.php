@@ -5,6 +5,8 @@ use App\Http\Controllers\Api\CarsModuleApi\CarApiController;
 use App\Http\Controllers\Api\ContactModuleApi\ContactApiController;
 use App\Http\Controllers\Api\NewsModuleApi\NewsApiController;
 use App\Http\Controllers\Api\RetailsModuleApi\RetailsApiController;
+use App\Http\Controllers\Api\SettingModule\SettingApiController;
+use App\Http\Controllers\Api\SizeModuleApi\SizeApiController;
 use App\Http\Controllers\Api\TiresModuleApi\TiresApiController;
 use Illuminate\Support\Facades\Route;
 
@@ -51,9 +53,9 @@ Route::controller(TiresApiController::class)->prefix('tires')->group(function ()
     Route::get('/size/search', 'searchSize');
 });
 
-Route::controller(\App\Http\Controllers\Api\SizeModuleApi\SizeApiController::class)
+Route::controller(SizeApiController::class)
     ->prefix('sizes')
-    ->group(function (){
+    ->group(function () {
 
         Route::get('width', 'width');
         Route::get('rim-diameter', 'rimDiameter');
@@ -62,5 +64,10 @@ Route::controller(\App\Http\Controllers\Api\SizeModuleApi\SizeApiController::cla
     });
 
 Route::controller(RetailsApiController::class)->prefix('retails')->group(function () {
-    Route::get('/', [RetailsApiController::class, 'index'])->name('retailer');
+    Route::get('/', [RetailsApiController::class, 'index'])->name('api.get-retailer');
+});
+
+Route::controller(SettingApiController::class)->prefix('settings')->group(function () {
+    Route::get('/text', [SettingApiController::class, 'settingText'])->name('api.get-text');
+    Route::get('/image', [SettingApiController::class, 'settingImage'])->name('api.get-image');
 });
