@@ -366,6 +366,29 @@
                 </div>
 
                 <div class="form-group">
+                    <label class="required" for="locations">{{ trans('cruds.tire.fields.locations') }}</label>
+                    <div style="padding-bottom: 4px">
+                        <span class="btn btn-info btn-xs select-all"
+                              style="border-radius: 0">{{ trans('global.select_all') }}</span>
+                        <span class="btn btn-info btn-xs deselect-all"
+                              style="border-radius: 0">{{ trans('global.deselect_all') }}</span>
+                    </div>
+                    <select class="form-control select2 {{ $errors->has('locations') ? 'is-invalid' : '' }}"
+                            name="locations[]" id="locations" multiple required>
+                        @foreach($locations as $key=>$item)
+                            <option
+                                value="{{ $key }}" {{ (in_array($key, old('locations', [])) || $tire->locations->contains($key)) ? 'selected' : '' }}>{{ $item }}</option>
+                        @endforeach
+                    </select>
+                    @if($errors->has('locations'))
+                        <div class="invalid-feedback">
+                            {{ $errors->first('locations') }}
+                        </div>
+                    @endif
+                    <span class="help-block">{{ trans('cruds.tire.fields.locations_helper') }}</span>
+                </div>
+
+                <div class="form-group">
                     <label class="required" for="car_type_id">{{ trans('cruds.tire.fields.car_type') }}</label>
                     <select class="form-control select2 {{ $errors->has('car_type') ? 'is-invalid' : '' }}"
                             name="car_type_id" id="car_type_id" required>

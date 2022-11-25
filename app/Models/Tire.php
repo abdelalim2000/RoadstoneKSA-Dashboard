@@ -130,6 +130,11 @@ class Tire extends Model implements HasMedia, TranslatableContracts
         return $files;
     }
 
+    public function locations(): BelongsToMany
+    {
+        return $this->belongsToMany(Location::class, 'location_tire');
+    }
+
     public function tire_features(): BelongsToMany
     {
         return $this->belongsToMany(TireFeature::class);

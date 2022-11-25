@@ -10,6 +10,7 @@ use App\Http\Requests\UpdateTireCarModelRequest;
 use App\Http\Requests\UpdateTireRequest;
 use App\Models\CarModel;
 use App\Models\CarType;
+use App\Models\Location;
 use App\Models\Tire;
 use App\Models\TireDesign;
 use App\Models\TireFeature;
@@ -98,6 +99,7 @@ class TireController extends Controller
         $tire->tire_features()->sync($request->input('tire_features', []));
         $tire->tire_designs()->sync($request->input('tire_designs', []));
         $tire->car_models()->sync($request->input('car_models', []));
+        $tire->locations()->sync($request->input('locations', []));
 
         if ($request->input('breadcrumb', false)) {
             $tire->addMedia(storage_path('tmp/uploads/' . basename($request->input('breadcrumb'))))->toMediaCollection('tire_breadcrumb');
@@ -142,7 +144,13 @@ class TireController extends Controller
             return CarType::query()->pluck('name', 'id');
         });
 
-        return view('admin.tires.create', compact('car_models', 'car_types', 'tire_designs', 'tire_features'));
+        $locations = Cache::rememberForever('tire_location', function () {
+            return Location::query()
+                ->listsTranslations('name')
+                ->pluck('name', 'id');
+        });
+
+        return view('admin.tires.create', compact('car_models', 'car_types', 'tire_designs', 'tire_features', 'locations'));
     }
 
     public function update(UpdateTireRequest $request, Tire $tire)
@@ -151,6 +159,7 @@ class TireController extends Controller
 
         $tire->tire_features()->sync($request->input('tire_features', []));
         $tire->tire_designs()->sync($request->input('tire_designs', []));
+        $tire->locations()->sync($request->input('locations', []));
 
         if ($request->input('breadcrumb', false)) {
             if (!$tire->breadcrumb || $request->input('breadcrumb') !== $tire->breadcrumb->file_name) {
@@ -218,9 +227,15 @@ class TireController extends Controller
             return CarType::query()->pluck('name', 'id');
         });
 
-        $tire->load(['tire_features', 'tire_designs', 'car_type', 'media']);
+        $locations = Cache::rememberForever('tire_location', function () {
+            return Location::query()
+                ->listsTranslations('name')
+                ->pluck('name', 'id');
+        });
 
-        return view('admin.tires.edit', compact('car_types', 'tire', 'tire_designs', 'tire_features'));
+        $tire->load(['tire_features', 'tire_designs', 'car_type', 'media', 'locations']);
+
+        return view('admin.tires.edit', compact('car_types', 'tire', 'tire_designs', 'tire_features', 'locations'));
     }
 
     public function show(Tire $tire)

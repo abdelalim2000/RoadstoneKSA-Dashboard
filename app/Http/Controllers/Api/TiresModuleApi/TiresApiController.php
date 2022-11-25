@@ -37,7 +37,7 @@ class TiresApiController extends Controller
 
     public function show(Tire $tire): TireDetailsResource
     {
-        $tire->load('tire_features', 'media', 'tire_designs', 'tire_sizes');
+        $tire->load('tire_features', 'media', 'tire_designs', 'tire_sizes', 'locations');
         return TireDetailsResource::make($tire)
             ->additional(['status' => 'OK', 'message' => 'Tire Data Retrieved Successfully']);
     }
