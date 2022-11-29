@@ -23,7 +23,7 @@ class ArticleResource extends JsonResource
             'slug' => $this->slug,
             'image' => ImageResource::make($this->image),
             'description' => $this->translate(request()->get('locale') ?? 'en')->description,
-            'article' => $this->article,
+            'article' => $this->translate(request()->get('locale') ?? 'en')->article,
             'seo_keywords' => $this->seo_keywords,
             'seo_description' => $this->seo_description,
             'created_at' => $this->created_at->format('M d, Y')
