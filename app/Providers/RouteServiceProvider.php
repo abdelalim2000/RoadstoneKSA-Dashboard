@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Exceptions\TireNotFoundException;
+use App\Models\Tire;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;

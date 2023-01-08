@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Exceptions\ApiCustomException;
+use App\Exceptions\TireNotFoundException;
 use App\Traits\SetSlugTrait;
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContracts;
 use Astrotomic\Translatable\Translatable;
@@ -158,6 +160,14 @@ class Tire extends Model implements HasMedia, TranslatableContracts
     public function tire_sizes(): HasMany
     {
         return $this->hasMany(TireSize::class, 'tire_id');
+    }
+    public function resolveRouteBinding($value, $field = null)
+    {
+        return $this->where($field ?? 'id', $value)->first() ?? throw new ApiCustomException(
+            code: 404,
+            status: 'Not Found',
+            data: ['message' => 'Tire Not Found, If error continue to appear please contact support']
+        );
     }
 
     protected function serializeDate(DateTimeInterface $date): string
