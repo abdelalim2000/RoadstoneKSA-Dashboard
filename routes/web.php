@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::redirect('', 'admin');
+Route::redirect('', '/coming-soon');
+Route::view('/coming-soon', 'coming-soon-page');
 
 //Route::group(
 //    [
