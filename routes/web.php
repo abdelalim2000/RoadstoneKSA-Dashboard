@@ -2,8 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::redirect('', '/coming-soon');
-Route::view('/coming-soon', 'coming-soon-page');
+Route::get('{any}', function () {
+    return view('coming-soon-page');
+})->where('any', '.*');
 
 //Route::group(
 //    [
